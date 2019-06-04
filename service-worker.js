@@ -26,7 +26,7 @@ const cachedFiles = [
  */
 self.addEventListener( 'install', ( event ) => {
 
-	console.warn( 'Service Worker Installed' );
+	// console.warn( 'Service Worker Installed' );
 
 	/**
 	 * Add the files to the cache
@@ -41,7 +41,7 @@ self.addEventListener( 'install', ( event ) => {
 		caches.open( cacheName )
 			.then( cache => {
 
-				console.warn( 'Caching Files');
+				// console.warn( 'Caching Files');
 				return cache.addAll( cachedFiles );
 
 			} )
@@ -58,7 +58,7 @@ self.addEventListener( 'install', ( event ) => {
  */
 self.addEventListener( 'activate', ( event ) => {
 
-	console.warn( 'Service Worker Activated' );
+	// console.warn( 'Service Worker Activated' );
 
 	/**
 	 * Global cache object has a keys method that contains the previous cached items
@@ -67,13 +67,13 @@ self.addEventListener( 'activate', ( event ) => {
 		caches.keys()
 			.then( keyList => {
 
-				console.warn( 'Check if there is a new cache version');
+				// console.warn( 'Check if there is a new cache version');
 
 				// The Promise.all() will fail if any promise method inside of it fails
 				return Promise.all( keyList.map( key => {
 					if ( key !== cacheName ) {
 
-						console.warn( 'Deleting old Cached File with Key', key );
+						// console.warn( 'Deleting old Cached File with Key', key );
 
 						// Delete that cache with that key
 						return caches.delete( key );
@@ -88,39 +88,8 @@ self.addEventListener( 'activate', ( event ) => {
 	return self.clients.claim();
 });
 
-/**
- * The fetch event is called when any request is made on PWA.
- *
- * Then we can respond with the cached files.
- */
-// self.addEventListener( 'fetch', ( event ) => {
-//
-// 	// console.warn( `Fetch event occurred on url: ${event.request.url}` );
-//
-// 	/**
-// 	 * respondWith() takes a promise
-// 	 * Global cache object contains a match(), which will look for a corresponding page, based on the URL and the method and
-// 	 * return the response.
-// 	 */
-// 	event.respondWith(
-//
-// 		// This will look for the requested url ( event.request ) into cache first
-// 		caches.match( event.request )
-// 			.then( response => {
-//
-// 				/**
-// 				 * If the requested url is present in the cache it will return response from cache,
-// 				 * else make a network request for that url using fetch().
-// 				 * So response variable is the cached page here.
-// 				 * If the first operand before || evaluates to true, the second is not evaluated.
-// 				 */
-// 				return response || fetch( event.request )
-// 			} )
-// 	);
-// } );
-
 self.addEventListener('fetch', function(event) {
-	console.log('Handling fetch event for', event.request.url);
+	// console.log('Handling fetch event for', event.request.url);
 
 	event.respondWith(
 
@@ -128,12 +97,10 @@ self.addEventListener('fetch', function(event) {
 		caches.open(cacheName).then(function(cache) {
 			return cache.match(event.request).then(function(response) {
 				if (response) {
-					console.log('Found response in cache:', response);
-
 					return response;
 				}
 
-				console.log('Fetching request from the network');
+				// console.log('Fetching request from the network');
 
 				return fetch(event.request).then(function(networkResponse) {
 					cache.put(event.request, networkResponse.clone());
@@ -143,7 +110,7 @@ self.addEventListener('fetch', function(event) {
 			}).catch(function(error) {
 
 				// Handles exceptions that arise from match() or fetch().
-				console.error('Error in fetch handler:', error);
+				// console.error('Error in fetch handler:', error);
 
 				throw error;
 			});

@@ -6,7 +6,6 @@ import fetch from 'isomorphic-unfetch';
 const Product = withRouter( props  => {
 
 	const { product } = props;
-	console.warn( 'props', props );
 
 	return (
 		<Layout>
@@ -31,7 +30,7 @@ const Product = withRouter( props  => {
 Product.getInitialProps = async function( context ) {
 	const siteUrl = process.env.SITE_URL;
 	const productId = context.query.id;
-	const res = await fetch(`${siteUrl}/getProduct/${productId}`);
+	const res = await fetch(`http://localhost:3000/getProduct/${productId}`);
 	const data = await res.json();
 
 	return {

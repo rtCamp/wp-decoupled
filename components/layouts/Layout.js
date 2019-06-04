@@ -17,12 +17,12 @@ const Layout = ( props ) => {
 			 */
 			navigator.serviceWorker.register( '/service-worker.js' )
 				.then( ( res ) => {
-					console.warn( `Sevice Worker Registered ${res.scope}` );
+					// console.warn( `Sevice Worker Registered ${res.scope}` );
 				} )
 				.catch( err => console.warn( 'SW registration failed' + err ) )
 
 		} else {
-			console.warn( 'Service Workers not supported' );
+			// console.warn( 'Service Workers not supported' );
 		}
 
 	}, [] );

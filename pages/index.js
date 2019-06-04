@@ -31,7 +31,7 @@ const Index = ( props ) => {
 
 Index.getInitialProps = async () => {
 	const siteUrl = process.env.SITE_URL;
-	const result = await fetch( `${siteUrl}/getProducts` );
+	const result = await fetch( `http://localhost:3000/getProducts` );
 	const data = await result.json();
 
 	return {

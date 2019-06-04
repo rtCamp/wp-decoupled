@@ -12,7 +12,21 @@
 	padding: 16px 16px 30px 16px;
 	margin: 12px;
 	box-shadow: 1px 1px 4px #c3c1c1;
+	min-width: 300px;
 }
+
+@media screen and ( max-width: 500px ) {
+	.product-container {
+		min-width: 400px;
+	}
+}
+
+@media screen and ( max-width: 400px ) {
+	.product-container {
+		min-width: 300px;
+	}
+}
+
 .product-image {
 	max-width: 240px;
 }
