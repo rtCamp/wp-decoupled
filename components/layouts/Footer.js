@@ -5,7 +5,7 @@ const Footer = () => (
 		{/* Grid row*/}
 		<div className="row">
 			{/* Grid column */}
-			<div className="col-md-12 py-5">
+			<div className="col-md-12 mt-5">
 				<div className="mb-5 flex-center">
 					{/* Facebook */}
 					<a className="fb-ic">
@@ -52,10 +52,10 @@ const Footer = () => (
 	{/* Footer Elements */}
 	{/* Copyright */}
 	<div className="footer-copyright text-center py-3">
-		© 2018 Copyright:
-		<a href="https://mdbootstrap.com/education/bootstrap/">
+		© 2019 Copyright:
+		<a href="https://rtCamp.com">
 			{" "}
-			MDBootstrap.com
+			rtCamp.com
 		</a>
 	</div>
 	{/* Copyright */}
