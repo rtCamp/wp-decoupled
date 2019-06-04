@@ -7,6 +7,5 @@ build/
 node_modules/
 dist/
 .cache
-config.js
+.env
 .next
-wooConfig.js

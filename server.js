@@ -17,8 +17,6 @@ const WooCommerce = new WooCommerceAPI({
 	version: 'wc/v3'
 });
 
-
-
 app.prepare()
 	.then( () => {
 		const server = express();
