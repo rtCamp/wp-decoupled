@@ -2,6 +2,7 @@ import Layout from "../components/layouts/Layout";
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
+import config from './../client.config';
 
 const Product = withRouter( props  => {
 
@@ -28,9 +29,8 @@ const Product = withRouter( props  => {
 } );
 
 Product.getInitialProps = async function( context ) {
-	const siteUrl = process.env.SITE_URL;
 	const productId = context.query.id;
-	const res = await fetch(`http://localhost:3000/getProduct/${productId}`);
+	const res = await fetch(`${config.siteUrl}/getProduct/${productId}`);
 	const data = await res.json();
 
 	return {
