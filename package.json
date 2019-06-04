@@ -26,12 +26,16 @@
   },
   "homepage": "https://github.com/rtCamp/wp-decoupled#readme",
   "dependencies": {
+    "@zeit/next-css": "^1.0.1",
     "express": "^4.17.1",
     "next": "^8.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "next-compose-plugins": "^2.2.0",
+    "node-sass": "^4.12.0",
     "nodemon": "^1.19.1"
   }
 }
