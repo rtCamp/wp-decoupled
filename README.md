@@ -17,14 +17,23 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Configure :wrench:
 
+* Rename `client-config-example.js` to `client-config.js` and update your React Site URL
+
+```ruby
+const config = {
+	siteUrl: 'http://localhost:3000',
+};
+```
+
 * Rename `.env.example` to `.env` and update your WooCommerce config keys
 
 ```ruby
-SITE_URL=http://localhost:3000
 WOO_SITE_URL=http://yourwocommercesite.com
 WOO_CONSUMER_KEY=xxxxx
 WOO_SECRET=xxxxx
 ```
+
+* Rename `.env.example` to `.env` and update your WooCommerce config keys 
 
 ## Commands :computer:
 
