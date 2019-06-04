@@ -1,0 +1,32 @@
+.wd-content {
+	padding: 24px 10px 10px 14px;
+}
+
+.products-wrapper {
+	display: flex;
+	flex-flow: wrap;
+	padding: 10px 0;
+}
+.product-container {
+	text-align: center;
+	padding: 16px 16px 30px 16px;
+	margin: 12px;
+	box-shadow: 1px 1px 4px #c3c1c1;
+}
+.product-image {
+	max-width: 240px;
+}
+.product-name {
+	margin: 16px;
+}
+.product-price {
+	margin: 0 0 20px 0;
+}
+.product-view-link {
+	text-decoration: none;
+	color: #555;
+	border: 1px solid #555;
+	padding: 10px 16px;
+	background-color: #fff;
+	margin-top: 10px;
+}

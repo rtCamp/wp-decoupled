@@ -10,7 +10,7 @@ require('dotenv').config();
 
 const WooCommerceAPI = require( 'woocommerce-api' );
 const WooCommerce = new WooCommerceAPI({
-	url: process.env.SITE_URL,
+	url: process.env.WOO_SITE_URL,
 	consumerKey: process.env.WOO_CONSUMER_KEY,
 	consumerSecret: process.env.WOO_SECRET,
 	wpAPI: true,
