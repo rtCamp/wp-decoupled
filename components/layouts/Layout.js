@@ -9,9 +9,12 @@ const Layout = ( props ) => (
 		<Head>
 			<title>WP Decouple</title>
 			<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 		</Head>
 		<Header/>
-		{props.children}
+		<div className="wd-content">
+			{props.children}
+		</div>
 		<Footer/>
 	</div>
 );
