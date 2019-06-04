@@ -33,8 +33,6 @@ WOO_CONSUMER_KEY=xxxxx
 WOO_SECRET=xxxxx
 ```
 
-* Rename `.env.example` to `.env` and update your WooCommerce config keys 
-
 ## Commands :computer:
 
 * `dev` Runs the node server in development mode
