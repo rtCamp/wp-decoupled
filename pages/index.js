@@ -1,7 +1,7 @@
 import Layout from '../components/layouts/Layout';
 import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
-
+import config from './../client.config';
 
 const Index = ( props ) => {
 	const { products } = props;
@@ -30,8 +30,7 @@ const Index = ( props ) => {
 };
 
 Index.getInitialProps = async () => {
-	const siteUrl = process.env.SITE_URL;
-	const result = await fetch( `http://localhost:3000/getProducts` );
+	const result = await fetch( `${config.siteUrl}/getProducts` );
 	const data = await result.json();
 
 	return {
