@@ -1,5 +1,6 @@
 const next = require( 'next' );
 const express = require( 'express' );
+const { createReadStream } = require('fs');
 
 const port = 3000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -30,6 +31,13 @@ app.prepare()
 			WooCommerce.get('products', function(err, data, res) {
 				response.json( JSON.parse(res) );
 			});
+		} );
+
+
+		// For Service Worker Request
+		server.get( '/service-worker.js', ( req, res ) => {
+			res.setHeader('content-type', 'text/javascript');
+			createReadStream('./service-worker.js').pipe(res);
 		} );
 
 		server.get( '*', ( req, res ) => {
