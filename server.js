@@ -33,6 +33,18 @@ app.prepare()
 			});
 		} );
 
+		/**
+		 * Get Product by Id
+		 */
+		server.get( '/getProduct/:id', ( request, response ) => {
+			const productId = request.params.id;
+
+			// Get Product by Id
+			WooCommerce.get( `products/${productId}`, function(err, data, res) {
+				response.json( JSON.parse(res) );
+			});
+		} );
+
 
 		// For Service Worker Request
 		server.get( '/service-worker.js', ( req, res ) => {
