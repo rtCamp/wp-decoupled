@@ -15,10 +15,10 @@ const Product = withRouter( props  => {
 					<h3>{product.name}</h3>
 					<div className="products-wrapper">
 						<div className="product-container" key={product.id}>
-							<img className="product-image" src={product.images[0].src} alt={ product.name }/>
+							<img className="product-image" src={product.image.sourceUrl} srcSet={product.image.srcSet} alt={ product.name }/>
 							<h5 className="product-name">{product.name}</h5>
 							<p className="product-price">${product.price}</p>
-							<Link href={`/product?id=${product.id}`}><a className="product-view-link">Buy</a></Link>
+							<Link href={`/product?id=${product.productId}`}><a className="product-view-link">Buy</a></Link>
 						</div>
 					</div>
 				</div>
@@ -29,12 +29,38 @@ const Product = withRouter( props  => {
 } );
 
 Product.getInitialProps = async function( context ) {
-	const productId = context.query.id;
-	const res = await fetch(`${config.siteUrl}/getProduct/${productId}`);
-	const data = await res.json();
+
+	const id = context.query.id;
+
+	const query = `query Product( $id: Int! ) {
+		productBy( productId: $id ) {
+			name
+			price
+			image {
+				uri
+				title
+				srcSet
+				sourceUrl
+			}
+		}
+	}`;
+
+	const result = await fetch( `${config.graphqlUrl}`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+		},
+		body: JSON.stringify({
+			query,
+			variables: { id },
+		})
+	} );
+
+	const data = await result.json();
 
 	return {
-		product: data
+		product: data.data.productBy
 	}
 };
 

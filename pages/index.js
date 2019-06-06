@@ -15,10 +15,10 @@ const Index = ( props ) => {
 						{
 							products.map( item => (
 								<div className="product-container" key={item.id}>
-									<img className="product-image" src={item.images[0].src} alt={ item.name }/>
+									<img className="product-image" src={item.image.sourceUrl} srcSet={item.image.srcSet} alt={ item.name }/>
 									<h5 className="product-name">{item.name}</h5>
 									<p className="product-price">${item.price}</p>
-									<Link href={`/product?id=${item.id}`}><a className="product-view-link">View</a></Link>
+									<Link href={`/product?id=${item.productId}`}><a className="product-view-link">View</a></Link>
 								</div>
 							) )
 						}
@@ -30,11 +30,39 @@ const Index = ( props ) => {
 };
 
 Index.getInitialProps = async () => {
-	const result = await fetch( `${config.siteUrl}/getProducts` );
+	const query = `query {
+						products {
+						nodes {
+							id
+							productId
+							averageRating
+							image {
+								uri
+								title
+								srcSet
+								sourceUrl
+							}
+							name
+							price
+						}
+					}
+				}`;
+
+	const result = await fetch( `${config.graphqlUrl}`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+		},
+		body: JSON.stringify({
+			query,
+		})
+	} );
+
 	const data = await result.json();
 
 	return {
-		products: data
+		products: data.data.products.nodes
 	}
 };
 export default Index;
