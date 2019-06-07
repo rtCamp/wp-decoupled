@@ -1,7 +1,7 @@
 import Layout from '../components/layouts/Layout';
 import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
-import config from './../client.config';
+import config from './../client-config';
 
 const Index = ( props ) => {
 	const { products } = props;

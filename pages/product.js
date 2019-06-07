@@ -2,7 +2,7 @@ import Layout from "../components/layouts/Layout";
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
-import config from './../client.config';
+import config from './../client-config';
 
 const Product = withRouter( props  => {
 
