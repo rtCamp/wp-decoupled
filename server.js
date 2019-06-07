@@ -47,10 +47,10 @@ app.prepare()
 
 
 		// For Service Worker Request
-		server.get( '/service-worker.js', ( req, res ) => {
-			res.setHeader('content-type', 'text/javascript');
-			createReadStream('./service-worker.js').pipe(res);
-		} );
+		// server.get( '/service-worker.js', ( req, res ) => {
+		// 	res.setHeader('content-type', 'text/javascript');
+		// 	createReadStream('./service-worker.js').pipe(res);
+		// } );
 
 		server.get( '*', ( req, res ) => {
 			return handle( req, res );
