@@ -34,6 +34,7 @@
     "express": "^4.17.1",
     "graphql": "^14.3.1",
     "graphql-tag": "^2.10.1",
+    "idb-keyval": "^3.2.0",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^8.1.0",
     "next-offline": "^4.0.2",

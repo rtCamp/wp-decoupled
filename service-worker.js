@@ -1,5 +1,9 @@
+importScripts('https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js');
+
 // Cache version.
 const cacheName = 'WNv3';
+
+const store = new idbKeyval.Store('GraphQL-Cache', 'PostResponses');
 
 /**
  * Paths for the files to be cached.
@@ -91,29 +95,98 @@ self.addEventListener( 'activate', ( event ) => {
 self.addEventListener('fetch', function(event) {
 	// console.log('Handling fetch event for', event.request.url);
 
-	event.respondWith(
+	if (event.request.method === 'POST') {
+		event.respondWith(staleWhileRevalidate(event));
+	} else {
+		event.respondWith(
 
-		// Opens Cache objects that start with 'font'.
-		caches.open(cacheName).then(function(cache) {
-			return cache.match(event.request).then(function(response) {
-				if (response) {
-					return response;
-				}
+			// Opens Cache objects that start with 'font'.
+			caches.open(cacheName).then(function(cache) {
+				return cache.match(event.request).then(function(response) {
+					if (response) {
+						return response;
+					}
 
-				// console.log('Fetching request from the network');
+					// console.log('Fetching request from the network');
 
-				return fetch(event.request).then(function(networkResponse) {
-					cache.put(event.request, networkResponse.clone());
+					return fetch(event.request).then(function(networkResponse) {
+						cache.put(event.request, networkResponse.clone());
 
-					return networkResponse;
+						return networkResponse;
+					});
+				}).catch(function(error) {
+
+					// Handles exceptions that arise from match() or fetch().
+					// console.error('Error in fetch handler:', error);
+
+					throw error;
 				});
-			}).catch(function(error) {
-
-				// Handles exceptions that arise from match() or fetch().
-				// console.error('Error in fetch handler:', error);
-
-				throw error;
-			});
-		})
-	);
+			})
+		);
+	}
 });
+
+async function staleWhileRevalidate(event) {
+
+	let cachedResponse = await getCache(event.request.clone());
+	let fetchPromise = fetch(event.request.clone())
+		.then((response) => {
+			setCache(event.request.clone(), response.clone());
+			return response;
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+	return cachedResponse ? Promise.resolve(cachedResponse) : fetchPromise;
+}
+
+async function serializeResponse(response) {
+	let serializedHeaders = {};
+	for (var entry of response.headers.entries()) {
+		serializedHeaders[entry[0]] = entry[1];
+	}
+	let serialized = {
+		headers: serializedHeaders,
+		status: response.status,
+		statusText: response.statusText
+	};
+	serialized.body = await response.json();
+	return serialized;
+}
+
+async function setCache(request, response) {
+
+	let body = await request.json();
+	let id = body.query.toString() + JSON.stringify( body.variables );
+
+	var entry = {
+		query: body.query,
+		response: await serializeResponse(response),
+		timestamp: Date.now()
+	};
+	idbKeyval.set(id, entry, store);
+}
+
+async function getCache(request) {
+	let data;
+	try {
+		let body = await request.json();
+		let id = body.query.toString() + JSON.stringify( body.variables );
+
+		data = await idbKeyval.get(id, store);
+		if (!data) return null;
+
+		// Check cache max age.
+		let cacheControl = request.headers.get('Cache-Control');
+		let maxAge = cacheControl ? parseInt(cacheControl.split('=')[1]) : 3600;
+		if (Date.now() - data.timestamp > maxAge * 1000) {
+			console.log(`Cache expired. Load from API endpoint.`);
+			return null;
+		}
+
+		console.log(`Load response from cache.`);
+		return new Response(JSON.stringify(data.response.body), data.response);
+	} catch (err) {
+		return null;
+	}
+}
