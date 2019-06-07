@@ -1,7 +1,7 @@
 import Layout from '../components/layouts/Layout';
 import fetch from 'isomorphic-unfetch';
 import Products from './products';
-import config from '../client.config';
+import config from '../client-config';
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-boost';
 import { InMemoryCache } from 'apollo-cache-inmemory';

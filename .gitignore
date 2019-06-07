@@ -8,5 +8,5 @@ node_modules/
 dist/
 .cache
 .env
-client.config.js
+client-config.js
 .next
