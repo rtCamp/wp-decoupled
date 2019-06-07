@@ -17,6 +17,16 @@ app.prepare()
 			createReadStream('./service-worker.js').pipe(res);
 		} );
 
+		server.get( '/manifest.json', ( req, res ) => {
+			res.setHeader('content-type', 'text/javascript');
+			createReadStream('./static/manifest/manifest.json').pipe(res);
+		} );
+
+		server.get( '/favicon.ico', ( req, res ) => {
+			res.setHeader('content-type', 'text/javascript');
+			createReadStream('./static/favicon.ico').pipe(res);
+		} );
+
 		server.get( '*', ( req, res ) => {
 			return handle( req, res );
 		} );
