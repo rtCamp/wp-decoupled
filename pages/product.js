@@ -18,7 +18,7 @@ const Product = withRouter( props  => {
 							<img className="product-image" src={product.image.sourceUrl} srcSet={product.image.srcSet} alt={ product.name }/>
 							<h5 className="product-name">{product.name}</h5>
 							<p className="product-price">${product.price}</p>
-							<Link href={`/product?id=${product.id}`}><a className="product-view-link">Buy</a></Link>
+							<Link as={ `/product/${product.slug}` } href={`/product?id=${product.productId}`}><a className="product-view-link">Buy</a></Link>
 						</div>
 					</div>
 				</div>
@@ -34,6 +34,8 @@ Product.getInitialProps = async function( context ) {
 		productBy( productId: $id ) {
 			name
 			price
+			slug
+			productId
 			image {
 				uri
 				title
@@ -43,7 +45,8 @@ Product.getInitialProps = async function( context ) {
 		}
 	}`;
 
-	const id = context.query.id;
+	const { id } = context.query;
+
 	const res = await client.query({
 		query: PRODUCT_QUERY,
 		variables: { id }

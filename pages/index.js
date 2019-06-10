@@ -7,11 +7,12 @@ import gql from 'graphql-tag';
  * GraphQL products query
  */
 const PRODUCTS_QUERY = gql`query {
-						products {
+					products {
 						nodes {
 							id
 							productId
 							averageRating
+							slug
 							image {
 								uri
 								title
@@ -41,7 +42,7 @@ const Index = ( props ) => {
 									<img className="product-image" src={item.image.sourceUrl} srcSet={item.image.srcSet} alt={ item.name }/>
 									<h5 className="product-name">{item.name}</h5>
 									<p className="product-price">${item.price}</p>
-									<Link as={`/product/${item.name.toLowerCase().trim().replace(' ','-')}`} href={`/product?id=${item.productId}`}><a className="product-view-link">View</a></Link>
+									<Link as={`/product/${item.slug}-${item.productId}`} href={`/product?id=${item.productId}`}><a className="product-view-link">View</a></Link>
 								</div>
 							) )
 						}
