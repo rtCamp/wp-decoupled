@@ -15,6 +15,16 @@ These instructions will get you a copy of the project up and running on your loc
 2. `cd wp-decoupled`
 3. `npm install`
 
+## Add GraphQl support on WordPress
+
+1. Clone and activate the following plugins , in your WordPress plugin directory:
+	* [wp-graphql](https://github.com/wp-graphql/wp-graphql) Exposes graphql for WordPress
+	* [wp-graphql-woocommerce](https://github.com/wp-graphql/wp-graphql-woocommerce) Adds WooCommerce functionality to the WPGraphQL schema using WooCommerce's CRUD objects.
+	* [wp-graphiql](https://github.com/wp-graphql/wp-graphiql) Provides GraphiQL IDE (playground) to the WP-Admin
+	
+2. You can also import default wooCommerce products that come with wooCommerce Plugin for development ( if you don't have any products in your WordPress install )
+   WP Dashboard > Tools > WooCommerce products(CSV) : The WooCommerce default products csv file is available at `wp-content/plugins/woocommerce/sample-data/sample_products.csv`   	
+
 ## Configure :wrench:
 
 * Rename `client-config-example.js` to `client-config.js` and update your React Site URL
@@ -22,6 +32,7 @@ These instructions will get you a copy of the project up and running on your loc
 ```ruby
 const config = {
 	siteUrl: 'http://localhost:3000',
+	graphqlUrl: 'http://wordpressSiteUrl/graphql'
 };
 ```
 
