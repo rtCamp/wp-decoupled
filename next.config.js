@@ -16,6 +16,8 @@ const workBoxOptions = {
 };
 
 module.exports = withPlugins([
-	[withOffline( workBoxOptions ), { dontAutoRegisterSw: true }],
-	[withCss(withSass())],
-]);
+    [withOffline( workBoxOptions ), { dontAutoRegisterSw: true }],
+    [withCss(withSass({ target: "serverless" }))],
+], {
+    target: "serverless"
+});
