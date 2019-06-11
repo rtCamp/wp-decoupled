@@ -71,4 +71,4 @@ I use [Git](https://github.com/) for versioning.
 
 ## License :page_with_curl:
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENCE.md) file for details
