@@ -1,0 +1,9 @@
+{
+    "version": 2,
+    "name": "wp-decoupled",
+    "alias": "wp-decoupled",
+    "builds": [{ "src": "package.json", "use": "@now/next" }],
+    "routes": [
+      { "src": "/product/(?<slug>[^/]+)$", "dest": "/product?slug=$slug" }
+    ]
+  }
