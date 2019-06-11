@@ -4,7 +4,11 @@
   "description": "A WordPress decoupled application in React built with Next.js",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "nodemon server.js",
+    "next": "next",
+    "build": "next build",
+    "now-build": "next build"
   },
   "repository": {
     "type": "git",
@@ -47,5 +51,13 @@
     "next-compose-plugins": "^2.2.0",
     "node-sass": "^4.12.0",
     "nodemon": "^1.19.1"
+  },
+  "engines": {
+    "node": "8.16.0"
+  },
+  "now": {
+    "engines": {
+      "node": "8.16.0"
+    }
   }
 }
