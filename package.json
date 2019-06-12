@@ -4,7 +4,7 @@
   "description": "A WordPress decoupled application in React built with Next.js",
   "main": "server.js",
   "scripts": {
-	"dev": "nodemon server.js",
+    "dev": "nodemon server.js",
     "inspect": "node --inspect server.js"
   },
   "repository": {
@@ -41,6 +41,7 @@
     "next": "^8.1.0",
     "next-offline": "^4.0.2",
     "react": "^16.8.6",
+    "react-apollo": "^2.5.6",
     "react-dom": "^16.8.6",
     "woocommerce-api": "^1.4.2"
   },

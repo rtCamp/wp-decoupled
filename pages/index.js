@@ -55,16 +55,7 @@ const Index = ( props ) => {
 	);
 };
 
-Index.getInitialProps = async ( context ) => {
-
-	const { store, isServer, query, req, res } = context;
-	res.cookie( 'count', 2 );
-	console.warn( 'context', context );
-	if (isServer) {
-		if (isServer) {
-			console.log('something', req.cookies);
-		}
-	}
+Index.getInitialProps = async () => {
 
 	const result = await client.query({
 		query: PRODUCTS_QUERY
