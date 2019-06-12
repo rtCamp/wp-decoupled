@@ -20,6 +20,11 @@ workbox.routing.registerRoute(
 	new workbox.strategies.StaleWhileRevalidate()
 );
 
+workbox.routing.registerRoute(
+	new RegExp( /\/product.+/ ),
+	new workbox.strategies.StaleWhileRevalidate()
+);
+
 const preCacheFiles = self.__precacheManifest || [];
 
 preCacheFiles.push( {
