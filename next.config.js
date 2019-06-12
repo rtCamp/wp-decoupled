@@ -1,9 +1,9 @@
-const withCss = require( '@zeit/next-css' );
-const path = require( 'path' );
+const withCss = require('@zeit/next-css');
+const path = require('path');
 
 const { withPlugins } = require('next-compose-plugins');
 const withOffline = require('next-offline');
-const withSass = require( '@zeit/next-sass' );
+const withSass = require('@zeit/next-sass');
 
 const workBoxOptions = {
 	generateSw: false,
@@ -16,6 +16,20 @@ const workBoxOptions = {
 };
 
 module.exports = withPlugins([
-	[withOffline( workBoxOptions ), { dontAutoRegisterSw: true }],
-	[withCss(withSass())],
+	[withOffline(workBoxOptions), { dontAutoRegisterSw: true }],
+	[withCss(withSass({
+		webpack(config, options) {
+			config.module.rules.push({
+				test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+				use: {
+					loader: 'url-loader',
+					options: {
+						limit: 100000
+					}
+				}
+			})
+
+			return config
+		}
+	}))],
 ]);

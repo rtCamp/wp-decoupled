@@ -2,6 +2,7 @@ import Layout from '../components/layouts/Layout';
 import Link from 'next/link';
 import client from '../components/ApolloClient';
 import gql from 'graphql-tag';
+const img = require("../static/hero.jpg");
 
 /**
  * GraphQL products query
@@ -31,6 +32,13 @@ const Index = ( props ) => {
 
 	return (
 		<Layout>
+			<div className="wp-block-cover alignfull hero">
+				<div className="wp-block-cover__inner-container">
+					<h1 >Welcome</h1>
+						<p className="has-text-color">This is your homepage which is what most visitors will see when they first visit your shop.</p>
+						<p className="has-text-color">You can change this text by editing the “Welcome” page via the “Pages” menu in your dashboard.</p>
+				</div>
+			</div>
 			{ products.length ? (
 
 				<div>
