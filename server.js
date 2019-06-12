@@ -1,6 +1,8 @@
 const next = require( 'next' );
 const express = require( 'express' );
 const { createReadStream } = require('fs');
+const { join } = require( 'path' );
+const { parse } = require('url');
 
 const port = 3000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -45,11 +47,15 @@ app.prepare()
 			});
 		} );
 
-
 		// For Service Worker Request
 		server.get( '/service-worker.js', ( req, res ) => {
+			const parsedUrl    = parse( req.url, true );
+			const { pathname } = parsedUrl;
+			const filePath     = join( __dirname, '.next', pathname );
+
 			res.setHeader('content-type', 'text/javascript');
-			createReadStream('./service-worker.js').pipe(res);
+
+			app.serveStatic( req, res, filePath );
 		} );
 
 		server.get( '*', ( req, res ) => {
