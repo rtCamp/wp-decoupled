@@ -9,3 +9,17 @@ body, div.wd-content {
 .hero {
 	background: url("../../static/hero.jpg");
 }
+
+ul.row {
+	list-style: none;
+}
+
+.woocommerce-loop-category__title {
+	font-size: 1.1em;
+    line-height: 1.214;
+	font-weight: 400;
+	text-align: center;
+	color: #333333;
+    margin-bottom: .5em;
+    margin-top: .5em;
+}
