@@ -1,4 +1,4 @@
-import { addFirstProduct } from "../utils/functions";
+import { addFirstProduct, addNewProduct, getIntVal } from "../utils/functions";
 
 const AddToCartButton = ( props ) => {
 
@@ -15,6 +15,18 @@ const AddToCartButton = ( props ) => {
 			if ( existingCart ) {
 				existingCart = JSON.parse( existingCart );
 				console.warn( 'existingCart', existingCart );
+
+				const qtyToBeAdded = 1;
+
+				const updatedProducts = addNewProduct( existingCart.products , product, qtyToBeAdded );
+
+				const updatedCart = {
+					products: updatedProducts,
+					totalProductsCount: ( existingCart.totalProductsCount + qtyToBeAdded ),
+					totalProductsPrice: existingCart.totalProductsPrice + ( getIntVal( product.price ) * qtyToBeAdded )
+				};
+
+				localStorage.setItem( 'wpd-cart', JSON.stringify( updatedCart ) );
 
 			} else {
 				/**
