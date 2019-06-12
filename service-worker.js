@@ -2,8 +2,18 @@
  * Service worker scripts.
  */
 
+importScripts('https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js');
+
+const store = new idbKeyval.Store('GraphQL-Cache', 'PostResponses');
+
 workbox.core.skipWaiting();
 workbox.core.clientsClaim();
+
+self.addEventListener( 'fetch', function ( event ) {
+	if ( event.request.method === 'POST' ) {
+		event.waitUntil( event.respondWith( staleWhileRevalidate( event ) ) );
+	}
+} );
 
 workbox.routing.registerRoute(
 	new RegExp( 'https://tekskools.com' ),
