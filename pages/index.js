@@ -2,6 +2,7 @@ import Layout from '../components/layouts/Layout';
 import Link from 'next/link';
 import client from '../components/ApolloClient';
 import gql from 'graphql-tag';
+import AddToCartButton from "../components/AddToCartButton";
 
 /**
  * GraphQL products query
@@ -43,6 +44,7 @@ const Index = ( props ) => {
 									<h5 className="product-name">{item.name}</h5>
 									<p className="product-price">${item.price}</p>
 									<Link as={`/product/${item.slug}-${item.productId}`} href={`/product?id=${item.productId}`}><a className="product-view-link">View</a></Link>
+									<AddToCartButton product={ item } />
 								</div>
 							) )
 						}
@@ -53,14 +55,23 @@ const Index = ( props ) => {
 	);
 };
 
-Index.getInitialProps = async () => {
+Index.getInitialProps = async ( context ) => {
+
+	const { store, isServer, query, req, res } = context;
+	res.cookie( 'count', 2 );
+	console.warn( 'context', context );
+	if (isServer) {
+		if (isServer) {
+			console.log('something', req.cookies);
+		}
+	}
 
 	const result = await client.query({
 		query: PRODUCTS_QUERY
 	});
 
 	return {
-		products: result.data.products.nodes
+		products: result.data.products.nodes,
 	}
 };
 export default Index;
