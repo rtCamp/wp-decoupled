@@ -7,6 +7,7 @@ const withSass = require( '@zeit/next-sass' );
 const workBoxOptions = {
 	workboxOpts: {
 		swSrc: 'service-worker.js',
+		exclude: [/.+error\.js$/, /\.map$/]
 	}
 };
 
