@@ -1,3 +1,7 @@
+/**
+ * Service worker scripts.
+ */
+
 workbox.core.skipWaiting();
 workbox.core.clientsClaim();
 
@@ -6,4 +10,10 @@ workbox.routing.registerRoute(
 	new workbox.strategies.StaleWhileRevalidate()
 );
 
-workbox.precaching.precacheAndRoute( self.__precacheManifest );
+const preCacheFiles = self.__precacheManifest || [];
+
+preCacheFiles.push( {
+	url: '/',
+} );
+
+workbox.precaching.precacheAndRoute( preCacheFiles );
