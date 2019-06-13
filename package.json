@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-	"build": "next build"
+    "build": "next build",
+    "start": "next start"
   },
   "repository": {
     "type": "git",

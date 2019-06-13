@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "name": "wp-decoupled",
+  "alias": "wp-decoupled",
+  "builds": [
+	{
+	  "src": "/static/*",
+	  "use": "@now/static"
+	},
+	{
+	  "src": "package.json",
+	  "use": "@now/next"
+	}
+  ],
+  "routes": [
+	{
+	  "src": "/product/(?<slug>[^/]+)$",
+	  "dest": "/product?slug=$slug"
+	},
+	{
+	  "src": "/static/(.*)",
+	  "dest": "/static/$1"
+	},
+	{
+	  "src": "/manifest.json",
+	  "dest": "/static/manifest.json"
+	},
+	{
+	  "src": "/favicon.ico",
+	  "dest": "/static/favicon.ico"
+	}
+  ]
+}
