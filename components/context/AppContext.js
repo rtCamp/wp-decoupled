@@ -12,7 +12,7 @@ export const AppProvider = ( props ) => {
 		if ( process.browser ) {
 			let cartData = localStorage.getItem( 'wpd-cart' );
 			cartData = null !== cartData ? JSON.parse( cartData ) : '';
-			setCart( cartData )
+			setCart( cartData );
 		}
 	}, [] );
 

@@ -39,7 +39,6 @@ const AddToCartButton = ( props ) => {
 			}
 		}
 	};
-	console.warn( 'cart', cart );
 
 	return(
 		<React.Fragment>
