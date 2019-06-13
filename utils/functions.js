@@ -1,5 +1,16 @@
 /**
- * Create a new product object
+ * Extracts and returns integer from a string.
+ *
+ * @param string
+ * @return {any}
+ */
+export const getIntVal = ( string ) => {
+	let intValue = string.match( /\d+/, 'i' )[0];
+	return ( null !== intValue ) ? parseInt( intValue ) : '';
+};
+
+/**
+ * Create a new product object.
  *
  * @param product
  * @param productPrice
@@ -18,8 +29,10 @@ export const createNewProduct = ( product, productPrice, qty ) => {
 };
 
 /**
- * Add first product
+ * Add first product.
+ *
  * @param product
+ * @return {{totalProductsCount: number, totalProductsPrice: any, products: Array}}
  */
 export const addFirstProduct = ( product ) => {
 
@@ -32,10 +45,14 @@ export const addFirstProduct = ( product ) => {
 
 	const newProduct = createNewProduct( product, productPrice, 1 );
 	newCart.products.push( newProduct );
+
 	localStorage.setItem( 'wpd-cart', JSON.stringify( newCart ) );
+
+	return newCart;
 };
 
 /**
+ * Get updated products array
  * Update the product if it exists else,
  * add the new product to existing cart,
  *
@@ -44,7 +61,7 @@ export const addFirstProduct = ( product ) => {
  * @param qtyToBeAdded
  * @return {*[]}
  */
-export const addNewProduct = ( existingProductsInCart, product, qtyToBeAdded ) => {
+export const getUpdatedProducts = ( existingProductsInCart, product, qtyToBeAdded ) => {
 
 	// Check if the product already exits in the cart.
 	const productExitsIndex = isProductInCart( existingProductsInCart, product );
@@ -68,7 +85,27 @@ export const addNewProduct = ( existingProductsInCart, product, qtyToBeAdded ) =
 };
 
 /**
- * Returns index of the product if it exists
+ * Updates the existing cart with new item.
+ *
+ * @param existingCart
+ * @param updatedProducts
+ * @param product
+ * @param qtyToBeAdded
+ * @return {{totalProductsCount: *, totalProductsPrice: *, products: *}}
+ */
+export const updateCart = ( existingCart, updatedProducts, product, qtyToBeAdded ) => {
+	const updatedCart = {
+		products: updatedProducts,
+		totalProductsCount: ( existingCart.totalProductsCount + qtyToBeAdded ),
+		totalProductsPrice: existingCart.totalProductsPrice + ( getIntVal( product.price ) * qtyToBeAdded )
+	};
+	localStorage.setItem( 'wpd-cart', JSON.stringify( updatedCart ) );
+
+	return updatedCart;
+};
+
+/**
+ * Returns index of the product if it exists.
  *
  * @param existingProductsInCart
  * @param product
@@ -85,10 +122,4 @@ const isProductInCart = ( existingProductsInCart, product ) => {
 	const newArray = existingProductsInCart.filter( returnItemThatExits );
 
 	return existingProductsInCart.indexOf( newArray[0] );
-};
-
-// Extracts and returns integer from a string.
-export const getIntVal = ( string ) => {
-	let intValue = string.match( /\d+/, 'i' )[0];
-	return ( null !== intValue ) ? parseInt( intValue ) : '';
 };

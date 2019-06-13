@@ -1,8 +1,11 @@
-import { addFirstProduct, addNewProduct, getIntVal } from "../utils/functions";
+import { useContext } from 'react';
+import { AppContext } from "./context/AppContext";
+import { addFirstProduct, getUpdatedProducts, updateCart } from "../utils/functions";
 
 const AddToCartButton = ( props ) => {
 
 	const { product } = props;
+	const [ state, setState ] = useContext( AppContext );
 
 	/**
 	 * Handles adding items to the cart
@@ -12,31 +15,31 @@ const AddToCartButton = ( props ) => {
 		// If component is rendered client side.
 		if ( process.browser ) {
 			let existingCart = localStorage.getItem( 'wpd-cart' );
+
+			// If cart has item(s) already, update existing or add new item.
 			if ( existingCart ) {
+
 				existingCart = JSON.parse( existingCart );
-				console.warn( 'existingCart', existingCart );
 
 				const qtyToBeAdded = 1;
 
-				const updatedProducts = addNewProduct( existingCart.products , product, qtyToBeAdded );
+				const updatedProducts = getUpdatedProducts( existingCart.products , product, qtyToBeAdded );
 
-				const updatedCart = {
-					products: updatedProducts,
-					totalProductsCount: ( existingCart.totalProductsCount + qtyToBeAdded ),
-					totalProductsPrice: existingCart.totalProductsPrice + ( getIntVal( product.price ) * qtyToBeAdded )
-				};
+				const updatedCart = updateCart( existingCart, updatedProducts, product, qtyToBeAdded );
 
-				localStorage.setItem( 'wpd-cart', JSON.stringify( updatedCart ) );
+				setState( updatedCart );
 
 			} else {
 				/**
 				 * If No Items in the cart, create an empty array and add one
 				 * @type {Array}
 				 */
-				addFirstProduct( product );
+				const newCart = addFirstProduct( product );
+				setState( newCart );
 			}
 		}
 	};
+	console.warn( 'state', state );
 
 	return(
 		<React.Fragment>

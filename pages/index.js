@@ -31,27 +31,27 @@ const Index = ( props ) => {
 	const { products } = props;
 
 	return (
-		<Layout>
-			{ products.length ? (
+			<Layout>
+				{ products.length ? (
 
-				<div>
-					<h3 className="text-center">Products</h3>
-					<div className="products-wrapper">
-						{
-							products.map( item => (
-								<div className="product-container" key={item.id}>
-									<img className="product-image" src={item.image.sourceUrl} srcSet={item.image.srcSet} alt={ item.name }/>
-									<h5 className="product-name">{item.name}</h5>
-									<p className="product-price">${item.price}</p>
-									<Link as={`/product/${item.slug}-${item.productId}`} href={`/product?id=${item.productId}`}><a className="product-view-link">View</a></Link>
-									<AddToCartButton product={ item } />
-								</div>
-							) )
-						}
+					<div>
+						<h3 className="text-center">Products</h3>
+						<div className="products-wrapper">
+							{
+								products.map( item => (
+									<div className="product-container" key={item.id}>
+										<img className="product-image" src={item.image.sourceUrl} srcSet={item.image.srcSet} alt={ item.name }/>
+										<h5 className="product-name">{item.name}</h5>
+										<p className="product-price">${item.price}</p>
+										<Link as={`/product/${item.slug}-${item.productId}`} href={`/product?id=${item.productId}`}><a className="product-view-link">View</a></Link>
+										<AddToCartButton product={ item } />
+									</div>
+								) )
+							}
+						</div>
 					</div>
-				</div>
-			) : '' }
-		</Layout>
+				) : '' }
+			</Layout>
 	);
 };
 
