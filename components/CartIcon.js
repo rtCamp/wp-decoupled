@@ -1,18 +1,33 @@
 import { useContext } from 'react';
 import { AppContext } from "./context/AppContext";
+import Link from 'next/link';
 
 const CartIcon = () => {
 
 	const [ cart, setCart ] = useContext( AppContext );
 	const productsCount = ( null !== cart ) ? cart.totalProductsCount : '';
+	const totalPrice = ( null !== cart ) ? cart.totalProductsPrice : '';
 
 	return (
 		<React.Fragment>
-			<span className="wd-cart-icon-container">
-				<i className="fas fa-shopping-cart wd-cart-icon"/>
-				{ productsCount ? <span className="wp-cart-count">{ productsCount }</span> : '' }
-			</span>
+			<Link href="/cart">
+				<div className="wd-cart-wrap">
+					{ totalPrice ? <span className="wp-cart-price">{ totalPrice.toFixed(2) }</span> : '' }
+					<span className="wd-cart-icon-container">
+						<i className="fas fa-shopping-cart wd-cart-icon"/>
+					{ productsCount ? <span className="wp-cart-count">{ productsCount }</span> : '' }
+				</span>
+				</div>
+			</Link>
 			<style jsx>{`
+				.wd-cart-wrap {
+					cursor: pointer;
+				}
+				
+				.wp-cart-price {
+					color: #fff;
+				}
+			
 				.wd-cart-icon-container {
 					position: relative;
 				}

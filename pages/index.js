@@ -29,6 +29,7 @@ const PRODUCTS_QUERY = gql`query {
 const Index = ( props ) => {
 
 	const { products } = props;
+	console.warn( props );
 
 	return (
 			<Layout>

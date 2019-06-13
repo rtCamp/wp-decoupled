@@ -1,12 +1,12 @@
 /**
- * Extracts and returns integer from a string.
+ * Extracts and returns float value from a string.
  *
  * @param string
  * @return {any}
  */
-export const getIntVal = ( string ) => {
-	let intValue = string.match( /\d+/, 'i' )[0];
-	return ( null !== intValue ) ? parseInt( intValue ) : '';
+export const getFloatVal = ( string ) => {
+	let floatValue = string.match( /[+-]?\d+(\.\d+)?/g )[0];
+	return ( null !== floatValue ) ? parseFloat( parseFloat( floatValue ).toFixed( 2 ) ) : '';
 };
 
 /**
@@ -24,7 +24,7 @@ export const createNewProduct = ( product, productPrice, qty ) => {
 		name: product.name,
 		price: productPrice,
 		qty,
-		totalPrice: productPrice * qty
+		totalPrice: parseFloat( ( productPrice * qty ).toFixed( 2 ) )
 	};
 };
 
@@ -36,11 +36,11 @@ export const createNewProduct = ( product, productPrice, qty ) => {
  */
 export const addFirstProduct = ( product ) => {
 
-	let productPrice = getIntVal( product.price );
+	let productPrice = getFloatVal( product.price );
 	let newCart = {
 		products: [],
 		totalProductsCount: 1,
-		totalProductsPrice: productPrice
+		totalProductsPrice: parseFloat( productPrice.toFixed( 2 ) )
 	};
 
 	const newProduct = createNewProduct( product, productPrice, 1 );
@@ -71,13 +71,13 @@ export const getUpdatedProducts = ( existingProductsInCart, product, qtyToBeAdde
 		let updatedProducts = existingProductsInCart;
 		let updatedProduct = updatedProducts[ productExitsIndex ];
 		updatedProduct.qty += qtyToBeAdded;
-		updatedProduct.totalPrice = updatedProduct.price * updatedProduct.qty;
+		updatedProduct.totalPrice = parseFloat( ( updatedProduct.price * updatedProduct.qty ).toFixed( 2 ) );
 
 		return  updatedProducts;
 	} else {
 
 		// If product not found push the new product to the existing product array.
-		let productPrice = getIntVal( product.price );
+		let productPrice = getFloatVal( product.price );
 		const newProduct = createNewProduct( product, productPrice, qtyToBeAdded );
 		existingProductsInCart.push( newProduct );
 		return existingProductsInCart;
@@ -94,10 +94,11 @@ export const getUpdatedProducts = ( existingProductsInCart, product, qtyToBeAdde
  * @return {{totalProductsCount: *, totalProductsPrice: *, products: *}}
  */
 export const updateCart = ( existingCart, updatedProducts, product, qtyToBeAdded ) => {
+	let totalPrice = ( existingCart.totalProductsPrice + ( getFloatVal( product.price ) * qtyToBeAdded ) ).toFixed( 2 )
 	const updatedCart = {
 		products: updatedProducts,
 		totalProductsCount: ( existingCart.totalProductsCount + qtyToBeAdded ),
-		totalProductsPrice: existingCart.totalProductsPrice + ( getIntVal( product.price ) * qtyToBeAdded )
+		totalProductsPrice: parseFloat( totalPrice )
 	};
 	localStorage.setItem( 'wpd-cart', JSON.stringify( updatedCart ) );
 
