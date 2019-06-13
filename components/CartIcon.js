@@ -1,10 +1,16 @@
+import { useContext } from 'react';
+import { AppContext } from "./context/AppContext";
+
 const CartIcon = () => {
+
+	const [ cart, setCart ] = useContext( AppContext );
+	const productsCount = ( null !== cart ) ? cart.totalProductsCount : '';
 
 	return (
 		<React.Fragment>
 			<span className="wd-cart-icon-container">
 				<i className="fas fa-shopping-cart wd-cart-icon"/>
-				{/*{ productCount ? <span className="wp-cart-count">{ productCount }</span> : '' }*/}
+				{ productsCount ? <span className="wp-cart-count">{ productsCount }</span> : '' }
 			</span>
 			<style jsx>{`
 				.wd-cart-icon-container {

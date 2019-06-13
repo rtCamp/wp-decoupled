@@ -5,7 +5,7 @@ import { addFirstProduct, getUpdatedProducts, updateCart } from "../utils/functi
 const AddToCartButton = ( props ) => {
 
 	const { product } = props;
-	const [ state, setState ] = useContext( AppContext );
+	const [ cart, setCart ] = useContext( AppContext );
 
 	/**
 	 * Handles adding items to the cart
@@ -27,7 +27,7 @@ const AddToCartButton = ( props ) => {
 
 				const updatedCart = updateCart( existingCart, updatedProducts, product, qtyToBeAdded );
 
-				setState( updatedCart );
+				setCart( updatedCart );
 
 			} else {
 				/**
@@ -35,11 +35,11 @@ const AddToCartButton = ( props ) => {
 				 * @type {Array}
 				 */
 				const newCart = addFirstProduct( product );
-				setState( newCart );
+				setCart( newCart );
 			}
 		}
 	};
-	console.warn( 'state', state );
+	console.warn( 'cart', cart );
 
 	return(
 		<React.Fragment>
