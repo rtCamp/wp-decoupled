@@ -13,29 +13,6 @@ app.prepare()
 	.then( () => {
 		const server = express();
 
-		/**
-		 * Get All products
-		 */
-		server.get( '/getProducts', ( request, response ) => {
-
-			// Get All Products
-			WooCommerce.get('products', function(err, data, res) {
-				response.json( JSON.parse(res) );
-			});
-		} );
-
-		/**
-		 * Get Product by Id
-		 */
-		server.get( '/getProduct/:id', ( request, response ) => {
-			const productId = request.params.id;
-
-			// Get Product by Id
-			WooCommerce.get( `products/${productId}`, function(err, data, res) {
-				response.json( JSON.parse(res) );
-			});
-		} );
-
 		// For Service Worker Request
 		server.get( '/service-worker.js', ( req, res ) => {
 			const parsedUrl    = parse( req.url, true );
