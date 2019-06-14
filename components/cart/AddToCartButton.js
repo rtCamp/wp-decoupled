@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { AppContext } from "./context/AppContext";
-import { addFirstProduct, getUpdatedProducts, updateCart } from "../utils/functions";
+import { AppContext } from "../context/AppContext";
+import { addFirstProduct, getUpdatedProducts, updateCart } from "../../utils/functions";
 
 const AddToCartButton = ( props ) => {
 
@@ -23,9 +23,7 @@ const AddToCartButton = ( props ) => {
 
 				const qtyToBeAdded = 1;
 
-				const updatedProducts = getUpdatedProducts( existingCart.products , product, qtyToBeAdded );
-
-				const updatedCart = updateCart( existingCart, updatedProducts, product, qtyToBeAdded );
+				const updatedCart = updateCart( existingCart, product, qtyToBeAdded );
 
 				setCart( updatedCart );
 

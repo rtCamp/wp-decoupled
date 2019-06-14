@@ -1,10 +1,13 @@
 import { useContext } from 'react';
-import { AppContext } from "../context/AppContext";
-import { removeItemFromCart } from '../../utils/functions';
+import { AppContext } from "../../context/AppContext";
+import { removeItemFromCart } from '../../../utils/functions';
+import CartItem from "./CartItem";
 
 const CartBlocks = () => {
 
+
 	const [ cart, setCart ] = useContext( AppContext );
+
 	if ( cart ) {
 		console.warn( 'say yes' );
 	}
@@ -34,19 +37,11 @@ const CartBlocks = () => {
 						<tbody>
 						{ cart.products.length && (
 							cart.products.map( item => (
-								<tr className="wd-cart-item" key={item.productId}>
-									<th className="wd-cart-element wd-cart-el-close">
-										<span className="wd-cart-close-icon" onClick={ ( event ) => handleRemoveProductClick( event, item.productId )  }>
-											<i className="fas fa-times-circle"/>
-										</span>
-									</th>
-									<td className="wd-cart-element"><img width="64" src={ item.image.sourceUrl } srcSet={ item.image.srcSet } alt={item.image.title}/> </td>
-									<td className="wd-cart-element">{ item.name }</td>
-									<td className="wd-cart-element">{ item.price.toFixed(2) }</td>
-									<td className="wd-cart-element">{ item.qty }</td>
-									<td className="wd-cart-element">{ item.totalPrice.toFixed(2) }</td>
-								</tr>
-								) )
+								<CartItem
+									item={ item }
+									handleRemoveProductClick={ handleRemoveProductClick }
+								/>
+							) )
 						) }
 						</tbody>
 					</table>

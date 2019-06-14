@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import CartIcon from "../CartIcon";
+import CartIcon from "../cart/CartIcon";
 
 const Header = () => (
 	<nav className="navbar navbar-expand-lg navbar-dark bg-primary">

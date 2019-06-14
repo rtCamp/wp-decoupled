@@ -59,9 +59,10 @@ export const addFirstProduct = ( product ) => {
  * @param existingProductsInCart
  * @param product
  * @param qtyToBeAdded
+ * @param newQty New qty of the product (optional)
  * @return {*[]}
  */
-export const getUpdatedProducts = ( existingProductsInCart, product, qtyToBeAdded ) => {
+export const getUpdatedProducts = ( existingProductsInCart, product, qtyToBeAdded, newQty = false ) => {
 
 	// Check if the product already exits in the cart.
 	const productExitsIndex = isProductInCart( existingProductsInCart, product.productId );
@@ -70,7 +71,9 @@ export const getUpdatedProducts = ( existingProductsInCart, product, qtyToBeAdde
 	if ( -1 < productExitsIndex ) {
 		let updatedProducts = existingProductsInCart;
 		let updatedProduct = updatedProducts[ productExitsIndex ];
-		updatedProduct.qty += qtyToBeAdded;
+
+		// If have new qty of the product available, set that else add the qtyToBeAdded
+		updatedProduct.qty = ( newQty ) ? newQty : ( updatedProduct.qty + qtyToBeAdded );
 		updatedProduct.totalPrice = parseFloat( ( updatedProduct.price * updatedProduct.qty ).toFixed( 2 ) );
 
 		return  updatedProducts;
@@ -88,12 +91,14 @@ export const getUpdatedProducts = ( existingProductsInCart, product, qtyToBeAdde
  * Updates the existing cart with new item.
  *
  * @param existingCart
- * @param updatedProducts
  * @param product
  * @param qtyToBeAdded
  * @return {{totalProductsCount: *, totalProductsPrice: *, products: *}}
  */
-export const updateCart = ( existingCart, updatedProducts, product, qtyToBeAdded ) => {
+export const updateCart = ( existingCart, product, qtyToBeAdded ) => {
+
+	const updatedProducts = getUpdatedProducts( existingCart.products , product, qtyToBeAdded );
+
 	let totalPrice = ( existingCart.totalProductsPrice + ( getFloatVal( product.price ) * qtyToBeAdded ) ).toFixed( 2 )
 	const updatedCart = {
 		products: updatedProducts,
@@ -130,7 +135,7 @@ const isProductInCart = ( existingProductsInCart, productId ) => {
  * Remove Item from the cart.
  *
  * @param productId
- * @return {any | string}
+ * @return {any | string} Updated cart
  */
 export const removeItemFromCart = ( productId ) => {
 	let existingCart = localStorage.getItem( 'wpd-cart' );

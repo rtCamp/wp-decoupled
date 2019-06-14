@@ -2,7 +2,7 @@ import Layout from '../components/layouts/Layout';
 import Link from 'next/link';
 import client from '../components/ApolloClient';
 import gql from 'graphql-tag';
-import AddToCartButton from "../components/AddToCartButton";
+import AddToCartButton from "../components/cart/AddToCartButton";
 
 /**
  * GraphQL products query
