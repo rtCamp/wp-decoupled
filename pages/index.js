@@ -38,9 +38,9 @@ const Hero = () => (
 
 const Categories = () => {
 	return (
-		<>
+		<div className="container">
 			<h2 className="text-center mb-4">Shop by Category</h2>
-			<div className="woocommerce container">
+			<div className="woocommerce">
 				<ul className="products row mx-auto">
 				<li className="product-category product first col-md-4">
 					<Link as={`/`} href={`/`}><a className="">
@@ -68,29 +68,24 @@ const Categories = () => {
 					</li>
 				</ul>
 			</div>
-		</>
+		</div>
 	);
 }
 
-const Index = ( props ) => {
-
-	const { products } = props;
-
+const NewProducts = ({ products }) => {
 	return (
-		<Layout>
-			<Hero />
-			<Categories />
+		<div className="container mt-5">
+			<h2 className="text-center mb-4">Shop by Category</h2>
 			{ products.length ? (
 
 				<div className="mt-2">
-					<h3 className="text-center">Products</h3>
-					<div className="products-wrapper">
+					<div className="products-wrapper row">
 						{
 							products.map( item => (
-								<div className="product-container" key={item.id}>
+								<div className="product-container col-md-3" key={item.id}>
 									<img className="product-image" src={item.image.sourceUrl} srcSet={item.image.srcSet} alt={ item.name }/>
 									<h5 className="product-name">{item.name}</h5>
-									<p className="product-price">${item.price}</p>
+									<p className="product-price">{item.price}</p>
 									<Link as={`/product/${item.slug}-${item.productId}`} href={`/product?id=${item.productId}`}><a className="product-view-link">View</a></Link>
 								</div>
 							) )
@@ -98,6 +93,20 @@ const Index = ( props ) => {
 					</div>
 				</div>
 			) : '' }
+		</div>
+	);
+}
+
+const Index = ( props ) => {
+
+	const { products } = props;
+	const recentProducts = products.slice( 0, 4 );
+
+	return (
+		<Layout>
+			<Hero />
+			<Categories />
+			<NewProducts products={ recentProducts } />
 		</Layout>
 	);
 };
