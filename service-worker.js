@@ -20,6 +20,7 @@ workbox.routing.registerRoute(
 	new workbox.strategies.StaleWhileRevalidate()
 );
 
+// @todo Temporary, needs to work on routes.
 workbox.routing.registerRoute(
 	new RegExp( /\/product.+/ ),
 	new workbox.strategies.StaleWhileRevalidate()
