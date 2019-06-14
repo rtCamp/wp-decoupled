@@ -40,6 +40,7 @@ const CartBlocks = () => {
 								<CartItem
 									item={ item }
 									handleRemoveProductClick={ handleRemoveProductClick }
+									setCart={ setCart }
 								/>
 							) )
 						) }

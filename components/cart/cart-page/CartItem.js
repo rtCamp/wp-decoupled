@@ -1,11 +1,34 @@
 import { useState } from 'react';
+import { updateCart } from "../../../utils/functions";
 
-const CartItem = ( { item, handleRemoveProductClick } ) => {
+const CartItem = ( { item, handleRemoveProductClick, setCart } ) => {
 
 	const [ productCount, setProductCount ] = useState( item.qty );
 
+	/*
+	 * When user changes the qty from product input update the cart in localStorage
+	 * Also update the cart in global context
+	 *
+	 * @param {obj} event
+	 */
 	const handleQtyChange = ( event ) => {
-		setProductCount( event.target.value );
+		if ( process.browser ) {
+
+			const newQty = event.target.value;
+
+			// Set the new qty in State
+			setProductCount( newQty );
+
+			let existingCart = localStorage.getItem( 'wpd-cart' );
+			existingCart = JSON.parse( existingCart );
+
+			// Update the cart in localStorage.
+			const updatedCart = updateCart( existingCart, item, false, newQty );
+
+			// Update the cart in global context
+			setCart( updatedCart );
+
+		}
 	};
 
 	return (
@@ -25,7 +48,7 @@ const CartItem = ( { item, handleRemoveProductClick } ) => {
 			<td className="wd-cart-element">
 				<input
 					type="number"
-					min="0"
+					min="1"
 					className="wd-cart-qty-input"
 					value={ productCount }
 					onChange={ handleQtyChange }

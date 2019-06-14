@@ -73,7 +73,7 @@ export const getUpdatedProducts = ( existingProductsInCart, product, qtyToBeAdde
 		let updatedProduct = updatedProducts[ productExitsIndex ];
 
 		// If have new qty of the product available, set that else add the qtyToBeAdded
-		updatedProduct.qty = ( newQty ) ? newQty : ( updatedProduct.qty + qtyToBeAdded );
+		updatedProduct.qty = ( newQty ) ? parseInt( newQty ) : parseInt( updatedProduct.qty + qtyToBeAdded );
 		updatedProduct.totalPrice = parseFloat( ( updatedProduct.price * updatedProduct.qty ).toFixed( 2 ) );
 
 		return  updatedProducts;
@@ -93,17 +93,26 @@ export const getUpdatedProducts = ( existingProductsInCart, product, qtyToBeAdde
  * @param existingCart
  * @param product
  * @param qtyToBeAdded
+ * @param newQty New Qty to be updated
  * @return {{totalProductsCount: *, totalProductsPrice: *, products: *}}
  */
-export const updateCart = ( existingCart, product, qtyToBeAdded ) => {
+export const updateCart = ( existingCart, product, qtyToBeAdded, newQty = false  ) => {
 
-	const updatedProducts = getUpdatedProducts( existingCart.products , product, qtyToBeAdded );
+	const updatedProducts = getUpdatedProducts( existingCart.products , product, qtyToBeAdded, newQty );
 
-	let totalPrice = ( existingCart.totalProductsPrice + ( getFloatVal( product.price ) * qtyToBeAdded ) ).toFixed( 2 )
+	const addPrice = (total, item) => {
+		total.totalPrice += item.totalPrice;
+		total.qty += item.qty;
+
+		return total;
+	};
+	// Loop through the updated product array and add the totalPrice of each item to get the totalPrice
+	let total = updatedProducts.reduce( addPrice, { totalPrice: 0, qty: 0 } );
+
 	const updatedCart = {
 		products: updatedProducts,
-		totalProductsCount: ( existingCart.totalProductsCount + qtyToBeAdded ),
-		totalProductsPrice: parseFloat( totalPrice )
+		totalProductsCount: parseInt( total.qty ),
+		totalProductsPrice: parseFloat( total.totalPrice )
 	};
 	localStorage.setItem( 'wpd-cart', JSON.stringify( updatedCart ) );
 
