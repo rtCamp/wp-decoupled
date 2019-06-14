@@ -7,6 +7,7 @@ const withSass    = require( '@zeit/next-sass' );
 const workBoxOptions = {
 	workboxOpts: {
 		swSrc: 'service-worker.js',
+		swDest: 'static/service-worker.js',
 		exclude: [ /.+error\.js$/, /\.map$/ ]
 	}
 };
@@ -18,4 +19,5 @@ module.exports = withOffline( withCss( withSass( {
 	generateSw: false,
 	globPatterns: [ 'static/**/*' ],
 	globDirectory: '.',
+	target: 'serverless'
 } ) ) );
