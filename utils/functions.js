@@ -64,7 +64,7 @@ export const addFirstProduct = ( product ) => {
 export const getUpdatedProducts = ( existingProductsInCart, product, qtyToBeAdded ) => {
 
 	// Check if the product already exits in the cart.
-	const productExitsIndex = isProductInCart( existingProductsInCart, product );
+	const productExitsIndex = isProductInCart( existingProductsInCart, product.productId );
 
 	// If product exits ( index of that product found in the array ), update the product quantity and totalPrice
 	if ( -1 < productExitsIndex ) {
@@ -109,18 +109,57 @@ export const updateCart = ( existingCart, updatedProducts, product, qtyToBeAdded
  * Returns index of the product if it exists.
  *
  * @param existingProductsInCart
- * @param product
- * @return {number | *} Index Returns -1 if product does not exist in the array, index no otherwise
+ * @param productId
+ * @return {number | *} Index Returns -1 if product does not exist in the array, index number otherwise
  */
-const isProductInCart = ( existingProductsInCart, product ) => {
+const isProductInCart = ( existingProductsInCart, productId ) => {
 
 	const returnItemThatExits = ( item, index ) => {
-		if ( product.productId === item.productId ) {
+		if ( productId === item.productId ) {
 			return item;
 		}
 	};
 
+	// This new array will only contain the product which is matched.
 	const newArray = existingProductsInCart.filter( returnItemThatExits );
 
 	return existingProductsInCart.indexOf( newArray[0] );
+};
+
+/**
+ * Remove Item from the cart.
+ *
+ * @param productId
+ * @return {any | string}
+ */
+export const removeItemFromCart = ( productId ) => {
+	let existingCart = localStorage.getItem( 'wpd-cart' );
+	existingCart = JSON.parse( existingCart );
+
+	// If there is only one item in the cart, delete the cart
+	if ( 1 === existingCart.products.length ) {
+		localStorage.removeItem( 'wpd-cart' );
+		return null;
+	}
+
+	// Check if the product already exits in the cart.
+	const productExitsIndex = isProductInCart( existingCart.products, productId );
+
+	// If product to be removed exits
+	if ( -1 < productExitsIndex ) {
+		const productTobeRemoved = existingCart.products[ productExitsIndex ];
+		const qtyToBeRemovedFromTotal = productTobeRemoved.qty;
+		const priceToBeDeductedFromTotal = productTobeRemoved.totalPrice;
+
+		// Remove that product from the array and update the total price and total quantity of the cart
+		let updatedCart = existingCart;
+			updatedCart.products.splice( productExitsIndex, 1 );
+			updatedCart.totalProductsCount = updatedCart.totalProductsCount - qtyToBeRemovedFromTotal;
+			updatedCart.totalProductsPrice = updatedCart.totalProductsPrice - priceToBeDeductedFromTotal;
+
+		localStorage.setItem( 'wpd-cart', JSON.stringify( updatedCart ) );
+		return updatedCart;
+	} else {
+		return existingCart;
+	}
 };

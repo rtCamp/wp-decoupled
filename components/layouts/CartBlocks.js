@@ -1,17 +1,23 @@
 import { useContext } from 'react';
 import { AppContext } from "../context/AppContext";
+import { removeItemFromCart } from '../../utils/functions';
 
 const CartBlocks = () => {
 
 	const [ cart, setCart ] = useContext( AppContext );
+	if ( cart ) {
+		console.warn( 'say yes' );
+	}
 
-	const handleRemoveProductClick = () => {
-
+	const handleRemoveProductClick = ( event, productId ) => {
+		console.warn( 'clicked productId', productId );
+		const updatedCart = removeItemFromCart( productId );
+		setCart( updatedCart );
 	};
 
 	return (
 		<div>
-			{ ( null !== cart ) ? (
+			{ cart ? (
 				<div className="wd-cart-wrapper container">
 					<h1 className="wd-cart-heading">Cart</h1>
 					<table className="table table-hover">
@@ -26,21 +32,22 @@ const CartBlocks = () => {
 						</tr>
 						</thead>
 						<tbody>
-						{ cart.products.map( item => (
-							<tr className="wd-cart-item" key={item.productId}>
-								<th className="wd-cart-element wd-cart-el-close">
-								<span className="wd-cart-close-icon" onClick={ handleRemoveProductClick }>
-									<i className="fas fa-times-circle"/>
-								</span>
-								</th>
-								<td className="wd-cart-element"><img width="64" src={ item.image.sourceUrl } srcSet={ item.image.srcSet } alt={item.image.title}/> </td>
-								<td className="wd-cart-element">{ item.name }</td>
-								<td className="wd-cart-element">{ item.price.toFixed(2) }</td>
-								<td className="wd-cart-element">{ item.qty }</td>
-								<td className="wd-cart-element">{ item.totalPrice.toFixed(2) }</td>
-							</tr>
-						) )
-						}
+						{ cart.products.length && (
+							cart.products.map( item => (
+								<tr className="wd-cart-item" key={item.productId}>
+									<th className="wd-cart-element wd-cart-el-close">
+										<span className="wd-cart-close-icon" onClick={ ( event ) => handleRemoveProductClick( event, item.productId )  }>
+											<i className="fas fa-times-circle"/>
+										</span>
+									</th>
+									<td className="wd-cart-element"><img width="64" src={ item.image.sourceUrl } srcSet={ item.image.srcSet } alt={item.image.title}/> </td>
+									<td className="wd-cart-element">{ item.name }</td>
+									<td className="wd-cart-element">{ item.price.toFixed(2) }</td>
+									<td className="wd-cart-element">{ item.qty }</td>
+									<td className="wd-cart-element">{ item.totalPrice.toFixed(2) }</td>
+								</tr>
+								) )
+						) }
 						</tbody>
 					</table>
 
