@@ -50,10 +50,17 @@ WOO_SECRET=xxxxx
 
 * `dev` Runs the node server in development mode
 
+## Using PWA on mobile
+
+* Open the [site](https://wp-decoupled.imranhsayed.now.sh/) in Chrome on your mobile and then click on add to home screen.
+* It will be downloaded and saved as a Progressive Web App on your mobile.
+* Once added Look `WP Decoupled` app on your mobile.
+* This PWA will work even when you are offline. 
+
 ## Branches Information: :seedling:
 
 1. [master](https://github.com/rtCamp/wp-decoupled) Main React WooCommerce theme
-2. [develop](https://github.com/rtCamp/wp-decoupled) For testing
+2. [develop](https://github.com/rtCamp/develop) For testing
 2. [wp-docoupled-boilerplate](https://github.com/rtCamp/wp-decoupled/tree/wp-decoupled-boilerplate) Boilerplate to start a new React theme project with PWA implementation ( Work in Progress )
 
 ## Google Doc for Team meeting
