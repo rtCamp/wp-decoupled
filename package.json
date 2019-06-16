@@ -7,7 +7,7 @@
     "dev": "nodemon server.js",
     "build": "next build",
     "start": "next start",
-	"inspect": "node --inspect server.js"
+    "inspect": "node --inspect server.js"
   },
   "repository": {
     "type": "git",
@@ -45,6 +45,7 @@
     "react": "^16.8.6",
     "react-apollo": "^2.5.6",
     "react-dom": "^16.8.6",
+    "url-loader": "^2.0.0",
     "woocommerce-api": "^1.4.2"
   },
   "devDependencies": {
