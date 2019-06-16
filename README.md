@@ -2,6 +2,9 @@
 > * This is a React theme boilerplate for WordPress, built with Next JS, Webpack, Babel, Node, Express.
 
 ## Demo :movie_camera:
+
+Live Demo on Now: [https://wp-decoupled.imranhsayed.now.sh/](https://wp-decoupled.imranhsayed.now.sh/)
+
 ![](demo.gif)
 
 ## Getting Started :surfer:
@@ -50,6 +53,7 @@ WOO_SECRET=xxxxx
 ## Branches Information: :seedling:
 
 1. [master](https://github.com/rtCamp/wp-decoupled) Main React WooCommerce theme
+2. [develop](https://github.com/rtCamp/wp-decoupled) For testing
 2. [wp-docoupled-boilerplate](https://github.com/rtCamp/wp-decoupled/tree/wp-decoupled-boilerplate) Boilerplate to start a new React theme project with PWA implementation ( Work in Progress )
 
 ## Google Doc for Team meeting
