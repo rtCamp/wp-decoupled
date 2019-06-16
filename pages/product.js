@@ -17,7 +17,7 @@ const Product = withRouter( props  => {
 						<div className="product-container" key={product.id}>
 							<img className="product-image" src={product.image.sourceUrl} srcSet={product.image.srcSet} alt={ product.name }/>
 							<h5 className="product-name">{product.name}</h5>
-							<p className="product-price">${product.price}</p>
+							<p className="product-price">{product.price}</p>
 							<AddToCartButton product={ product } />
 							<div className="product-description">{ product.description }</div>
 						</div>
