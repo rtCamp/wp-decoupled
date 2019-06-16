@@ -42,7 +42,7 @@ const CartItem = ( { item, handleRemoveProductClick, setCart } ) => {
 				<img width="64" src={ item.image.sourceUrl } srcSet={ item.image.srcSet } alt={item.image.title}/>
 			</td>
 			<td className="wd-cart-element">{ item.name }</td>
-			<td className="wd-cart-element">{ item.price.toFixed(2) }</td>
+			<td className="wd-cart-element">${ item.price.toFixed(2) }</td>
 
 			{/* Qty Input */}
 			<td className="wd-cart-element">

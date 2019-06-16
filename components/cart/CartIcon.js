@@ -12,7 +12,7 @@ const CartIcon = () => {
 		<React.Fragment>
 			<Link href="/cart">
 				<div className="wd-cart-wrap">
-					{ totalPrice ? <span className="wp-cart-price">{ totalPrice.toFixed(2) }</span> : '' }
+					{ totalPrice ? <span className="wp-cart-price mr-2">${ totalPrice.toFixed(2) }</span> : '' }
 					<span className="wd-cart-icon-container">
 						<i className="fas fa-shopping-cart wd-cart-icon"/>
 					{ productsCount ? <span className="wp-cart-count">{ productsCount }</span> : '' }
@@ -22,6 +22,7 @@ const CartIcon = () => {
 			<style jsx>{`
 				.wd-cart-wrap {
 					cursor: pointer;
+					padding-right: 16px;
 				}
 				
 				.wp-cart-price {

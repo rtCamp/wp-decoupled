@@ -28,6 +28,10 @@
 	}
 }
 
+.product-link {
+	cursor: pointer;
+}
+
 .product-image {
 	max-width: 240px;
 }
@@ -44,4 +48,13 @@
 	padding: 10px 16px;
 	background-color: #fff;
 	margin-top: 10px;
+}
+
+.product-description {
+	max-width: 300px;
+	margin: 24px auto;
+}
+
+.wd-view-cart-btn {
+	margin-left: 10px;
 }

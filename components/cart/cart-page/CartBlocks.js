@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useContext } from 'react';
 import { AppContext } from "../../context/AppContext";
 import { removeItemFromCart } from '../../../utils/functions';
@@ -8,12 +9,8 @@ const CartBlocks = () => {
 
 	const [ cart, setCart ] = useContext( AppContext );
 
-	if ( cart ) {
-		console.warn( 'say yes' );
-	}
-
 	const handleRemoveProductClick = ( event, productId ) => {
-		console.warn( 'clicked productId', productId );
+
 		const updatedCart = removeItemFromCart( productId );
 		setCart( updatedCart );
 	};
@@ -22,7 +19,7 @@ const CartBlocks = () => {
 		<div>
 			{ cart ? (
 				<div className="wd-cart-wrapper container">
-					<h1 className="wd-cart-heading">Cart</h1>
+					<h1 className="wd-cart-heading mt-5">Cart</h1>
 					<table className="table table-hover">
 						<thead>
 						<tr className="wd-cart-head-container">
@@ -38,6 +35,7 @@ const CartBlocks = () => {
 						{ cart.products.length && (
 							cart.products.map( item => (
 								<CartItem
+									key={item.productId}
 									item={ item }
 									handleRemoveProductClick={ handleRemoveProductClick }
 									setCart={ setCart }
@@ -55,18 +53,20 @@ const CartBlocks = () => {
 								<tbody>
 								<tr className="table-light">
 									<td className="wd-cart-element-total">Subtotal</td>
-									<td className="wd-cart-element-amt">{ cart.totalProductsPrice.toFixed(2) }</td>
+									<td className="wd-cart-element-amt">${ cart.totalProductsPrice.toFixed(2) }</td>
 								</tr>
 								<tr className="table-light">
 									<td className="wd-cart-element-total">Total</td>
-									<td className="wd-cart-element-amt">{ cart.totalProductsPrice.toFixed(2) }</td>
+									<td className="wd-cart-element-amt">${ cart.totalProductsPrice.toFixed(2) }</td>
 								</tr>
 								</tbody>
 							</table>
-							<button className="btn wd-cart-checkout-btn">
-								<span className="wd-cart-checkout-txt">Proceed to Checkout</span>
-								<i className="fas fa-long-arrow-alt-right"/>
-							</button>
+							<Link href="/checkout">
+								<button className="btn wd-cart-checkout-btn">
+									<span className="wd-cart-checkout-txt">Proceed to Checkout</span>
+									<i className="fas fa-long-arrow-alt-right"/>
+								</button>
+							</Link>
 						</div>
 					</div>
 				</div>

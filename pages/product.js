@@ -1,5 +1,5 @@
 import Layout from "../components/layouts/Layout";
-import Link from 'next/link';
+import AddToCartButton from "../components/cart/AddToCartButton";
 import { withRouter } from 'next/router';
 import client from '../components/ApolloClient';
 import gql from 'graphql-tag';
@@ -12,13 +12,14 @@ const Product = withRouter( props  => {
 		<Layout>
 			{ product ? (
 				<div>
-					<h3>{product.name}</h3>
+					<h3 className="mt-5 mb-3 text-center">{product.name}</h3>
 					<div className="products-wrapper">
 						<div className="product-container" key={product.id}>
 							<img className="product-image" src={product.image.sourceUrl} srcSet={product.image.srcSet} alt={ product.name }/>
 							<h5 className="product-name">{product.name}</h5>
 							<p className="product-price">${product.price}</p>
-							<Link as={ `/product/${product.slug}` } href={`/product?id=${product.productId}`}><a className="product-view-link">Buy</a></Link>
+							<AddToCartButton product={ product } />
+							<div className="product-description">{ product.description }</div>
 						</div>
 					</div>
 				</div>
@@ -38,6 +39,7 @@ Product.getInitialProps = async function( context ) {
 			name
 			price
 			slug
+			description
 			productId
 			image {
 				uri
