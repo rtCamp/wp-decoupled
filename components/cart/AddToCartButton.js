@@ -1,11 +1,13 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { AppContext } from "../context/AppContext";
-import { addFirstProduct, getUpdatedProducts, updateCart } from "../../utils/functions";
+import { addFirstProduct, updateCart } from "../../utils/functions";
+import Link from 'next/link';
 
 const AddToCartButton = ( props ) => {
 
 	const { product } = props;
 	const [ cart, setCart ] = useContext( AppContext );
+	const [ showViewCart, setShowViewCart ] = useState( false );
 
 	/**
 	 * Handles adding items to the cart
@@ -14,6 +16,7 @@ const AddToCartButton = ( props ) => {
 
 		// If component is rendered client side.
 		if ( process.browser ) {
+
 			let existingCart = localStorage.getItem( 'wpd-cart' );
 
 			// If cart has item(s) already, update existing or add new item.
@@ -35,12 +38,19 @@ const AddToCartButton = ( props ) => {
 				const newCart = addFirstProduct( product );
 				setCart( newCart );
 			}
+
+			// Show View Cart Button
+			setShowViewCart( true )
 		}
 	};
 
 	return(
 		<React.Fragment>
 			<button onClick={ handleAddToCartClick } className="btn btn-secondary">Add to cart</button>
+			{ showViewCart ? (
+				<Link href="/cart"><button className="btn btn-secondary">View Cart</button></Link>
+			) : '' }
+
 		</React.Fragment>
 	)
 };
