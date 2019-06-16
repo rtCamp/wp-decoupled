@@ -31,7 +31,6 @@ const Layout = ( props ) => {
 					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 					<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 					<link rel="manifest" href="/static/manifest/manifest.json" />
-					<script src="/static/main.js"/>
 				</Head>
 				<Header/>
 				<div className="wd-content">
