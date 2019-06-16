@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { AppProvider } from "../context/AppContext";
 import '../../styles/sass/styles.scss';
 import '../../styles/vendor/bootstrap.min.css';
 import Head from 'next/head';
@@ -23,19 +24,22 @@ const Layout = ( props ) => {
 
 
 	return (
-		<div>
-			<Head>
-				<title>WP Decoupled</title>
-				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
-				<link rel="manifest" href="/static/manifest/manifest.json" />
-			</Head>
-			<Header/>
-			<div className="wd-content">
-				{props.children}
+		<AppProvider>
+			<div>
+				<Head>
+					<title>WP Decoupled</title>
+					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+					<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+					<link rel="manifest" href="/static/manifest/manifest.json" />
+					<script src="/static/main.js"/>
+				</Head>
+				<Header/>
+				<div className="wd-content">
+					{props.children}
+				</div>
+				<Footer/>
 			</div>
-			<Footer/>
-		</div>
+		</AppProvider>
 	);
 };
 

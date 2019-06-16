@@ -2,6 +2,7 @@ import Layout from '../components/layouts/Layout';
 import Link from 'next/link';
 import client from '../components/ApolloClient';
 import gql from 'graphql-tag';
+import AddToCartButton from "../components/cart/AddToCartButton";
 
 /**
  * GraphQL products query
@@ -32,7 +33,6 @@ const Index = ( props ) => {
 	return (
 		<Layout>
 			{ products.length ? (
-
 				<div>
 					<h3 className="text-center">Products</h3>
 					<div className="products-wrapper">
@@ -43,14 +43,15 @@ const Index = ( props ) => {
 									<h5 className="product-name">{item.name}</h5>
 									<p className="product-price">${item.price}</p>
 									<Link as={`/product/${item.slug}-${item.productId}`} href={`/product?slug=${item.slug}-${item.productId}`}><a className="product-view-link">View</a></Link>
+									<AddToCartButton product={ item } />
 								</div>
 							) )
 						}
 					</div>
 				</div>
-			) : '' }
-		</Layout>
-	);
+					) : '' }
+				</Layout>
+			);
 };
 
 Index.getInitialProps = async () => {
@@ -60,7 +61,7 @@ Index.getInitialProps = async () => {
 	});
 
 	return {
-		products: result.data.products.nodes
+		products: result.data.products.nodes,
 	}
 };
 export default Index;

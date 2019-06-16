@@ -99,4 +99,3 @@ async function getCache(request) {
 		return null;
 	}
 }
-

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+	"inspect": "node --inspect server.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
     "apollo-boost": "^0.4.2",
     "apollo-cache-inmemory": "^1.6.2",
     "apollo-link-http": "^1.5.14",
+    "cookie-parser": "^1.4.4",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "graphql": "^14.3.1",
@@ -41,6 +43,7 @@
     "next": "^8.1.0",
     "next-offline": "^4.0.2",
     "react": "^16.8.6",
+    "react-apollo": "^2.5.6",
     "react-dom": "^16.8.6",
     "woocommerce-api": "^1.4.2"
   },

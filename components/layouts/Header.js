@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import CartIcon from "../cart/CartIcon";
 
 const Header = () => (
 	<nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -16,6 +17,9 @@ const Header = () => (
 					<Link href="/"><a className="nav-link">My Account</a></Link>
 				</li>
 			</ul>
+		</div>
+		<div className="cart">
+			<CartIcon/>
 		</div>
 	</nav>
 );
