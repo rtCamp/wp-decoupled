@@ -62,7 +62,7 @@ const CartBlocks = () => {
 								</tbody>
 							</table>
 							<Link href="/checkout">
-								<button className="btn wd-cart-checkout-btn">
+								<button className="btn wd-large-black-btn">
 									<span className="wd-cart-checkout-txt">Proceed to Checkout</span>
 									<i className="fas fa-long-arrow-alt-right"/>
 								</button>

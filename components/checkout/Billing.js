@@ -1,8 +1,9 @@
+import React from 'react';
 import countryList from './country-list';
 
 const Billing = () => {
 	return (
-		<form className="wd-checkout-form">
+		<React.Fragment>
 			{/*Name*/}
 			<div className="row">
 				<div className="col-lg-6 col-md-12">
@@ -37,8 +38,8 @@ const Billing = () => {
 				</label>
 				<select name="country" className="form-control wd-checkout-input" id="country-select">
 					{ countryList.length && (
-						countryList.map( country => (
-							<option value={ country }>{ country }</option>
+						countryList.map( ( country, index ) => (
+							<option key={ `${country}-${index}` } value={ country }>{ country }</option>
 						) )
 					) }
 				</select>
@@ -98,7 +99,7 @@ const Billing = () => {
 			{/*	Create an Account */}
 			<div className="form-check">
 				<label className="form-check-label">
-					<input className="form-check-input" name="createAccount" type="checkbox" value="true" checked=""/>
+					<input className="form-check-input" name="createAccount" type="checkbox" value="true"/>
 						Create an account?
 				</label>
 			</div>
@@ -106,9 +107,9 @@ const Billing = () => {
 			{/* Order Notes */}
 			<div className="form-group">
 				<label htmlFor="order-notes">Order Notes</label>
-				<textarea name="orderNotes" className="form-control wd-checkout-textarea" id="order-notes" rows="4">{''}</textarea>
+				<textarea name="orderNotes" defaultValue="" className="form-control wd-checkout-textarea" id="order-notes" rows="4"/>
 			</div>
-		</form>
+		</React.Fragment>
 	);
 };
 
