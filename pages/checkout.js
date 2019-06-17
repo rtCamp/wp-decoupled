@@ -1,14 +1,25 @@
 import Layout from '../components/layouts/Layout';
 import Link from 'next/link';
+import Billing from "../components/checkout/Billing";
 
 const Checkout = () => {
 
 	return (
 		<Layout>
 			<div className="container">
-				<h2 className="mt-5">Checkout Page.</h2>
-				<h3>Page under construction. Come back soon...</h3>
-				<Link href="/"><button className="btn btn-primary">Back to Home</button></Link>
+				<h1 className="mt-5 mb-4">Checkout Page.</h1>
+				<div className="row">
+					{/*Billing Details*/}
+					<div className="col-lg-6 col-md-12">
+						<h2 className="mb-4">Billing Details</h2>
+						<Billing/>
+					</div>
+					{/* Order & Payments*/}
+					<div className="col-lg-6 col-md-12">
+					{/*	Order*/}
+					{/*Payment*/}
+					</div>
+				</div>
 			</div>
 		</Layout>
 	)
