@@ -1,17 +1,17 @@
-const PaymentModes = () => {
+const PaymentModes = ( { input, handleOnChange } ) => {
 	return (
 		<div className="mt-5">
 			{/*Pay with Paypal*/}
 			<div className="form-check wd-payment-input-container">
 				<label className="form-check-label">
-					<input className="form-check-input" name="createAccount" type="radio" value="true"/>
+					<input onChange={ handleOnChange } value="paypal" className="form-check-input" name="paymentMode" type="radio"/>
 					<span className="wd-payment-content">Pay with Paypal</span>
 				</label>
 			</div>
 			{/*Pay with Stripe*/}
 			<div className="form-check wd-payment-input-container">
 				<label className="form-check-label">
-					<input className="form-check-input" name="createAccount" type="radio" value="true"/>
+					<input onChange={ handleOnChange } value="stripe" className="form-check-input" name="paymentMode" type="radio"/>
 					<span className="wd-payment-content">Pay with Stripe</span>
 				</label>
 			</div>
