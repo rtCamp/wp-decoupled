@@ -1,5 +1,6 @@
 import validator from 'validator';
 import isEmpty from './isEmpty';
+import config from '../client-config';
 
 
 const validateAndSanitizeCheckoutForm = ( data ) => {
@@ -41,6 +42,7 @@ const validateAndSanitizeCheckoutForm = ( data ) => {
 	 */
 	const addErrorAndSanitizedData = ( fieldName, errorContent, min, max, type = '', required ) => {
 
+		const postCodeLocale = config.postCodeLocale ? config.postCodeLocale : '';
 		/**
 		 * Please note that this isEmpty() belongs to validator and not our custom function defined above.
 		 *
@@ -58,7 +60,7 @@ const validateAndSanitizeCheckoutForm = ( data ) => {
 			errors[ fieldName ] = `${errorContent} is not valid`;
 		}
 
-		if ( 'postCode' === type && ! validator.isPostalCode( data[ fieldName ], 'US' ) ) {
+		if ( 'postCode' === type && postCodeLocale && ! validator.isPostalCode( data[ fieldName ], postCodeLocale ) ) {
 			errors[ fieldName ] = `${errorContent} is not valid`;
 		}
 
@@ -88,7 +90,7 @@ const validateAndSanitizeCheckoutForm = ( data ) => {
 
 	// data.createAccount is a boolean value.
 	sanitizedData.createAccount = data.createAccount;
-	addErrorAndSanitizedData( 'orderNotes', '', 5, 254, false );
+	addErrorAndSanitizedData( 'orderNotes', '', 5, 254, 'string', false );
 	addErrorAndSanitizedData( 'paymentMode', 'Payment mode field', 2, 20, 'string', true );
 
 

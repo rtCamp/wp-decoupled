@@ -120,6 +120,7 @@ const Billing = ( { input, handleOnChange } ) => {
 			<div className="form-group">
 				<label htmlFor="order-notes">Order Notes</label>
 				<textarea onChange={ handleOnChange } defaultValue={ input.orderNotes } name="orderNotes" className="form-control wd-checkout-textarea" id="order-notes" rows="4"/>
+				<Error errors={ input.errors } fieldName={ 'orderNotes' }/>
 			</div>
 		</React.Fragment>
 	);
