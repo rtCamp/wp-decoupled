@@ -71,7 +71,9 @@ const validateAndSanitizeCheckoutForm = ( data ) => {
 
 		// If no errors
 		if ( ! errors[ fieldName ] ) {
-			sanitizedData[ fieldName ] = validator.escape( data[ fieldName ] );
+			sanitizedData[ fieldName ] = validator.trim( data[ fieldName ] );
+			sanitizedData[ fieldName ] = ( 'email' === type ) ? validator.normalizeEmail( sanitizedData[ fieldName ] ) : sanitizedData[ fieldName ];
+			sanitizedData[ fieldName ] = validator.escape( sanitizedData[ fieldName ] );
 		}
 
 	};
