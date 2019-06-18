@@ -32,6 +32,7 @@ const Billing = ( { input, handleOnChange } ) => {
 			<div className="form-group">
 				<label htmlFor="first-name">Company Name</label>
 				<input onChange={ handleOnChange } value={ input.companyName } type="text" name="companyName" className="form-control wd-checkout-input" id="first-name"/>
+				<Error errors={ input.errors } fieldName={ 'companyName' }/>
 			</div>
 			{/* Country */}
 			<div className="form-group">

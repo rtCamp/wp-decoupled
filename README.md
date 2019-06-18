@@ -28,10 +28,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 * Rename `client-config-example.js` to `client-config.js` and update your React Site URL
 
+* Also add your Post Code Locale to validate post code on checkout form . Choose and add one from ( [ 'AD', 'AT', 'AU', 'BE', 'BG', 'CA', 'CH', 'CZ', 'DE', 'DK', 'DZ', 'EE', 'ES', 'FI', 'FR', 'GB', 'GR', 'HR', 'HU', 'ID', 'IL', 'IN', 'IS', 'IT', 'JP', 'KE', 'LI', 'LT', 'LU', 'LV', 'MX', 'NL', 'NO', 'PL', 'PT', 'RO', 'RU', 'SA', 'SE', 'SI', 'TN', 'TW', 'UA', 'US', 'ZA', 'ZM' ] )
+
 ```ruby
 const config = {
 	siteUrl: 'http://localhost:3000',
-	graphqlUrl: 'http://wordpressSiteUrl/graphql'
+	graphqlUrl: 'http://wordpressSiteUrl/graphql',
+	postCodeLocale: 'IN'
 };
 ```
 
