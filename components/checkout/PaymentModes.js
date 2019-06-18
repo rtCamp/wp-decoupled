@@ -1,8 +1,11 @@
+import Error from "./Error";
+
 const PaymentModes = ( { input, handleOnChange } ) => {
 	return (
-		<div className="mt-5">
+		<div className="mt-3">
+			<Error errors={ input.errors } fieldName={ 'paymentMode' }/>
 			{/*Pay with Paypal*/}
-			<div className="form-check wd-payment-input-container">
+			<div className="form-check wd-payment-input-container mt-2">
 				<label className="form-check-label">
 					<input onChange={ handleOnChange } value="paypal" className="form-check-input" name="paymentMode" type="radio"/>
 					<span className="wd-payment-content">Pay with Paypal</span>

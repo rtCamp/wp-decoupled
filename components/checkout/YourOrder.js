@@ -1,10 +1,7 @@
-import { Fragment, useContext } from 'react';
-import { AppContext } from "../context/AppContext";
+import { Fragment } from 'react';
 import CheckoutCartItem from "./CheckoutCartItem";
 
-const YourOrder = () => {
-
-	const [ cart, setCart ] = useContext( AppContext );
+const YourOrder = ( { cart } ) => {
 
 	return (
 		<Fragment>
