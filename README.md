@@ -19,7 +19,22 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Clone and activate the following plugins , in your WordPress plugin directory:
 	* [wp-graphql](https://github.com/wp-graphql/wp-graphql) Exposes graphql for WordPress
+	* [wp-graphql-woocommerce](https://github.com/wp-graphql/wp-graphql-woocommerce) Exposes graphql woocommerce for WordPress.
 	* [wp-graphiql](https://github.com/wp-graphql/wp-graphiql) Provides GraphiQL IDE (playground) to the WP-Admin
+	* [wp-graphql-jwt-authentication](https://github.com/wp-graphql/wp-graphql-jwt-authentication) extends the WPGraphQL plugin to provide authentication using JWT (JSON Web Tokens)
+	
+    * Then you can define a secret token in `wp-config.php` : 
+    
+
+```ruby
+define( 'GRAPHQL_JWT_AUTH_SECRET_KEY', 'your-secret-token' );
+```
+
+In order to use this plugin, your WordPress environment must support the HTTP_AUTHORIZATION header. In some cases, this header is not passed to WordPress because of some server configurations.
+
+Depending on your particular environment, you may have to research how to enable these headers, but in Apache, you can do the following in your .htaccess:
+
+```SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1```
 	
 2. You can also import default wooCommerce products that come with wooCommerce Plugin for development ( if you don't have any products in your WordPress install )
    WP Dashboard > Tools > WooCommerce products(CSV) : The WooCommerce default products csv file is available at `wp-content/plugins/woocommerce/sample-data/sample_products.csv`   	
