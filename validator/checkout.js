@@ -92,7 +92,7 @@ const validateAndSanitizeCheckoutForm = ( data ) => {
 
 	// data.createAccount is a boolean value.
 	sanitizedData.createAccount = data.createAccount;
-	addErrorAndSanitizedData( 'orderNotes', '', 5, 254, 'string', false );
+	addErrorAndSanitizedData( 'orderNotes', '', 0, 254, 'string', false );
 	addErrorAndSanitizedData( 'paymentMode', 'Payment mode field', 2, 20, 'string', true );
 
 
