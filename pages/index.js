@@ -10,7 +10,7 @@ import Categories from "../components/home/Categories";
  * GraphQL products query
  */
 const PRODUCTS_QUERY = gql`query {
-					products {
+					products(first: 50) {
 						nodes {
 							id
 							productId
@@ -61,13 +61,12 @@ const NewProducts = ({ products }) => {
 const Index = ( props ) => {
 
 	const { products } = props;
-	const recentProducts = products.slice( 0, 4 );
 
 	return (
 		<Layout>
 			<Hero/>
 			{/*<Categories/>*/}
-			<NewProducts products={ recentProducts } />
+			<NewProducts products={ products } />
 		</Layout>
 	);
 };
