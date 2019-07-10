@@ -55,8 +55,5 @@
     "next-compose-plugins": "^2.2.0",
     "node-sass": "^4.12.0",
     "nodemon": "^1.19.1"
-  },
-  "engines": {
-    "node": "8.16.0"
   }
 }

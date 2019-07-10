@@ -31,9 +31,6 @@ const Product = withRouter( props  => {
 
 Product.getInitialProps = async function( context ) {
 	let { query: { slug } } = context;
-	const id = parseInt( slug.split('-').pop() );
-
-	let { query: { slug } } = context;
 	const id = slug ? parseInt( slug.split('-').pop() ) : context.query.id;
 
 	const PRODUCT_QUERY = gql`query Product( $id: Int! ) {
