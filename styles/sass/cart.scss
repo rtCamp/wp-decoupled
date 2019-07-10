@@ -1,0 +1,79 @@
+.wd-cart-wrapper {
+
+	overflow: scroll;
+
+	& .wd-cart-heading {
+		padding-bottom: 16px;
+	}
+}
+
+.wd-cart-head-container {
+
+	line-height: 3.2;
+	background-color: #f8f8f8;
+
+	& .wd-cart-heading-el {
+		font-size: 16px;
+	}
+}
+
+.wd-cart-item {
+	& .wd-cart-element {
+		vertical-align: middle;
+		font-size: 14px;
+	}
+
+	& .wd-cart-el-close {
+		text-align: center;
+		font-size: 22px;
+
+		& .wd-cart-close-icon {
+			cursor: pointer;
+		}
+	}
+}
+
+.wd-cart-total-container {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 48px;
+}
+
+.wd-cart-total-container {
+	& .wd-cart-element-total {
+		background-color: #f8f8f8;
+		font-size: 16px;
+		font-weight: 600;
+		padding-left: 20px;
+	}
+
+	& .wd-cart-element-amt {
+		background-color: #fdfdfd;
+		font-size: 16px;
+		padding-left: 20px;
+	}
+
+	& .wd-cart-checkout-txt {
+		padding-right: 12px;
+	}
+}
+
+.wd-cart-item {
+	& .wd-cart-qty-input {
+		padding: 9px 5px;
+		width: 60px;
+		text-align: center;
+		background-color: #f2f2f2;
+		color: #43454b;
+		outline: 0;
+		border: 0;
+		-webkit-appearance: none;
+		box-sizing: border-box;
+		font-weight: 400;
+		box-shadow: inset 0 1px 1px rgba(0,0,0,.125);
+
+		&:focus {
+			box-shadow: none;
+		}
+	}
+}

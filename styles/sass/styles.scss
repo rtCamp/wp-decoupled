@@ -1,7 +1,17 @@
+@import "common";
+@import "navbar";
+@import "home";
 @import "products";
+@import "cart";
+@import "checkout";
 
 body, div.wd-content {
 	display: flex;
 	flex-direction: column;
 	min-height: 60vh;
+	padding: 0;
+}
+
+ul.row {
+	list-style: none;
 }
