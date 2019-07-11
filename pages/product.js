@@ -4,34 +4,37 @@ import { withRouter } from 'next/router';
 import client from '../components/ApolloClient';
 import gql from 'graphql-tag';
 
-const Product = withRouter( props  => {
+const Product = withRouter(props => {
 
 	const { product } = props;
 
 	return (
 		<Layout>
-			{ product ? (
-				<div>
-					<h3 className="mt-5 mb-3 text-center">{product.name}</h3>
-					<div className="products-wrapper">
-						<div className="product-container" key={product.id}>
-							<img className="product-image" src={product.image.sourceUrl} srcSet={product.image.srcSet} alt={ product.name }/>
-							<h5 className="product-name">{product.name}</h5>
-							<p className="product-price">{product.price}</p>
-							<AddToCartButton product={ product } />
-							<div className="product-description">{ product.description }</div>
+			{product ? (
+				<div className="mx-auto mt-5">
+					<div className="row">
+						<div className="col-md-6">
+							<img className="product-image" src={product.image.sourceUrl} srcSet={product.image.srcSet} alt={product.name} />
+						</div>
+						<div className="col-md-6">
+						<h1 class="product_title entry-title">{product.name}</h1>
+						<p class="price"><span class="woocommerce-Price-amount amount">{product.price}</span></p>
+								<AddToCartButton product={product} />
 						</div>
 					</div>
+					<div className="product-container" key={product.id}>
+						<div className="product-description">{product.description}</div>
+					</div>
 				</div>
-			) : '' }
+			) : ''}
 		</Layout>
 
 	)
-} );
+});
 
-Product.getInitialProps = async function( context ) {
+Product.getInitialProps = async function (context) {
 	let { query: { slug } } = context;
-	const id = slug ? parseInt( slug.split('-').pop() ) : context.query.id;
+	const id = slug ? parseInt(slug.split('-').pop()) : context.query.id;
 
 	const PRODUCT_QUERY = gql`query Product( $id: Int! ) {
 		productBy( productId: $id ) {
