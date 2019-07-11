@@ -59,7 +59,7 @@ WOO_SECRET=xxxxx
 ## Branches Information: :seedling:
 
 1. [master](https://github.com/rtCamp/wp-decoupled/tree/master) Main React WooCommerce theme
-2. [develop](https://github.com/rtCamp/develop) For testing
+2. [develop](https://github.com/rtCamp/wp-decoupled/tree/develop) For testing
 2. [wp-docoupled-boilerplate](https://github.com/rtCamp/wp-decoupled/tree/wp-decoupled-boilerplate) Boilerplate to start a new React theme project with PWA implementation ( Work in Progress )
 
 ## Author
