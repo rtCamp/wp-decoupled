@@ -2,6 +2,7 @@
 > * This is a React theme boilerplate for WordPress, built with Next JS, Webpack, Babel, Node, Express.
 
 ## Demo :movie_camera:
+
 ![](demo.gif)
 
 ## Getting Started :surfer:
@@ -47,16 +48,18 @@ WOO_SECRET=xxxxx
 
 * `dev` Runs the node server in development mode
 
+## Using PWA on mobile
+
+* Open the site in Chrome on your mobile and then click on add to home screen.
+* It will be downloaded and saved as a Progressive Web App on your mobile.
+* Once added Look `WP Decoupled` app on your mobile.
+* This PWA will work even when you are offline. 
+
 ## Branches Information: :seedling:
 
 1. [master](https://github.com/rtCamp/wp-decoupled) Main React WooCommerce theme
+2. [develop](https://github.com/rtCamp/develop) For testing
 2. [wp-docoupled-boilerplate](https://github.com/rtCamp/wp-decoupled/tree/wp-decoupled-boilerplate) Boilerplate to start a new React theme project with PWA implementation ( Work in Progress )
-
-## Google Doc for Team meeting
- 
- * [Doc](https://docs.google.com/document/d/1l6ZQrswrwY-aOSGVhN7gXp1VvWW4NmwSpPu0WGNRlas/edit#)
-
-Slack Channel #wp-decoupled
 
 ## Versioning :bookmark_tabs:
 
@@ -68,7 +71,7 @@ I use [Git](https://github.com/) for versioning.
 
 ## Contributor :bust_in_silhouette:
 
-* **[Imran Sayed](https://codeytek.com)**
+* **[Imran Sayed](https://github.com/imranhsayed)**
 * **[Muhammad Muhsin](https://github.com/m-muhsin)**
 * **[Divyaraj Masani](https://github.com/divyarajmasani)**
 * **[Sayed Taqui](https://github.com/sayedtaqui)**
