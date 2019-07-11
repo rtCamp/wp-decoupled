@@ -44,7 +44,7 @@ async function staleWhileRevalidate(event) {
 			return response;
 		})
 		.catch((err) => {
-			console.error(err);
+			// Handle error
 		});
 	return cachedResponse ? Promise.resolve(cachedResponse) : fetchPromise;
 }
@@ -89,11 +89,11 @@ async function getCache(request) {
 		let cacheControl = request.headers.get('Cache-Control');
 		let maxAge = cacheControl ? parseInt(cacheControl.split('=')[1]) : 3600;
 		if (Date.now() - data.timestamp > maxAge * 1000) {
-			console.log(`Cache expired. Load from API endpoint.`);
+			// Cache expired. Load from API endpoint
 			return null;
 		}
 
-		console.log(`Load response from cache.`);
+		// Load response from cache.
 		return new Response(JSON.stringify(data.response.body), data.response);
 	} catch (err) {
 		return null;

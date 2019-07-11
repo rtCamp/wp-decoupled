@@ -34,9 +34,11 @@ app.prepare()
 			createReadStream('./static/favicon.ico').pipe(res);
 		} );
 
-		// If user lands directly on the product page,
-		// extract the product id from the url and handle
-		// the request.
+		/**
+		 * If user lands directly on the product page,
+		 * extract the product id from the url and handle
+		 * the request.
+		 */
 		server.get( '/product/:slug', ( req, res ) => {
 
 			const actualPage = '/product';

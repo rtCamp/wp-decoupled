@@ -35,7 +35,6 @@ const CheckoutForm = () => {
 		if ( ! result.isValid ) {
 			setInput( { ...input,  errors: result.errors } );
 		}
-		console.warn( 'res', result );
 	};
 
 	const handleOnChange = ( event ) => {
