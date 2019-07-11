@@ -1,5 +1,6 @@
 # WP Decoupled :zap:
-> * This is a React theme boilerplate for WordPress, built with Next JS, Webpack, Babel, Node, Express.
+
+This is a React theme boilerplate for WordPress, built with Next JS, Webpack, Babel, Node, Express.
 
 ## Demo :movie_camera:
 
