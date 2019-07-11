@@ -70,12 +70,6 @@ WOO_SECRET=xxxxx
 1. [master](https://github.com/rtCamp/wp-decoupled) Main React WooCommerce theme
 2. [wp-docoupled-boilerplate](https://github.com/rtCamp/wp-decoupled/tree/wp-decoupled-boilerplate) Boilerplate to start a new React theme project with PWA implementation ( Work in Progress )
 
-## Google Doc for Team meeting
- 
- * [Doc](https://docs.google.com/document/d/1l6ZQrswrwY-aOSGVhN7gXp1VvWW4NmwSpPu0WGNRlas/edit#)
-
-Slack Channel #wp-decoupled
-
 ## Versioning :bookmark_tabs:
 
 I use [Git](https://github.com/) for versioning. 
@@ -86,7 +80,7 @@ I use [Git](https://github.com/) for versioning.
 
 ## Contributor :bust_in_silhouette:
 
-* **[Imran Sayed](https://codeytek.com)**
+* **[Imran Sayed](https://github.com/imranhsayed)**
 * **[Muhammad Muhsin](https://github.com/m-muhsin)**
 * **[Divyaraj Masani](https://github.com/divyarajmasani)**
 * **[Sayed Taqui](https://github.com/sayedtaqui)**
