@@ -1,0 +1,33 @@
+.woocommerce-loop-category__title {
+	font-size: 1.1em;
+	line-height: 1.214;
+	font-weight: 400;
+	text-align: center;
+	color: #333333;
+	margin-bottom: .5em;
+	margin-top: .5em;
+}
+
+
+.hero {
+	background: url("/static/hero.jpg");
+	height: 420px;
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	background-position: center;
+}
+
+.wp-block-cover__inner-container {
+	width: calc(6 * (100vw / 12));
+	max-width: calc(6 * (100vw / 12));
+	padding-top: 6.8535260698em;
+	padding-bottom: 6.8535260698em;
+	h1 {
+		font-size: 3.706325903em;
+		margin-bottom: .2360828548em;
+	}
+	p.has-text-color {
+		font-size: 1.25em;
+	}
+}

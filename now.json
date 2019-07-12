@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "name": "wp-decoupled",
+  "alias": "wp-decoupled",
+  "builds": [
+	{
+	  "src": "/static/*",
+	  "use": "@now/static"
+	},
+	{
+	  "src": "package.json",
+	  "use": "@now/next"
+	}
+  ],
+  "routes": [
+	{
+	  "src": "/product/(?<slug>[^/]+)$",
+	  "dest": "/product?slug=$slug"
+	},
+	{
+	  "src": "/static/(.*)",
+	  "dest": "/static/$1"
+	},
+	{
+	  "src": "/manifest.json",
+	  "dest": "/static/manifest.json"
+	},
+	{
+	  "src": "/favicon.ico",
+	  "dest": "/static/favicon.ico"
+	},
+	{
+	  "src": "^/service-worker.js$",
+	  "dest": "/_next/static/service-worker.js",
+	  "headers": {
+		"cache-control": "public, max-age=43200, immutable",
+		"Service-Worker-Allowed": "/"
+	  }
+	}
+  ]
+}

@@ -1,8 +1,8 @@
 import Layout from "../components/layouts/Layout";
-import Link from 'next/link';
+import AddToCartButton from "../components/cart/AddToCartButton";
 import { withRouter } from 'next/router';
-import fetch from 'isomorphic-unfetch';
-import config from './../client-config';
+import client from '../components/ApolloClient';
+import gql from 'graphql-tag';
 
 const Product = withRouter( props  => {
 
@@ -12,13 +12,14 @@ const Product = withRouter( props  => {
 		<Layout>
 			{ product ? (
 				<div>
-					<h3>{product.name}</h3>
+					<h3 className="mt-5 mb-3 text-center">{product.name}</h3>
 					<div className="products-wrapper">
 						<div className="product-container" key={product.id}>
-							<img className="product-image" src={product.images[0].src} alt={ product.name }/>
+							<img className="product-image" src={product.image.sourceUrl} srcSet={product.image.srcSet} alt={ product.name }/>
 							<h5 className="product-name">{product.name}</h5>
-							<p className="product-price">${product.price}</p>
-							<Link href={`/product?id=${product.id}`}><a className="product-view-link">Buy</a></Link>
+							<p className="product-price">{product.price}</p>
+							<AddToCartButton product={ product } />
+							<div className="product-description">{ product.description }</div>
 						</div>
 					</div>
 				</div>
@@ -29,12 +30,33 @@ const Product = withRouter( props  => {
 } );
 
 Product.getInitialProps = async function( context ) {
-	const productId = context.query.id;
-	const res = await fetch(`${config.siteUrl}/getProduct/${productId}`);
-	const data = await res.json();
+
+	let { query: { slug } } = context;
+	const id = slug ? parseInt( slug.split('-').pop() ) : context.query.id;
+
+	const PRODUCT_QUERY = gql`query Product( $id: Int! ) {
+		productBy( productId: $id ) {
+			name
+			price
+			slug
+			description
+			productId
+			image {
+				uri
+				title
+				srcSet
+				sourceUrl
+			}
+		}
+	}`;
+
+	const res = await client.query({
+		query: PRODUCT_QUERY,
+		variables: { id }
+	});
 
 	return {
-		product: data
+		product: res.data.productBy
 	}
 };
 
