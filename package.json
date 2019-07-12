@@ -4,7 +4,7 @@
   "description": "A WordPress decoupled application in React built with Next.js",
   "main": "server.js",
   "scripts": {
-	"dev" : "now dev",
+    "dev": "now dev",
     "dev:server": "nodemon server.js",
     "build": "next build",
     "inspect": "node --inspect server.js"

@@ -6,7 +6,7 @@ import Link from 'next/link';
 const AddToCartButton = ( props ) => {
 
 	const { product } = props;
-	const [ setCart ] = useContext( AppContext );
+	const [ cart, setCart ] = useContext( AppContext );
 	const [ showViewCart, setShowViewCart ] = useState( false );
 
 	/**

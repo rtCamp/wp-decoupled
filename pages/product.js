@@ -17,9 +17,9 @@ const Product = withRouter(props => {
 							<img className="product-image" src={product.image.sourceUrl} srcSet={product.image.srcSet} alt={product.name} />
 						</div>
 						<div className="col-md-6">
-						<h1 class="product_title entry-title">{product.name}</h1>
-						<p class="price"><span class="woocommerce-Price-amount amount">{product.price}</span></p>
-								<AddToCartButton product={product} />
+						<h1 className="product_title entry-title">{product.name}</h1>
+						<p className="price"><span className="woocommerce-Price-amount amount">{product.price}</span></p>
+							<AddToCartButton product={product} />
 						</div>
 					</div>
 					<div className="product-container" key={product.id}>
