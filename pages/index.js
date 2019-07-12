@@ -4,7 +4,6 @@ import client from '../components/ApolloClient';
 import gql from 'graphql-tag';
 import AddToCartButton from "../components/cart/AddToCartButton";
 import Hero from "../components/home/Hero";
-import Categories from "../components/home/Categories";
 
 /**
  * GraphQL products query
@@ -82,5 +81,5 @@ Index.getInitialProps = async () => {
 		products: result.data.products.nodes,
 	}
 };
-export default Index;
 
+export default Index;

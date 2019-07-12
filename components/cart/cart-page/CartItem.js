@@ -9,7 +9,9 @@ const CartItem = ( { item, handleRemoveProductClick, setCart } ) => {
 	 * When user changes the qty from product input update the cart in localStorage
 	 * Also update the cart in global context
 	 *
-	 * @param {obj} event
+	 * @param {Object} event event
+	 *
+	 * @return {void}
 	 */
 	const handleQtyChange = ( event ) => {
 		if ( process.browser ) {

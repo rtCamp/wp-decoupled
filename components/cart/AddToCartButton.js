@@ -6,11 +6,13 @@ import Link from 'next/link';
 const AddToCartButton = ( props ) => {
 
 	const { product } = props;
-	const [ cart, setCart ] = useContext( AppContext );
+	const [ setCart ] = useContext( AppContext );
 	const [ showViewCart, setShowViewCart ] = useState( false );
 
 	/**
-	 * Handles adding items to the cart
+	 * Handles adding items to the cart.
+	 *
+	 * @return {void}
 	 */
 	const handleAddToCartClick = () => {
 

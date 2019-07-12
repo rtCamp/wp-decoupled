@@ -37,7 +37,7 @@ const validateAndSanitizeCheckoutForm = ( data ) => {
 	 * @param {String} errorContent Error Content to be used in showing error e.g. First Name, Last Name
 	 * @param {Integer} min Minimum characters required
 	 * @param {Integer} max Maximum characters required
-	 * @param {String } type Type e.g. email, phone etc.
+	 * @param {String} type Type e.g. email, phone etc.
 	 * @param {boolean} required Required if required is passed as false, it will not validate error and just do sanitization.
 	 */
 	const addErrorAndSanitizedData = ( fieldName, errorContent, min, max, type = '', required ) => {
@@ -90,7 +90,7 @@ const validateAndSanitizeCheckoutForm = ( data ) => {
 	addErrorAndSanitizedData( 'phone', 'Phone number', 10, 15, 'phone', true );
 	addErrorAndSanitizedData( 'email', 'Email', 11, 254, 'email', true );
 
-	// data.createAccount is a boolean value.
+	// The data.createAccount is a boolean value.
 	sanitizedData.createAccount = data.createAccount;
 	addErrorAndSanitizedData( 'orderNotes', '', 0, 254, 'string', false );
 	addErrorAndSanitizedData( 'paymentMode', 'Payment mode field', 2, 20, 'string', true );

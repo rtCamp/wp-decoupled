@@ -9,6 +9,14 @@ const CartBlocks = () => {
 
 	const [ cart, setCart ] = useContext( AppContext );
 
+	/*
+	 * Handle remove product click.
+	 *
+	 * @param {Object} event event
+	 * @param {Integer} Product Id.
+	 *
+	 * @return {void}
+	 */
 	const handleRemoveProductClick = ( event, productId ) => {
 
 		const updatedCart = removeItemFromCart( productId );
@@ -35,7 +43,7 @@ const CartBlocks = () => {
 						{ cart.products.length && (
 							cart.products.map( item => (
 								<CartItem
-									key={item.productId}
+									key={ item.productId }
 									item={ item }
 									handleRemoveProductClick={ handleRemoveProductClick }
 									setCart={ setCart }
@@ -45,7 +53,7 @@ const CartBlocks = () => {
 						</tbody>
 					</table>
 
-					{/*Cart Total*/}
+					{/*Cart Total*/ }
 					<div className="row wd-cart-total-container">
 						<div className="col-6">
 							<h2>Cart Totals</h2>
@@ -53,11 +61,11 @@ const CartBlocks = () => {
 								<tbody>
 								<tr className="table-light">
 									<td className="wd-cart-element-total">Subtotal</td>
-									<td className="wd-cart-element-amt">${ cart.totalProductsPrice.toFixed(2) }</td>
+									<td className="wd-cart-element-amt">${ cart.totalProductsPrice.toFixed( 2 ) }</td>
 								</tr>
 								<tr className="table-light">
 									<td className="wd-cart-element-total">Total</td>
-									<td className="wd-cart-element-amt">${ cart.totalProductsPrice.toFixed(2) }</td>
+									<td className="wd-cart-element-amt">${ cart.totalProductsPrice.toFixed( 2 ) }</td>
 								</tr>
 								</tbody>
 							</table>
@@ -70,7 +78,7 @@ const CartBlocks = () => {
 						</div>
 					</div>
 				</div>
-			) : ''}
+			) : '' }
 		</div>
 
 	);

@@ -7,7 +7,7 @@ import validateAndSanitizeCheckoutForm from '../../validator/checkout';
 
 const CheckoutForm = () => {
 
-	const [ cart, setCart ] = useContext( AppContext );
+	const [ cart ] = useContext( AppContext );
 
 	const initialState = {
 		firstName: '',
@@ -29,6 +29,13 @@ const CheckoutForm = () => {
 
 	const [ input, setInput ] = useState( initialState );
 
+	/*
+	 * Handle form submit
+	 *
+	 * @param {Object} event event
+	 *
+	 * @return {void}
+	 */
 	const handleFormSubmit = ( event ) => {
 		event.preventDefault();
 		const result = validateAndSanitizeCheckoutForm( input );
@@ -37,6 +44,13 @@ const CheckoutForm = () => {
 		}
 	};
 
+	/*
+	 * Handle onchange input.
+	 *
+	 * @param {Object} event event
+	 *
+	 * @return {void}
+	 */
 	const handleOnChange = ( event ) => {
 
 		if ( 'createAccount' === event.target.name ) {
