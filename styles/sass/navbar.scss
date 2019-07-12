@@ -7,3 +7,22 @@
 		box-shadow: none;
 	}
 }
+
+.bar {
+    border-top: 10px solid #000000;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    justify-content: soace-space-between;
+    align-items: stretch;
+    @media (max-width: 1300px) {
+      grid-template-columns: 1fr;
+      justify-content: center;
+	}
+	position: fixed;
+	width: 100%;
+  }
+.sub-bar {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	border-bottom: 1px solid #777777;
+}

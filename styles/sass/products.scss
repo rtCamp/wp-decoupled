@@ -20,6 +20,7 @@
 
 .product-link {
 	cursor: pointer;
+    color: #333333;
 }
 
 .product-image {
@@ -41,10 +42,16 @@
 }
 
 .product-description {
-	max-width: 300px;
-	margin: 24px auto;
+	max-width: 500px;
+	margin-top: 24px;
+	text-align: left;
 }
 
 .wd-view-cart-btn {
 	margin-left: 10px;
+}
+
+p.price {
+    font-size: 1.41575em;
+    margin: 1.41575em 0;
 }
