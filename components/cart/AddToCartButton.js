@@ -34,7 +34,7 @@ const AddToCartButton = ( props ) => {
 
 			} else {
 				/**
-				 * If No Items in the cart, create an empty array and add one
+				 * If No Items in the cart, create an empty array and add one.
 				 * @type {Array}
 				 */
 				const newCart = addFirstProduct( product );

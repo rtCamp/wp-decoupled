@@ -30,9 +30,9 @@ const CheckoutForm = () => {
 	const [ input, setInput ] = useState( initialState );
 
 	/*
-	 * Handle form submit
+	 * Handle form submit.
 	 *
-	 * @param {Object} event event
+	 * @param {Object} event Event Object.
 	 *
 	 * @return {void}
 	 */
@@ -47,7 +47,7 @@ const CheckoutForm = () => {
 	/*
 	 * Handle onchange input.
 	 *
-	 * @param {Object} event event
+	 * @param {Object} event Event Object.
 	 *
 	 * @return {void}
 	 */

@@ -4,7 +4,7 @@ import { createHttpLink } from 'apollo-link-http';
 import config from './../client-config';
 import fetch from 'isomorphic-unfetch';
 
-// Apollo GraphQL client
+// Apollo GraphQL client.
 const client = new ApolloClient({
 	link: createHttpLink({
 		uri: config.graphqlUrl,

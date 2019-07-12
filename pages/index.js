@@ -6,7 +6,7 @@ import AddToCartButton from "../components/cart/AddToCartButton";
 import Hero from "../components/home/Hero";
 
 /**
- * GraphQL products query
+ * GraphQL products query.
  */
 const PRODUCTS_QUERY = gql`query {
 					products(first: 50) {

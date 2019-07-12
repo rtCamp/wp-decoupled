@@ -14,6 +14,7 @@ const CartItem = ( { item, handleRemoveProductClick, setCart } ) => {
 	 * @return {void}
 	 */
 	const handleQtyChange = ( event ) => {
+
 		if ( process.browser ) {
 
 			const newQty = event.target.value;
