@@ -11,7 +11,6 @@ import Router from 'next/router';
 import { isUserValidated } from "../utils/auth-functions";
 import isEmpty from "../validator/isEmpty";
 import Link from "next/link";
-import { wpdGetQueryString } from "../utils/commmon-functions";
 
 /**
  * Login user Mutation query

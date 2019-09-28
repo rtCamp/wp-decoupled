@@ -1,0 +1,38 @@
+.wpd-my-account {
+
+	position: relative;
+
+	// Sidebar
+	.wpd-my-account-sidebar {
+		position: absolute;
+		width: 180px;
+		height: auto;
+		max-height: 400px;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		background-color: $light_gray;
+		overflow-x: hidden;
+		padding-top: 16px;
+
+		.wpd-my-account-sidebar__link {
+			padding: 6px 8px 6px 16px;
+			text-decoration: none;
+			font-size: 16px;
+			color: $light_gray-secondary;
+			display: block;
+			transition: 0.3s;
+
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+
+	}
+
+	.wpd-my-account__main {
+		margin-left: 180px; // same as width of .wpd-my-account-sidebar
+
+	}
+
+}
