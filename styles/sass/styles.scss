@@ -7,14 +7,3 @@
 @import "cart";
 @import "checkout";
 @import "layouts/nprogress";
-
-body, div.wd-content {
-	display: flex;
-	flex-direction: column;
-	min-height: 60vh;
-	padding: 0;
-}
-
-ul.row {
-	list-style: none;
-}

@@ -10,6 +10,7 @@ import Loading from "../components/message-alert/Loading";
 import Router from 'next/router';
 import { isUserValidated } from "../utils/auth-functions";
 import isEmpty from "../validator/isEmpty";
+import Link from "next/link";
 
 /**
  * Login user Mutation query
@@ -41,6 +42,7 @@ const Login = () => {
 	const [ username, setUsername ]         = useState( '' );
 	const [ password, setPassword ]         = useState( '' );
 	const [ errorMessage, setErrorMessage ] = useState( '' );
+	const [ showAlertBar, setShowAlertBar ] = useState( true );
 
 	// Check if the user is validated already
 	if ( process.browser ) {
@@ -52,6 +54,13 @@ const Login = () => {
 		}
 
 	}
+
+	/**
+	 * Hide the Status bar on cross button block
+	 */
+	const onCloseButtonClick = () => {
+		setShowAlertBar( false );
+	};
 
 	/**
 	 * Handles user login.
@@ -82,10 +91,12 @@ const Login = () => {
 	 * @return {void}
 	 */
 	const handleLoginFail = ( err ) => {
+		console.warn( 'cam', err );
 
 		const error = err.split( '_' ).join( ' ' ).toUpperCase();
 
 		setErrorMessage( error );
+		setShowAlertBar( true );
 
 	};
 
@@ -125,13 +136,15 @@ const Login = () => {
 
 							{/* Title */ }
 							<h2 className="mb-2">Login</h2>
-
 							{/* Error Message */ }
-							{ '' !== errorMessage ? (
-								<MessageAlert
-									message={ errorMessage }
-									success={ false }
-								/>
+							{ ( ( '' !== errorMessage ) ) ? (
+								showAlertBar && (
+									<MessageAlert
+										message={ errorMessage }
+										success={ false }
+										onCloseButtonClick={ onCloseButtonClick }
+									/>
+								)
 							) : '' }
 
 							{/* Login Form */ }
@@ -166,7 +179,8 @@ const Login = () => {
 
 								{/* Submit Button */ }
 								<div className="form-group">
-									<button className="btn btn-secondary" type="submit">Login</button>
+									<button className="btn btn-primary" disabled={ loading ? 'disabled' : '' } type="submit">Login</button>
+									<Link href="/register"><a className="btn btn-secondary ml-2">Register</a></Link>
 								</div>
 
 								{/*	Loading */ }

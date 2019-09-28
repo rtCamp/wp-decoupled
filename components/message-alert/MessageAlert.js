@@ -1,19 +1,19 @@
 
 import DOMPurify from 'dompurify';
+import { wpdDecodeHtml } from "../../utils/commmon-functions";
 
-const MessageAlert = ( { message, success } ) => {
-
-	function wpdDecodeHtml(html) {
-		const txt = document.createElement('textarea' );
-		txt.innerHTML = html;
-		return txt.value;
-	}
+const MessageAlert = ( { message, success, onCloseButtonClick } ) => {
 
 	return (
 
 		<div className="alert alert-dismissible mt-3" style={ { border: '1px solid #cecdcd' } }>
-			<button type="button" className="close" data-dismiss="alert">&times;</button>
-			<span className={ success ? 'text-success' : 'text-danger' } dangerouslySetInnerHTML={ { __html: DOMPurify.sanitize( decodeHtml( message ) ) } } />
+			<button type="button" onClick={ onCloseButtonClick } className="close text-muted" data-dismiss="alert">
+				<small>&times;</small>
+			</button>
+			<span
+				className={ success ? 'text-success' : 'text-danger' }
+				dangerouslySetInnerHTML={ { __html: DOMPurify.sanitize( wpdDecodeHtml( message ) ) } }
+			/>
 		</div>
 
 	);

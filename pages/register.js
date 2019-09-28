@@ -10,6 +10,7 @@ import Loading from "../components/message-alert/Loading";
 import Router from 'next/router';
 import { isUserValidated } from "../utils/auth-functions";
 import isEmpty from "../validator/isEmpty";
+import Link from "next/link";
 
 /**
  * Login user Mutation query
@@ -43,6 +44,7 @@ const Register = () => {
 	const [ email, setEmail ]               = useState( '' );
 	const [ password, setPassword ]         = useState( '' );
 	const [ errorMessage, setErrorMessage ] = useState( '' );
+	const [ showAlertBar, setShowAlertBar ] = useState( true );
 
 	// Check if the user is validated already
 	if ( process.browser ) {
@@ -56,6 +58,13 @@ const Register = () => {
 	}
 
 	/**
+	 * Hide the Status bar on cross button block
+	 */
+	const onCloseButtonClick = () => {
+		setShowAlertBar( false );
+	};
+
+	/**
 	 * Handles user login.
 	 *
 	 * @param {object} event Event Object.
@@ -63,11 +72,11 @@ const Register = () => {
 	 * @return {void}
 	 */
 	const handleRegister = async ( event, registerUser ) => {
+		console.warn( 'clicked' );
 
 		if ( process.browser ) {
 
 			event.preventDefault();
-			console.warn( 'came', username, email, password );
 
 			await registerUser( { variables: { username, email, password } } )
 				.then( response => handleRegisterSuccess( response ) )
@@ -93,6 +102,7 @@ const Register = () => {
 
 		const error = err.split( '_' ).join( ' ' ).toUpperCase();
 
+		setShowAlertBar( true );
 		setErrorMessage( error );
 
 	};
@@ -107,20 +117,20 @@ const Register = () => {
 
 		console.warn( response );
 
-		// if ( response.data.login.authToken ) {
-		//
-		// 	// Set the authtoken and user id and username info in the localStorage.
-		// 	localStorage.setItem( config.authTokenName, JSON.stringify( response.data.login ));
-		//
-		// 	// Set form fields to empty.
-		// 	setErrorMessage( '' );
-		// 	setUsername( '' );
-		// 	setPassword( '' );
-		//
-		// 	// Send the user to MyAccount page.
-		// 	Router.push('/login');
-		//
-		// }
+		if ( response.data.login.authToken ) {
+
+			// Set the authtoken and user id and username info in the localStorage.
+			localStorage.setItem( config.authTokenName, JSON.stringify( response.data.login ));
+
+			// Set form fields to empty.
+			setErrorMessage( '' );
+			setUsername( '' );
+			setPassword( '' );
+
+			// Send the user to MyAccount page.
+			Router.push('/login');
+
+		}
 
 	};
 
@@ -137,11 +147,14 @@ const Register = () => {
 							<h2 className="mb-2">Register</h2>
 
 							{/* Error Message */ }
-							{ '' !== errorMessage ? (
-								<MessageAlert
-									message={ errorMessage }
-									success={ false }
-								/>
+							{ ( ( '' !== errorMessage ) ) ? (
+									showAlertBar && (
+										<MessageAlert
+											message={ errorMessage }
+											success={ false }
+											onCloseButtonClick={ onCloseButtonClick }
+										/>
+									)
 							) : '' }
 
 							{/* Login Form */ }
@@ -188,7 +201,8 @@ const Register = () => {
 
 								{/* Submit Button */ }
 								<div className="form-group">
-									<button className="btn btn-secondary" type="submit">Register</button>
+									<button className="btn btn-primary" disabled={ loading ? 'disabled' : '' } type="submit">Register</button>
+									<Link href="/login"><a className="btn btn-secondary ml-2">Login</a></Link>
 								</div>
 
 								{/*	Loading */ }
