@@ -1,9 +1,11 @@
+@import "core/colors";
 @import "common";
 @import "navbar";
 @import "home";
 @import "products";
 @import "cart";
 @import "checkout";
+@import "layouts/nprogress";
 
 body, div.wd-content {
 	display: flex;
