@@ -6,6 +6,7 @@ import { Mutation } from 'react-apollo';
 import config from '../client-config';
 import gql from 'graphql-tag';
 import MessageAlert from "../components/message-alert/MessageAlert";
+import Loading from "../components/message-alert/Loading";
 
 const LOGIN_USER = gql`
   mutation LoginUser($username: String! $password: String!) {
@@ -51,7 +52,7 @@ const Login = () => {
 
 	const handleLoginSuccess = ( response ) => {
 
-		// localStorage.setItem( AUTH_TOKEN, JSON.stringify( response.data.login ));
+		// localStorage.setItem( config.authTokenName, JSON.stringify( response.data.login ));
 		console.warn( 'hello', response.data );
 
 		// this.props.history.push('/my-account');
@@ -62,47 +63,66 @@ const Login = () => {
 			<Layout>
 				<Mutation mutation={ LOGIN_USER }>
 
-					{ ( login, { loading, error } ) => (
+					{ ( login, { loading, error } ) => {
 
-						<div className="container mt-5 pt-5" style={{ maxWidth: '600px' }}>
-							<h2 className="mb-2">Login</h2>
-							{/* Error Message */}
-							{ '' !== errorMessage ? (
-								<MessageAlert
-									message={ errorMessage }
-									success={ false }
-								/>
-							) : '' }
-							<form className="mt-1" onSubmit={ ( event ) => handleLogin( event, login ) }>
-								<div className="form-group">
-									<label htmlFor="username-or-email">Username or email</label>
-									<input
-										type="text"
-										className="form-control"
-										id="username-or-email"
-										placeholder="Enter username or email"
-										value={ username }
-										onChange={ ( event ) => setUsername( event.target.value ) }
-									/>
-								</div>
-								<div className="form-group">
-									<label htmlFor="password">Password</label>
-									<input
-										type="password"
-										className="form-control"
-										id="password"
-										placeholder="Enter password"
-										value={ password }
-										onChange={ ( event ) => setPassword( event.target.value ) }
-									/>
-								</div>
+						console.warn( 'login', loading, error );
 
-								<div className="form-group">
-									<button className="btn btn-secondary" type="submit">Submit</button>
+						return (
+							(
+								<div className="container mt-5 pt-5" style={{ maxWidth: '600px' }}>
+
+									{/* Title */}
+									<h2 className="mb-2">Login</h2>
+
+									{/* Error Message */}
+									{ '' !== errorMessage ? (
+										<MessageAlert
+											message={ errorMessage }
+											success={ false }
+										/>
+									) : '' }
+
+									{/* Login Form */}
+									<form className="mt-1" onSubmit={ ( event ) => handleLogin( event, login ) }>
+
+										{/* Username or email */}
+										<div className="form-group">
+											<label htmlFor="username-or-email">Username or email</label>
+											<input
+												type="text"
+												className="form-control"
+												id="username-or-email"
+												placeholder="Enter username or email"
+												value={ username }
+												onChange={ ( event ) => setUsername( event.target.value ) }
+											/>
+										</div>
+
+										{/* Password */}
+										<div className="form-group">
+											<label htmlFor="password">Password</label>
+											<input
+												type="password"
+												className="form-control"
+												id="password"
+												placeholder="Enter password"
+												value={ password }
+												onChange={ ( event ) => setPassword( event.target.value ) }
+											/>
+										</div>
+
+										{/* Submit Button */}
+										<div className="form-group">
+											<button className="btn btn-secondary" type="submit">Submit</button>
+										</div>
+
+										{/*	Loading */}
+										{ loading ? <Loading message={ 'Processing...' }/> : '' }
+									</form>
 								</div>
-							</form>
-						</div>
-					) }
+							)
+						)
+					} }
 				</Mutation>
 
 			</Layout>
