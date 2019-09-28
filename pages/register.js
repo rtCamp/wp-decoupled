@@ -43,6 +43,7 @@ const Register = () => {
 	const [ email, setEmail ]               = useState( '' );
 	const [ password, setPassword ]         = useState( '' );
 	const [ errorMessage, setErrorMessage ] = useState( '' );
+	const [ successMessage, setSuccessMessage ] = useState( '' );
 	const [ showAlertBar, setShowAlertBar ] = useState( true );
 
 	// Check if the user is validated already
@@ -115,8 +116,18 @@ const Register = () => {
 			setUsername( '' );
 			setPassword( '' );
 
-			// Send the user to Login page.
-			Router.push('/login?registered=true');
+			localStorage.setItem( 'registration-success', 'yes' );
+
+
+			setTimeout( () => {
+
+				// Add a message
+				setSuccessMessage( 'Registration Successful! . You will be redirected to login page now...' );
+
+				// Send the user to Login page.
+				Router.push('/login?registered=true');
+
+			}, 3000 );
 
 		}
 
@@ -143,6 +154,16 @@ const Register = () => {
 											onCloseButtonClick={ onCloseButtonClick }
 										/>
 									)
+							) : '' }
+
+							{ ( ( '' !== successMessage ) ) ? (
+								showAlertBar && (
+									<MessageAlert
+										message={ successMessage }
+										success={ true }
+										onCloseButtonClick={ onCloseButtonClick }
+									/>
+								)
 							) : '' }
 
 							{/* Login Form */ }

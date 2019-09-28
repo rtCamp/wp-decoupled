@@ -11,6 +11,7 @@ import Router from 'next/router';
 import { isUserValidated } from "../utils/auth-functions";
 import isEmpty from "../validator/isEmpty";
 import Link from "next/link";
+import { wpdGetQueryString } from "../utils/commmon-functions";
 
 /**
  * Login user Mutation query
@@ -91,7 +92,6 @@ const Login = () => {
 	 * @return {void}
 	 */
 	const handleLoginFail = ( err ) => {
-		console.warn( 'cam', err );
 
 		const error = err.split( '_' ).join( ' ' ).toUpperCase();
 
@@ -136,6 +136,7 @@ const Login = () => {
 
 							{/* Title */ }
 							<h2 className="mb-2">Login</h2>
+
 							{/* Error Message */ }
 							{ ( ( '' !== errorMessage ) ) ? (
 								showAlertBar && (
