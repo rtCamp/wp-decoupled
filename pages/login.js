@@ -5,6 +5,7 @@ import { ApolloProvider } from 'react-apollo';
 import { Mutation } from 'react-apollo';
 import config from '../client-config';
 import gql from 'graphql-tag';
+import ErrorMessage from "../components/error/ErrorMessage";
 
 const LOGIN_USER = gql`
   mutation LoginUser($username: String! $password: String!) {
@@ -65,12 +66,7 @@ const Login = () => {
 						<div className="container mt-5 pt-5" style={{ maxWidth: '600px' }}>
 							<h2>Login</h2>
 							{/* Error Message */}
-							{ error ? (
-								<div className="alert alert-dismissible alert-light">
-									<button type="button" className="close" data-dismiss="alert">&times;</button>
-									<span>{ error }</span>
-								</div>
-							) : '' }
+							{ error ? <ErrorMessage error={ error }/> : '' }
 							<form className="mt-5" onSubmit={ ( event ) => handleLogin( event, login ) }>
 								<div className="form-group">
 									<label htmlFor="username-or-email">Username or email</label>
