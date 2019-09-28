@@ -3,7 +3,6 @@ import { useState } from 'react';
 import client from '../components/ApolloClient';
 import { ApolloProvider } from 'react-apollo';
 import { Mutation } from 'react-apollo';
-import config from '../client-config';
 import gql from 'graphql-tag';
 import MessageAlert from "../components/message-alert/MessageAlert";
 import Loading from "../components/message-alert/Loading";
@@ -65,14 +64,13 @@ const Register = () => {
 	};
 
 	/**
-	 * Handles user login.
+	 * Handles user registration.
 	 *
 	 * @param {object} event Event Object.
-	 * @param {object} login login function from mutation query.
+	 * @param {object} registerUser registerUser function from mutation query.
 	 * @return {void}
 	 */
 	const handleRegister = async ( event, registerUser ) => {
-		console.warn( 'clicked' );
 
 		if ( process.browser ) {
 
@@ -80,10 +78,7 @@ const Register = () => {
 
 			await registerUser( { variables: { username, email, password } } )
 				.then( response => handleRegisterSuccess( response ) )
-				.catch( err => {
-					console.warn( 'myerr', err );
-					handleRegisterFail( err.graphQLErrors[ 0 ].message )
-				} );
+				.catch( err => handleRegisterFail( err.graphQLErrors[ 0 ].message ) );
 		}
 
 	};
@@ -97,8 +92,6 @@ const Register = () => {
 	 * @return {void}
 	 */
 	const handleRegisterFail = ( err ) => {
-
-		console.warn( 'err', err );
 
 		const error = err.split( '_' ).join( ' ' ).toUpperCase();
 
@@ -115,20 +108,15 @@ const Register = () => {
 	 */
 	const handleRegisterSuccess = ( response ) => {
 
-		console.warn( response );
-
-		if ( response.data.login.authToken ) {
-
-			// Set the authtoken and user id and username info in the localStorage.
-			localStorage.setItem( config.authTokenName, JSON.stringify( response.data.login ));
+		if ( response.data.registerUser.user.email ) {
 
 			// Set form fields to empty.
 			setErrorMessage( '' );
 			setUsername( '' );
 			setPassword( '' );
 
-			// Send the user to MyAccount page.
-			Router.push('/login');
+			// Send the user to Login page.
+			Router.push('/login?registered=true');
 
 		}
 
