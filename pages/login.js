@@ -4,6 +4,8 @@ import client from '../components/ApolloClient';
 import { ApolloProvider } from 'react-apollo';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import { config } from '../client-config';
+console.warn( config.authTokenName );
 
 const LOGIN_USER = gql`
   mutation LoginUser($username: String! $password: String!) {
@@ -50,7 +52,7 @@ const Login = () => {
 		// localStorage.setItem( AUTH_TOKEN, JSON.stringify( response.data.login ));
 		console.warn( 'hello', response.data );
 
-		// this.props.history.push('/profile');
+		// this.props.history.push('/my-account');
 	};
 
 	return (
