@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { AppContext } from "../context/AppContext";
-import { addFirstProduct, updateCart } from "../../utils/functions";
+import { addFirstProduct, updateCart } from "../../utils/cart-functions";
 import Link from 'next/link';
 
 const AddToCartButton = ( props ) => {

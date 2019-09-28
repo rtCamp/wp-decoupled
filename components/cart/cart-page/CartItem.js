@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { updateCart } from "../../../utils/functions";
+import { updateCart } from "../../../utils/cart-functions";
 
 const CartItem = ( { item, handleRemoveProductClick, setCart } ) => {
 
