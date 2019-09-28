@@ -5,7 +5,7 @@ import { ApolloProvider } from 'react-apollo';
 import { Mutation } from 'react-apollo';
 import config from '../client-config';
 import gql from 'graphql-tag';
-import ErrorMessage from "../components/error/ErrorMessage";
+import MessageAlert from "../components/message-alert/MessageAlert";
 
 const LOGIN_USER = gql`
   mutation LoginUser($username: String! $password: String!) {
@@ -29,7 +29,7 @@ const Login = () => {
 	const [ username, setUsername ] = useState( '' );
 	const [ password, setPassword ] = useState( '' );
 	const [ validate, setValidate ] = useState( false );
-	const [ error, setError ] = useState( '' );
+	const [ errorMessage, setErrorMessage ] = useState( '' );
 
 	const  handleLogin = async (event, login) => {
 		if ( process.browser ) {
@@ -45,7 +45,8 @@ const Login = () => {
 	const handleLoginFail = ( err ) => {
 		const error = err.split('_').join(' ').toUpperCase();
 		setValidate( false );
-		console.warn( 'erro', error );
+		setErrorMessage( error );
+		console.warn( 'erro', typeof error );
 	};
 
 	const handleLoginSuccess = ( response ) => {
@@ -64,10 +65,15 @@ const Login = () => {
 					{ ( login, { loading, error } ) => (
 
 						<div className="container mt-5 pt-5" style={{ maxWidth: '600px' }}>
-							<h2>Login</h2>
+							<h2 className="mb-2">Login</h2>
 							{/* Error Message */}
-							{ error ? <ErrorMessage error={ error }/> : '' }
-							<form className="mt-5" onSubmit={ ( event ) => handleLogin( event, login ) }>
+							{ '' !== errorMessage ? (
+								<MessageAlert
+									message={ errorMessage }
+									success={ false }
+								/>
+							) : '' }
+							<form className="mt-1" onSubmit={ ( event ) => handleLogin( event, login ) }>
 								<div className="form-group">
 									<label htmlFor="username-or-email">Username or email</label>
 									<input
