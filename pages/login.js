@@ -38,7 +38,6 @@ const Login = () => {
 
 	const [ username, setUsername ]         = useState( '' );
 	const [ password, setPassword ]         = useState( '' );
-	const [ validated, setValidated ]       = useState( false );
 	const [ errorMessage, setErrorMessage ] = useState( '' );
 
 	/**
@@ -72,7 +71,7 @@ const Login = () => {
 	const handleLoginFail = ( err ) => {
 
 		const error = err.split( '_' ).join( ' ' ).toUpperCase();
-		setValidated( false );
+		
 		setErrorMessage( error );
 
 	};
@@ -89,8 +88,6 @@ const Login = () => {
 
 			// Set the authtoken and user id and username info in the localStorage.
 			localStorage.setItem( config.authTokenName, JSON.stringify( response.data.login ));
-
-			setValidated( true );
 
 			// Set form fields to empty.
 			setErrorMessage( '' );
@@ -121,14 +118,6 @@ const Login = () => {
 								<MessageAlert
 									message={ errorMessage }
 									success={ false }
-								/>
-							) : '' }
-
-							{/* Error Message */ }
-							{ validated ? (
-								<MessageAlert
-									message={ 'Success' }
-									success={ true }
 								/>
 							) : '' }
 
