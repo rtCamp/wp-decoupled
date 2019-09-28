@@ -166,7 +166,7 @@ const Login = () => {
 
 								{/* Submit Button */ }
 								<div className="form-group">
-									<button className="btn btn-secondary" type="submit">Submit</button>
+									<button className="btn btn-secondary" type="submit">Login</button>
 								</div>
 
 								{/*	Loading */ }
