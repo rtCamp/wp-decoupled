@@ -8,6 +8,8 @@ import gql from 'graphql-tag';
 import MessageAlert from "../components/message-alert/MessageAlert";
 import Loading from "../components/message-alert/Loading";
 import Router from 'next/router'
+import { isUserValidated } from "../utils/auth-functions";
+import isEmpty from "../validator/isEmpty";
 
 /**
  * Login user Mutation query
@@ -40,6 +42,17 @@ const Login = () => {
 	const [ password, setPassword ]         = useState( '' );
 	const [ errorMessage, setErrorMessage ] = useState( '' );
 
+	// Check if the user is validated already
+	if ( process.browser ) {
+
+		const userValidated = isUserValidated();
+
+		if ( ! isEmpty( userValidated )  ) {
+			Router.push( '/my-account' )
+		}
+
+	}
+
 	/**
 	 * Handles user login.
 	 *
@@ -71,7 +84,7 @@ const Login = () => {
 	const handleLoginFail = ( err ) => {
 
 		const error = err.split( '_' ).join( ' ' ).toUpperCase();
-		
+
 		setErrorMessage( error );
 
 	};
