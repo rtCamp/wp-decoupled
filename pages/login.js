@@ -7,7 +7,11 @@ import config from '../client-config';
 import gql from 'graphql-tag';
 import MessageAlert from "../components/message-alert/MessageAlert";
 import Loading from "../components/message-alert/Loading";
+import Router from 'next/router'
 
+/**
+ * Login user Mutation query
+ */
 const LOGIN_USER = gql`
   mutation LoginUser($username: String! $password: String!) {
     login(input: {
@@ -25,14 +29,27 @@ const LOGIN_USER = gql`
   }
 `;
 
+/**
+ * Login Functional Component
+ *
+ * @return {object} Login form.
+ */
 const Login = () => {
 
-	const [ username, setUsername ] = useState( '' );
-	const [ password, setPassword ] = useState( '' );
-	const [ validate, setValidate ] = useState( false );
+	const [ username, setUsername ]         = useState( '' );
+	const [ password, setPassword ]         = useState( '' );
+	const [ validated, setValidated ]       = useState( false );
 	const [ errorMessage, setErrorMessage ] = useState( '' );
 
-	const  handleLogin = async (event, login) => {
+	/**
+	 * Handles user login.
+	 *
+	 * @param {object} event Event Object.
+	 * @param {object} login login function from mutation query.
+	 * @return {void}
+	 */
+	const handleLogin = async ( event, login ) => {
+
 		if ( process.browser ) {
 
 			event.preventDefault();
@@ -41,21 +58,50 @@ const Login = () => {
 				.then( response => handleLoginSuccess( response ) )
 				.catch( err => handleLoginFail( err.graphQLErrors[ 0 ].message ) );
 		}
+
 	};
 
+	/**
+	 * Handle Login Fail.
+	 *
+	 * Set the error message text and validated to false
+	 *
+	 * @param {String} err Error message received
+	 * @return {void}
+	 */
 	const handleLoginFail = ( err ) => {
-		const error = err.split('_').join(' ').toUpperCase();
-		setValidate( false );
+
+		const error = err.split( '_' ).join( ' ' ).toUpperCase();
+		setValidated( false );
 		setErrorMessage( error );
-		console.warn( 'erro', typeof error );
+
 	};
 
+	/**
+	 * Handle Login success.
+	 *
+	 * @param {String} err Error message received
+	 * @return {void}
+	 */
 	const handleLoginSuccess = ( response ) => {
 
-		// localStorage.setItem( config.authTokenName, JSON.stringify( response.data.login ));
-		console.warn( 'hello', response.data );
+		if ( response.data.login.authToken ) {
 
-		// this.props.history.push('/my-account');
+			// Set the authtoken and user id and username info in the localStorage.
+			localStorage.setItem( config.authTokenName, JSON.stringify( response.data.login ));
+
+			setValidated( true );
+
+			// Set form fields to empty.
+			setErrorMessage( '' );
+			setUsername( '' );
+			setPassword( '' );
+
+			// Send the user to MyAccount page.
+			Router.push('/my-account');
+
+		}
+
 	};
 
 	return (
@@ -63,66 +109,71 @@ const Login = () => {
 			<Layout>
 				<Mutation mutation={ LOGIN_USER }>
 
-					{ ( login, { loading, error } ) => {
+					{ ( login, { loading, error } ) => (
 
-						console.warn( 'login', loading, error );
+						<div className="container mt-5 pt-5" style={ { maxWidth: '600px' } }>
 
-						return (
-							(
-								<div className="container mt-5 pt-5" style={{ maxWidth: '600px' }}>
+							{/* Title */ }
+							<h2 className="mb-2">Login</h2>
 
-									{/* Title */}
-									<h2 className="mb-2">Login</h2>
+							{/* Error Message */ }
+							{ '' !== errorMessage ? (
+								<MessageAlert
+									message={ errorMessage }
+									success={ false }
+								/>
+							) : '' }
 
-									{/* Error Message */}
-									{ '' !== errorMessage ? (
-										<MessageAlert
-											message={ errorMessage }
-											success={ false }
-										/>
-									) : '' }
+							{/* Error Message */ }
+							{ validated ? (
+								<MessageAlert
+									message={ 'Success' }
+									success={ true }
+								/>
+							) : '' }
 
-									{/* Login Form */}
-									<form className="mt-1" onSubmit={ ( event ) => handleLogin( event, login ) }>
+							{/* Login Form */ }
+							<form className="mt-1" onSubmit={ ( event ) => handleLogin( event, login ) }>
 
-										{/* Username or email */}
-										<div className="form-group">
-											<label htmlFor="username-or-email">Username or email</label>
-											<input
-												type="text"
-												className="form-control"
-												id="username-or-email"
-												placeholder="Enter username or email"
-												value={ username }
-												onChange={ ( event ) => setUsername( event.target.value ) }
-											/>
-										</div>
-
-										{/* Password */}
-										<div className="form-group">
-											<label htmlFor="password">Password</label>
-											<input
-												type="password"
-												className="form-control"
-												id="password"
-												placeholder="Enter password"
-												value={ password }
-												onChange={ ( event ) => setPassword( event.target.value ) }
-											/>
-										</div>
-
-										{/* Submit Button */}
-										<div className="form-group">
-											<button className="btn btn-secondary" type="submit">Submit</button>
-										</div>
-
-										{/*	Loading */}
-										{ loading ? <Loading message={ 'Processing...' }/> : '' }
-									</form>
+								{/* Username or email */ }
+								<div className="form-group">
+									<label className="lead mt-1" htmlFor="username-or-email">Username or
+										email</label>
+									<input
+										type="text"
+										className="form-control"
+										id="username-or-email"
+										placeholder="Enter username or email"
+										value={ username }
+										onChange={ ( event ) => setUsername( event.target.value ) }
+									/>
 								</div>
-							)
-						)
-					} }
+
+								{/* Password */ }
+								<div className="form-group">
+									<label className="lead mt-1" htmlFor="password">Password</label>
+									<input
+										type="password"
+										className="form-control"
+										id="password"
+										placeholder="Enter password"
+										value={ password }
+										onChange={ ( event ) => setPassword( event.target.value ) }
+									/>
+								</div>
+
+								{/* Submit Button */ }
+								<div className="form-group">
+									<button className="btn btn-secondary" type="submit">Submit</button>
+								</div>
+
+								{/*	Loading */ }
+								{ loading ? <Loading message={ 'Processing...' }/> : '' }
+							</form>
+						</div>
+					)
+
+					}
 				</Mutation>
 
 			</Layout>
