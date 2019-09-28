@@ -118,11 +118,10 @@ const Register = () => {
 
 			localStorage.setItem( 'registration-success', 'yes' );
 
+			// Add a message
+			setSuccessMessage( 'Registration Successful! . You will be redirected to login page now...' );
 
 			setTimeout( () => {
-
-				// Add a message
-				setSuccessMessage( 'Registration Successful! . You will be redirected to login page now...' );
 
 				// Send the user to Login page.
 				Router.push('/login?registered=true');
