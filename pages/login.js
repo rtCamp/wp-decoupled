@@ -28,6 +28,7 @@ const LOGIN_USER = gql`
         id
         userId
         name
+        email
         nicename
       }
     }
