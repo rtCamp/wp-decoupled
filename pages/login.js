@@ -7,7 +7,7 @@ import config from '../client-config';
 import gql from 'graphql-tag';
 import MessageAlert from "../components/message-alert/MessageAlert";
 import Loading from "../components/message-alert/Loading";
-import Router from 'next/router'
+import Router from 'next/router';
 import { isUserValidated } from "../utils/auth-functions";
 import isEmpty from "../validator/isEmpty";
 

@@ -1,5 +1,6 @@
 import config from "../client-config";
 import isEmpty from "../validator/isEmpty";
+import Router from 'next/router';
 
 /**
  * Check if user is logged in.
@@ -23,3 +24,21 @@ export const isUserValidated = () => {
 	return userLoggedInData;
 
 };
+
+/**
+ * Logout the user.
+ *
+ * @param {string} urlToRedirect URL where user needs to be redirected after logout.
+ *
+ * @return {void}
+ */
+export const logoutUser = ( urlToRedirect ) => {
+
+	// Set auth data in localStorage to empty.
+	localStorage.setItem( config.authTokenName, '' );
+
+	// Redirect the user to the given url.
+	Router.push( urlToRedirect );
+
+};
+

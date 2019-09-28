@@ -12,6 +12,14 @@
 			color: $white;
 			padding: 5px 10px;
 			font-size: 16px;
+			transition: 0.3s;
+
+			&:hover {
+				opacity: 0.8;
+				color: $white;
+				cursor: pointer;
+			}
+
 		}
 	}
 }
