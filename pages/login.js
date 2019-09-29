@@ -52,7 +52,7 @@ const Login = () => {
 		const userValidated = isUserValidated();
 
 		if ( ! isEmpty( userValidated )  ) {
-			Router.push( '/my-account' )
+			Router.push( '/my-account' );
 		}
 
 	}

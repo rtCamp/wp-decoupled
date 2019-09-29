@@ -1,9 +1,33 @@
-import { useState, useContext, Fragment } from 'react';
+import { useState, useContext } from 'react';
 import Billing from "./Billing";
 import YourOrder from "./YourOrder";
 import PaymentModes from "./PaymentModes";
 import { AppContext } from "../context/AppContext";
 import validateAndSanitizeCheckoutForm from '../../validator/checkout';
+import client from "../ApolloClient";
+import { ApolloProvider, Mutation } from "react-apollo";
+import { isUserValidated } from "../../utils/auth-functions";
+import gql from 'graphql-tag';
+import isEmpty from "../../validator/isEmpty";
+import Router from "next/dist/client/router";
+
+/**
+ * Create Order user Mutation query
+ */
+const CREATE_ORDER = gql`
+  mutation CreateOrder( $customerId: Int! $lineItems: [LineItemInput]! ) {
+	  createOrder(input: {
+	    clientMutationId: "myid",
+	    customerId: $customerId
+	    lineItems: $lineItems
+	  }) {
+	    order {
+	      currency
+	      orderId
+	    }
+	  }
+  }
+`;
 
 const CheckoutForm = () => {
 
@@ -36,11 +60,43 @@ const CheckoutForm = () => {
 	 *
 	 * @return {void}
 	 */
-	const handleFormSubmit = ( event ) => {
-		event.preventDefault();
-		const result = validateAndSanitizeCheckoutForm( input );
-		if ( ! result.isValid ) {
-			setInput( { ...input,  errors: result.errors } );
+	const handleFormSubmit = async ( event, createOrder ) => {
+
+		if ( process.browser ) {
+
+			event.preventDefault();
+
+			const userValidated = isUserValidated();
+
+			// Step:1 If user is not logged in, send him to login page.
+			if ( isEmpty( userValidated ) ) {
+				Router.push( '/login' );
+			}
+
+			// Step:2 User is logged in, do form validation.
+			// const result = validateAndSanitizeCheckoutForm( input );
+			//
+			// if ( ! result.isValid ) {
+			// 	setInput( { ...input,  errors: result.errors } );
+			// }
+
+			const customerId = userValidated.user.userId;
+			const lineItems = [
+				{
+					productId: cart.products[0].productId
+				},
+				{
+					productId: cart.products[1].productId
+				}
+			];
+
+			console.warn( lineItems );
+
+			// Step: 3 Create Order
+			await createOrder( { variables: { customerId, lineItems } } )
+				.then( response => console.warn( response ) )
+				.catch( err => console.warn( err.graphQLErrors[ 0 ].message ) );
+
 		}
 	};
 
@@ -64,33 +120,39 @@ const CheckoutForm = () => {
 
 
 	return (
-		<Fragment>
-			{ cart ? (
-				<form onSubmit={ handleFormSubmit } className="wd-checkout-form">
-					<div className="row">
-						{/*Billing Details*/}
-						<div className="col-lg-6 col-md-12">
-							<h2 className="mb-4">Billing Details</h2>
-							<Billing input={ input } handleOnChange={ handleOnChange }/>
-						</div>
-						{/* Order & Payments*/}
-						<div className="col-lg-6 col-md-12">
-							{/*	Order*/}
-							<h2 className="mb-4">Your Order</h2>
-							<YourOrder cart={ cart }/>
+		<ApolloProvider client={ client }>
+			<Mutation mutation={ CREATE_ORDER }>
+				{ ( createOrder, { loading, error } ) => (
+					cart ? (
+						<form onSubmit={ ( event ) => handleFormSubmit( event, createOrder ) } className="wd-checkout-form">
+							<div className="row">
+								{/*Billing Details*/ }
+								<div className="col-lg-6 col-md-12">
+									<h2 className="mb-4">Billing Details</h2>
+									<Billing input={ input } handleOnChange={ handleOnChange }/>
+								</div>
+								{/* Order & Payments*/ }
+								<div className="col-lg-6 col-md-12">
+									{/*	Order*/ }
+									<h2 className="mb-4">Your Order</h2>
+									<YourOrder cart={ cart }/>
 
-							{/*Payment*/}
-							<PaymentModes input={ input } handleOnChange={ handleOnChange }/>
-							<div className="wd-place-order-btn-wrap mt-5">
-								<button className="btn wd-large-black-btn wd-place-order-btn" type="submit">
-									Place Order
-								</button>
+									{/*Payment*/ }
+									<PaymentModes input={ input } handleOnChange={ handleOnChange }/>
+									<div className="wd-place-order-btn-wrap mt-5">
+										<button className="btn wd-large-black-btn wd-place-order-btn" type="submit">
+											Place Order
+										</button>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-				</form>
-			) : '' }
-		</Fragment>
+						</form>
+					) : ''
+				)
+
+				}
+			</Mutation>
+		</ApolloProvider>
 	);
 };
 
