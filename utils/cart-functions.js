@@ -221,6 +221,6 @@ export const buildLineItems = ( products ) => {
 	}
 
 	return lineItems;
-	
+
 };
 

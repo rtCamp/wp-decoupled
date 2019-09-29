@@ -10,6 +10,7 @@ import { isUserValidated } from "../../utils/auth-functions";
 import gql from 'graphql-tag';
 import isEmpty from "../../validator/isEmpty";
 import Router from "next/dist/client/router";
+import { buildLineItems } from "../../utils/cart-functions";
 
 /**
  * Create Order user Mutation query
@@ -81,12 +82,7 @@ const CheckoutForm = () => {
 			// }
 
 			const customerId = userValidated.user.userId;
-
-
-
-			if ( cart.products.length ) {
-
-			}
+			const lineItems = buildLineItems( cart.products );
 
 			// Step: 3 Create Order
 			await createOrder( { variables: { customerId, lineItems } } )
