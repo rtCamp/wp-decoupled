@@ -81,21 +81,17 @@ const CheckoutForm = () => {
 			// }
 
 			const customerId = userValidated.user.userId;
-			const lineItems = [
-				{
-					productId: cart.products[0].productId
-				},
-				{
-					productId: cart.products[1].productId
-				}
-			];
 
-			console.warn( lineItems );
+
+
+			if ( cart.products.length ) {
+
+			}
 
 			// Step: 3 Create Order
 			await createOrder( { variables: { customerId, lineItems } } )
-				.then( response => console.warn( response ) )
-				.catch( err => console.warn( err.graphQLErrors[ 0 ].message ) );
+				.then( response => console.warn( 'response', response ) )
+				.catch( err => console.warn( 'error', err.graphQLErrors[ 0 ].message ) );
 
 		}
 	};

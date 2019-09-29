@@ -191,4 +191,36 @@ export const removeItemFromCart = ( productId ) => {
 	}
 };
 
+/**
+ * Build lineItems ( products data ).
+ *
+ * Loops through the product array and
+ * puts them in a format that's required
+ * and returns only the items that required.
+ *
+ * @param {Array} products
+ * @return {[]} lineItems Formatted product array.
+ */
+export const buildLineItems = ( products ) => {
+
+	const lineItems = [];
+
+	if ( products.length ) {
+
+		cart.products.map( item => {
+
+			const itemData = {
+				productId: item.productId,
+				quantity: item.qty,
+			};
+
+			lineItems.push( itemData );
+
+		} );
+
+	}
+
+	return lineItems;
+	
+};
 

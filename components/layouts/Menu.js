@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import Link from "next/link";
 import { isUserValidated, logoutUser } from "../../utils/auth-functions";
 import { useEffect, useState } from 'react';
@@ -32,17 +33,26 @@ const Menu = () => {
 
 	return (
 		<ul className="wpd-main-nav">
-			<li className="wpd-main-nav__list">
-				<Link href="/login"><a className="wpd-main-nav__link">Login</a></Link>
-			</li>
-			<li className="wpd-main-nav__list">
-				<Link href="/register"><a className="wpd-main-nav__link">Register</a></Link>
-			</li>
+
+			{/* Login and Register */}
+			{ ! loggedIn ? (
+				<Fragment>
+					<li className="wpd-main-nav__list">
+						<Link href="/login"><a className="wpd-main-nav__link">Login</a></Link>
+					</li>
+					<li className="wpd-main-nav__list">
+						<Link href="/register"><a className="wpd-main-nav__link">Register</a></Link>
+					</li>
+				</Fragment>
+			) : '' }
+
+			{/* Logout */}
 			{ loggedIn ? (
 				<li className="wpd-main-nav__list">
 					<a className="wpd-main-nav__link" onClick={ handleLogout }>Logout</a>
 				</li>
 			) : '' }
+
 		</ul>
 	)
 };
