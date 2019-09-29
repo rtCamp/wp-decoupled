@@ -207,7 +207,7 @@ export const buildLineItems = ( products ) => {
 
 	if ( products.length ) {
 
-		cart.products.map( item => {
+		products.map( item => {
 
 			const itemData = {
 				productId: item.productId,

@@ -4,13 +4,13 @@ import YourOrder from "./YourOrder";
 import PaymentModes from "./PaymentModes";
 import { AppContext } from "../context/AppContext";
 import validateAndSanitizeCheckoutForm from '../../validator/checkout';
-import client from "../ApolloClient";
 import { ApolloProvider, Mutation } from "react-apollo";
 import { isUserValidated } from "../../utils/auth-functions";
 import gql from 'graphql-tag';
 import isEmpty from "../../validator/isEmpty";
 import Router from "next/dist/client/router";
 import { buildLineItems } from "../../utils/cart-functions";
+import authorizedClient from "../AuthorizedApolloClient";
 
 /**
  * Create Order user Mutation query
@@ -87,7 +87,7 @@ const CheckoutForm = () => {
 			// Step: 3 Create Order
 			await createOrder( { variables: { customerId, lineItems } } )
 				.then( response => console.warn( 'response', response ) )
-				.catch( err => console.warn( 'error', err.graphQLErrors[ 0 ].message ) );
+				.catch( err => console.warn( 'error', err ) );
 
 		}
 	};
@@ -112,7 +112,7 @@ const CheckoutForm = () => {
 
 
 	return (
-		<ApolloProvider client={ client }>
+		<ApolloProvider client={ authorizedClient }>
 			<Mutation mutation={ CREATE_ORDER }>
 				{ ( createOrder, { loading, error } ) => (
 					cart ? (
