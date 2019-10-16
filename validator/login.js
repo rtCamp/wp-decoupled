@@ -18,7 +18,7 @@ const validateAndSanitizeLoginForm = ( data ) => {
 
 	/**
 	 * Checks for error if required is true
-	 * and adds Error and Sanitized data to the errors and sanitizedData object
+	 * and adds Error and Sanitized data to the errors and sanitizedData object respectively.
 	 *
 	 * @param {String} fieldName Field name e.g. First name, last name
 	 * @param {String} errorContent Error Content to be used in showing error e.g. First Name, Last Name

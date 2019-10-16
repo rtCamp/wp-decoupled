@@ -52,6 +52,7 @@ const Login = () => {
 
 		const userValidated = isUserValidated();
 
+		// If user is already validated, redirect user to My Account page.
 		if ( ! isEmpty( userValidated )  ) {
 			Router.push( '/my-account' )
 		}
@@ -60,6 +61,8 @@ const Login = () => {
 
 	/**
 	 * Hide the Status bar on cross button click.
+	 *
+	 * @return {void}
 	 */
 	const onCloseButtonClick = () => {
 		setShowAlertBar( false );
@@ -78,11 +81,9 @@ const Login = () => {
 		if ( process.browser ) {
 
 			event.preventDefault();
-			setErrorMessage( '' );
 
-			const validationResult = validateAndSanitizeLoginForm( {
-				username, password
-			} );
+			// Validation and Sanitization.
+			const validationResult = validateAndSanitizeLoginForm( { username, password } );
 
 			// If the data is valid
 			if ( validationResult.isValid ) {
@@ -96,8 +97,6 @@ const Login = () => {
 					.catch( err => handleLoginFail( err.graphQLErrors[ 0 ].message ) );
 
 			} else {
-
-				console.warn( validationResult );
 
 				setClientSideError( validationResult );
 
@@ -162,7 +161,8 @@ const Login = () => {
 	/**
 	 * Handle Login success.
 	 *
-	 * @param {String} err Error message received
+	 * @param {Object} response response received
+	 * 
 	 * @return {void}
 	 */
 	const handleLoginSuccess = ( response ) => {
