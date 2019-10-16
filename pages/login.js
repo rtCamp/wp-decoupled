@@ -192,7 +192,7 @@ const Login = () => {
 
 					{ ( login, { loading, error } ) => (
 
-						<div className="container mt-5 pt-5" style={ { maxWidth: '600px' } }>
+						<div className="wd-form container mt-5 pt-5">
 
 							{/* Title */ }
 							<h2 className="mb-2">Login</h2>

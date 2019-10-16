@@ -13,7 +13,7 @@ import Link from "next/link";
 import validateAndSanitizeRegisterForm from "../validator/register";
 
 /**
- * Login user Mutation query
+ * Register user mutation query.
  */
 const REGISTER_USER = gql`
   mutation RegisterMyUser( $username: String! $email: String! $password: String!) {
@@ -34,7 +34,7 @@ const REGISTER_USER = gql`
 `;
 
 /**
- * Register Functional Component
+ * Register Functional Component.
  *
  * @return {object} Register form.
  */
@@ -47,12 +47,12 @@ const Register = () => {
 	const [ successMessage, setSuccessMessage ] = useState( '' );
 	const [ showAlertBar, setShowAlertBar ] = useState( true );
 
-	// Check if the user is validated already
+	// Check if the user is validated already.
 	if ( process.browser ) {
 
 		const userValidated = isUserValidated();
 
-		// Redirect the user to My Account page if he is already validated.
+		// Redirect the user to My Account page if user is already validated.
 		if ( ! isEmpty( userValidated )  ) {
 			Router.push( '/my-account' )
 		}
@@ -60,7 +60,7 @@ const Register = () => {
 	}
 
 	/**
-	 * Hide the Status bar on cross button block
+	 * Hide the Status bar on cross button click.
 	 */
 	const onCloseButtonClick = () => {
 		setErrorMessage( '' );
@@ -71,9 +71,9 @@ const Register = () => {
 	 * Sets client side error.
 	 *
 	 * Sets error data to result of our client side validation,
-	 * and statusbar to true so that its visible.
+	 * and statusbars to true so that its visible.
 	 *
-	 * @param {Object} validationResult Validation Data result.
+	 * @param {Object} validationResult Validation result data.
 	 */
 	const setClientSideError = ( validationResult ) => {
 
@@ -112,7 +112,7 @@ const Register = () => {
 	 * Handles user registration.
 	 *
 	 * @param {object} event Event Object.
-	 * @param {object} registerUser registerUser function from mutation query.
+	 * @param {object} registerUser registerUser function from REGISTER_USER mutation query.
 	 * @return {void}
 	 */
 	const handleRegister = async ( event, registerUser ) => {
@@ -124,7 +124,7 @@ const Register = () => {
 			// Validation and Sanitization.
 			const validationResult = validateAndSanitizeRegisterForm( { username, email, password } );
 
-			// If the data is valid
+			// If the data is valid.
 			if ( validationResult.isValid ) {
 
 				await registerUser( {
@@ -150,7 +150,7 @@ const Register = () => {
 	/**
 	 * Handle Registration Fail.
 	 *
-	 * Set the error message text and validated to false
+	 * Set the error message text and validated to false.
 	 *
 	 * @param {String} err Error message received
 	 * @return {void}
@@ -166,7 +166,7 @@ const Register = () => {
 	/**
 	 * Handle Register success.
 	 *
-	 * @param {Object} response response received.
+	 * @param {Object} response Response received.
 	 * @return {void}
 	 */
 	const handleRegisterSuccess = ( response ) => {
@@ -180,7 +180,7 @@ const Register = () => {
 
 			localStorage.setItem( 'registration-success', 'yes' );
 
-			// Add a message
+			// Add a message.
 			setSuccessMessage( 'Registration Successful! . You will be redirected to login page now...' );
 
 			setTimeout( () => {
@@ -201,7 +201,7 @@ const Register = () => {
 
 					{ ( registerUser, { loading, error } ) => (
 
-						<div className="container mt-5 pt-5" style={ { maxWidth: '600px' } }>
+						<div className="wd-form container mt-5 pt-5">
 
 							{/* Title */ }
 							<h2 className="mb-2">Register</h2>
