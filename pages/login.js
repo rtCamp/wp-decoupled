@@ -11,6 +11,7 @@ import Router from 'next/router';
 import { isUserValidated } from "../utils/auth-functions";
 import isEmpty from "../validator/isEmpty";
 import Link from "next/link";
+import validateAndSanitizeLoginForm from "../validator/login";
 
 /**
  * Login user Mutation query
@@ -58,10 +59,11 @@ const Login = () => {
 	}
 
 	/**
-	 * Hide the Status bar on cross button block
+	 * Hide the Status bar on cross button click.
 	 */
 	const onCloseButtonClick = () => {
 		setShowAlertBar( false );
+		setErrorMessage( '' );
 	};
 
 	/**
@@ -76,12 +78,69 @@ const Login = () => {
 		if ( process.browser ) {
 
 			event.preventDefault();
+			setErrorMessage( '' );
 
-			await login( { variables: { username, password } } )
-				.then( response => handleLoginSuccess( response ) )
-				.catch( err => handleLoginFail( err.graphQLErrors[ 0 ].message ) );
+			const validationResult = validateAndSanitizeLoginForm( {
+				username, password
+			} );
+
+			// If the data is valid
+			if ( validationResult.isValid ) {
+
+				await login( {
+					variables: {
+						username: validationResult.sanitizedData.username,
+						password: validationResult.sanitizedData.password
+					} } )
+					.then( response => handleLoginSuccess( response ) )
+					.catch( err => handleLoginFail( err.graphQLErrors[ 0 ].message ) );
+
+			} else {
+
+				console.warn( validationResult );
+
+				setClientSideError( validationResult );
+
+			}
+
 		}
 
+	};
+
+	/**
+	 * Sets client side error.
+	 *
+	 * Sets error data to result of our client side validation,
+	 * and statusbar to true so that its visible.
+	 *
+	 * @param {Object} validationResult Validation Data result.
+	 */
+	const setClientSideError = ( validationResult ) => {
+
+		if( validationResult.errors.password ) {
+			setErrorMessage( validationResult.errors.password );
+		}
+		if( validationResult.errors.username ) {
+			setErrorMessage( validationResult.errors.username );
+		}
+
+		setShowAlertBar( true );
+
+	};
+
+	/**
+	 * Set server side error.
+	 *
+	 * Sets error data received as a response of our query from the server
+	 * and set statusbar to true so that its visible.
+	 *
+	 * @param {String} error Error
+	 *
+	 * @return {void}
+	 */
+	const setServerSideError = ( error ) => {
+		setErrorMessage( error );
+		setShowAlertBar( true );
 	};
 
 	/**
@@ -96,8 +155,7 @@ const Login = () => {
 
 		const error = err.split( '_' ).join( ' ' ).toUpperCase();
 
-		setErrorMessage( error );
-		setShowAlertBar( true );
+		setServerSideError( error );
 
 	};
 
