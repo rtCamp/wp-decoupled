@@ -4,6 +4,11 @@ import { isUserValidated } from "../utils/auth-functions";
 import isEmpty from "../validator/isEmpty";
 import Router from 'next/router';
 
+/**
+ * MyAccount functional component.
+ *
+ * @return {object} MyAccount content.
+ */
 const MyAccount = () => {
 
 	const [ showContent, setShowContent ] = useState( false );
@@ -20,13 +25,11 @@ const MyAccount = () => {
 
 		} else {
 
-			// If he is not logged in send him back to login page.
+			// If user is not logged in send the user back to login page.
 			Router.push( '/login' );
 		}
 
 	}, [] );
-
-	console.warn( userData );
 
 	return (
 		<Layout>
