@@ -37,7 +37,7 @@ const REGISTER_USER = gql`
 /**
  * Login Functional Component
  *
- * @return {object} Login form.
+ * @return {object} Register form.
  */
 const Register = () => {
 
@@ -125,15 +125,25 @@ const Register = () => {
 			// Validation and Sanitization.
 			const validationResult = validateAndSanitizeRegisterForm( { username, email, password } );
 
-			await registerUser( {
-				variables: {
-					username: validationResult.sanitizedData.username,
-					email: validationResult.sanitizedData.email,
-					password: validationResult.sanitizedData.password
-				}
-			} )
-				.then( response => handleRegisterSuccess( response ) )
-				.catch( err => handleRegisterFail( err.graphQLErrors[ 0 ].message ) );
+			// If the data is valid
+			if ( validationResult.isValid ) {
+
+				await registerUser( {
+					variables: {
+						username: validationResult.sanitizedData.username,
+						email: validationResult.sanitizedData.email,
+						password: validationResult.sanitizedData.password
+					}
+				} )
+					.then( response => handleRegisterSuccess( response ) )
+					.catch( err => handleRegisterFail( err.graphQLErrors[ 0 ].message ) );
+
+			} else {
+
+				setClientSideError( validationResult );
+
+			}
+
 		}
 
 	};
