@@ -10,7 +10,6 @@ import Router from 'next/router';
 import { isUserValidated } from "../utils/auth-functions";
 import isEmpty from "../validator/isEmpty";
 import Link from "next/link";
-import validateAndSanitizeLoginForm from "../validator/login";
 import validateAndSanitizeRegisterForm from "../validator/register";
 
 /**
@@ -35,7 +34,7 @@ const REGISTER_USER = gql`
 `;
 
 /**
- * Login Functional Component
+ * Register Functional Component
  *
  * @return {object} Register form.
  */
@@ -149,7 +148,7 @@ const Register = () => {
 	};
 
 	/**
-	 * Handle Register Fail.
+	 * Handle Registration Fail.
 	 *
 	 * Set the error message text and validated to false
 	 *
@@ -160,22 +159,21 @@ const Register = () => {
 
 		const error = err.split( '_' ).join( ' ' ).toUpperCase();
 
-		setShowAlertBar( true );
-		setErrorMessage( error );
+		setServerSideError( error );
 
 	};
 
 	/**
 	 * Handle Register success.
 	 *
-	 * @param {String} err Error message received
+	 * @param {Object} response response received.
 	 * @return {void}
 	 */
 	const handleRegisterSuccess = ( response ) => {
 
 		if ( response.data.registerUser.user.email ) {
 
-			// Set form fields to empty.
+			// Set form fields value to empty.
 			setErrorMessage( '' );
 			setUsername( '' );
 			setPassword( '' );
