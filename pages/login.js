@@ -14,11 +14,11 @@ import Link from "next/link";
 import validateAndSanitizeLoginForm from "../validator/login";
 
 /**
- * Login user Mutation query
+ * Login user mutation query.
  */
 const LOGIN_USER = gql`
-  mutation LoginUser($username: String! $password: String!) {
-    login(input: {
+  mutation LoginUser( $username: String! $password: String! ) {
+    login( input: {
       clientMutationId: "uniqueId"
       username: $username
       password: $password
@@ -36,7 +36,7 @@ const LOGIN_USER = gql`
 `;
 
 /**
- * Login Functional Component
+ * Login functional component.
  *
  * @return {object} Login form.
  */
@@ -47,7 +47,7 @@ const Login = () => {
 	const [ errorMessage, setErrorMessage ] = useState( '' );
 	const [ showAlertBar, setShowAlertBar ] = useState( true );
 
-	// Check if the user is validated already
+	// Check if the user is validated already.
 	if ( process.browser ) {
 
 		const userValidated = isUserValidated();
@@ -73,7 +73,7 @@ const Login = () => {
 	 * Handles user login.
 	 *
 	 * @param {object} event Event Object.
-	 * @param {object} login login function from mutation query.
+	 * @param {object} login login function from login mutation query.
 	 * @return {void}
 	 */
 	const handleLogin = async ( event, login ) => {
@@ -85,7 +85,7 @@ const Login = () => {
 			// Validation and Sanitization.
 			const validationResult = validateAndSanitizeLoginForm( { username, password } );
 
-			// If the data is valid
+			// If the data is valid.
 			if ( validationResult.isValid ) {
 
 				await login( {
@@ -109,8 +109,8 @@ const Login = () => {
 	/**
 	 * Sets client side error.
 	 *
-	 * Sets error data to result of our client side validation,
-	 * and statusbar to true so that its visible.
+	 * Sets error data to result received from our client side validation function,
+	 * and statusbar to true so that its visible to show the error.
 	 *
 	 * @param {Object} validationResult Validation Data result.
 	 */
@@ -119,6 +119,7 @@ const Login = () => {
 		if( validationResult.errors.password ) {
 			setErrorMessage( validationResult.errors.password );
 		}
+
 		if( validationResult.errors.username ) {
 			setErrorMessage( validationResult.errors.username );
 		}
@@ -131,7 +132,7 @@ const Login = () => {
 	 * Set server side error.
 	 *
 	 * Sets error data received as a response of our query from the server
-	 * and set statusbar to true so that its visible.
+	 * and sets statusbar to true so that its visible to show our error.
 	 *
 	 * @param {String} error Error
 	 *
@@ -145,7 +146,7 @@ const Login = () => {
 	/**
 	 * Handle Login Fail.
 	 *
-	 * Set the error message text and validated to false
+	 * Set the error message text and validated to false.
 	 *
 	 * @param {String} err Error message received
 	 * @return {void}
@@ -161,23 +162,23 @@ const Login = () => {
 	/**
 	 * Handle Login success.
 	 *
-	 * @param {Object} response response received
-	 * 
+	 * @param {Object} response Response received
+	 *
 	 * @return {void}
 	 */
 	const handleLoginSuccess = ( response ) => {
 
 		if ( response.data.login.authToken ) {
 
-			// Set the authtoken and user id and username info in the localStorage.
+			// Set the authtoken, user id and username in the localStorage.
 			localStorage.setItem( config.authTokenName, JSON.stringify( response.data.login ));
 
-			// Set form fields to empty.
+			// Set form field vaues to empty.
 			setErrorMessage( '' );
 			setUsername( '' );
 			setPassword( '' );
 
-			// Send the user to MyAccount page.
+			// Send the user to My Account page on successful login.
 			Router.push('/my-account');
 
 		}
