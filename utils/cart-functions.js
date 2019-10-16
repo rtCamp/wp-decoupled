@@ -190,5 +190,3 @@ export const removeItemFromCart = ( productId ) => {
 		return existingCart;
 	}
 };
-
-

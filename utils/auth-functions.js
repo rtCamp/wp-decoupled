@@ -5,7 +5,7 @@ import Router from 'next/router';
 /**
  * Check if user is logged in.
  *
- * @return {object} Auth Object container token and user data, false on failure.
+ * @return {object} Auth Object containing token and user data, false on failure.
  */
 export const isUserValidated = () => {
 
@@ -34,7 +34,7 @@ export const isUserValidated = () => {
  */
 export const logoutUser = ( urlToRedirect ) => {
 
-	// Set auth data in localStorage to empty.
+	// Set auth data value in localStorage to empty.
 	localStorage.setItem( config.authTokenName, '' );
 
 	// Redirect the user to the given url.

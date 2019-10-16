@@ -1,7 +1,8 @@
 /**
  * Converts the html entities to html.
  *
- * @param {string} html html with entities.
+ * @param {string} html HTML with entities.
+ * 
  * @return {string} html with converted html entities.
  */
 export const wpdDecodeHtml = ( html ) => {
