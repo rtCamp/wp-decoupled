@@ -10,6 +10,8 @@ import Router from 'next/router';
 import { isUserValidated } from "../utils/auth-functions";
 import isEmpty from "../validator/isEmpty";
 import Link from "next/link";
+import validateAndSanitizeLoginForm from "../validator/login";
+import validateAndSanitizeRegisterForm from "../validator/register";
 
 /**
  * Login user Mutation query
@@ -51,6 +53,7 @@ const Register = () => {
 
 		const userValidated = isUserValidated();
 
+		// Redirect the user to My Account page if he is already validated.
 		if ( ! isEmpty( userValidated )  ) {
 			Router.push( '/my-account' )
 		}
@@ -61,7 +64,49 @@ const Register = () => {
 	 * Hide the Status bar on cross button block
 	 */
 	const onCloseButtonClick = () => {
+		setErrorMessage( '' );
 		setShowAlertBar( false );
+	};
+
+	/**
+	 * Sets client side error.
+	 *
+	 * Sets error data to result of our client side validation,
+	 * and statusbar to true so that its visible.
+	 *
+	 * @param {Object} validationResult Validation Data result.
+	 */
+	const setClientSideError = ( validationResult ) => {
+
+		if( validationResult.errors.password ) {
+			setErrorMessage( validationResult.errors.password );
+		}
+
+		if( validationResult.errors.email ) {
+			setErrorMessage( validationResult.errors.email );
+		}
+
+		if( validationResult.errors.username ) {
+			setErrorMessage( validationResult.errors.username );
+		}
+
+		setShowAlertBar( true );
+
+	};
+
+	/**
+	 * Set server side error.
+	 *
+	 * Sets error data received as a response of our query from the server
+	 * and set statusbar to true so that its visible.
+	 *
+	 * @param {String} error Error
+	 *
+	 * @return {void}
+	 */
+	const setServerSideError = ( error ) => {
+		setErrorMessage( error );
+		setShowAlertBar( true );
 	};
 
 	/**
@@ -77,7 +122,16 @@ const Register = () => {
 
 			event.preventDefault();
 
-			await registerUser( { variables: { username, email, password } } )
+			// Validation and Sanitization.
+			const validationResult = validateAndSanitizeRegisterForm( { username, email, password } );
+
+			await registerUser( {
+				variables: {
+					username: validationResult.sanitizedData.username,
+					email: validationResult.sanitizedData.email,
+					password: validationResult.sanitizedData.password
+				}
+			} )
 				.then( response => handleRegisterSuccess( response ) )
 				.catch( err => handleRegisterFail( err.graphQLErrors[ 0 ].message ) );
 		}
