@@ -1,0 +1,25 @@
+.wpd-main-nav {
+	margin: 0;
+	padding: 0;
+	display: flex;
+
+	.wpd-main-nav__list {
+
+		list-style: none;
+
+		.wpd-main-nav__link {
+			text-decoration: none;
+			color: $white;
+			padding: 5px 10px;
+			font-size: 16px;
+			transition: 0.3s;
+
+			&:hover {
+				opacity: 0.8;
+				color: $white;
+				cursor: pointer;
+			}
+
+		}
+	}
+}

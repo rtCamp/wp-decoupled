@@ -1,3 +1,21 @@
+a:focus,
+button:focus {
+	user-select: none;
+	outline: none !important;
+}
+
+body, div.wd-content {
+	display: flex;
+	flex-direction: column;
+	min-height: 60vh;
+	padding: 0;
+}
+
+ul.row {
+	list-style: none;
+}
+
+
 .btn.wd-large-black-btn {
 	width: 100%;
 	background-color: #2c2d33;

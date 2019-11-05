@@ -1,0 +1,20 @@
+#nprogress {
+
+	// Background bar
+	.bar {
+		height: 2px !important;
+		border-top: 4px solid $light_gray !important;
+
+		.peg {
+			box-shadow: 0 0 2px $white, 0 0 5px $white !important;
+		}
+	}
+
+	// Spinner
+	.spinner {
+		.spinner-icon {
+			border-top-color: $light_gray !important;
+			border-left-color: $white !important;
+		}
+	}
+}

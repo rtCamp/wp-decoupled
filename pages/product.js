@@ -1,5 +1,6 @@
 import Layout from "../components/layouts/Layout";
 import AddToCartButton from "../components/cart/AddToCartButton";
+import { AppProvider } from "../components/context/AppContext";
 import { withRouter } from 'next/router';
 import client from '../components/ApolloClient';
 import gql from 'graphql-tag';

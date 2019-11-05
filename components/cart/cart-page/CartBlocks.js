@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useContext } from 'react';
 import { AppContext } from "../../context/AppContext";
-import { removeItemFromCart } from '../../../utils/functions';
+import { removeItemFromCart } from '../../../utils/cart-functions';
 import CartItem from "./CartItem";
 
 const CartBlocks = () => {
