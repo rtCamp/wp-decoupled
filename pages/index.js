@@ -11,24 +11,24 @@ import Hero from "../components/home/Hero";
 const PRODUCTS_QUERY = gql`query {
 					products(first: 50) {
 						nodes {
-							id
-							productId
-							averageRating
-							slug
-							description
-							image {
-								uri
-								title
-								srcSet
-								sourceUrl
-							}
-							name
-							price
-						}
+					      id
+					      name
+					      image {
+					        id
+					        sourceUrl
+					      }
+					      ... on SimpleProduct {
+					        id
+					        name
+					        price
+					      }
+					    }
 					}
 				}`;
 
 const NewProducts = ({ products }) => {
+
+	console.warn( products );
 
 	return (
 		<div className="container mt-5">
@@ -37,20 +37,24 @@ const NewProducts = ({ products }) => {
 				<div className="mt-2">
 					<div className="products-wrapper row">
 						{
-							products.map( item => (
-								<div className="product-container col-md-3 mb-5" key={item.id}>
-									<Link as={`/product/${item.slug}-${item.productId}`} href={`/product?slug=${item.slug}-${item.productId}`}>
-										<a>
+							products.map( item => {
+								if ( item.price ) {
+									return (
+										<div className="product-container col-md-3 mb-5" key={item.id}>
+											<Link as={`/product/${item.slug}-${item.productId}`} href={`/product?slug=${item.slug}-${item.productId}`}>
+												<a>
 											<span className="product-link">
 												<img className="product-image" src={item.image.sourceUrl} srcSet={item.image.srcSet} alt={ item.name }/>
 												<h5 className="product-name">{item.name}</h5>
 												<p className="product-price">{item.price}</p>
 											</span>
-										</a>
-									</Link>
-									<AddToCartButton product={ item } />
-								</div>
-							) )
+												</a>
+											</Link>
+											<AddToCartButton product={ item } />
+										</div>
+									)
+								}
+							} )
 						}
 					</div>
 				</div>
@@ -62,12 +66,13 @@ const NewProducts = ({ products }) => {
 const Index = ( props ) => {
 
 	const { products } = props;
+	console.warn( products );
 
 	return (
 		<Layout>
 			<Hero/>
 			{/*<Categories/>*/}
-			<NewProducts products={ products } />
+			{/*<NewProducts products={ products } />*/}
 		</Layout>
 	);
 };
@@ -79,7 +84,7 @@ Index.getInitialProps = async () => {
 	});
 
 	return {
-		products: result.data.products.nodes,
+		products: result.data
 	}
 };
 
