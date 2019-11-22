@@ -11,18 +11,28 @@ import Hero from "../components/home/Hero";
 const PRODUCTS_QUERY = gql`query {
 					products(first: 50) {
 						nodes {
-					      id
-					      name
-					      image {
-					        id
-					        sourceUrl
-					      }
-					      ... on SimpleProduct {
-					        id
-					        name
-					        price
-					      }
-					    }
+							id
+							productId
+							averageRating
+							slug
+							description
+							image {
+								uri
+								title
+								srcSet
+								sourceUrl
+							}
+							name
+							... on SimpleProduct {
+							price
+							}
+							... on VariableProduct {
+							price
+							}
+							... on ExternalProduct {
+							price
+							}
+						}
 					}
 				}`;
 
