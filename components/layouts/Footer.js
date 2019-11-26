@@ -8,38 +8,26 @@ const Footer = () => (
 			<div className="col-md-12 mt-5">
 				<div className="mb-5 flex-center">
 					{/* Facebook */}
-					<a className="fb-ic">
+					<a href="https://www.facebook.com/rtCamp.solutions/" className="fb-ic" target="_blank">
 						<i className="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x">
 							{" "}
 						</i>
 					</a>
 					{/* Twitter */}
-					<a className="tw-ic">
+					<a href="https://twitter.com/rtCamp" className="tw-ic">
 						<i className="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x">
 							{" "}
 						</i>
 					</a>
-					{/* Google +*/}
-					<a className="gplus-ic">
-						<i className="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x">
-							{" "}
-						</i>
-					</a>
 					{/*Linkedin */}
-					<a className="li-ic">
+					<a href="https://www.linkedin.com/company/rtcamp/" className="li-ic" target="_blank">
 						<i className="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x">
 							{" "}
 						</i>
 					</a>
 					{/*Instagram*/}
-					<a className="ins-ic">
+					<a href="https://www.instagram.com/rtcamp/" className="ins-ic" target="_blank">
 						<i className="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x">
-							{" "}
-						</i>
-					</a>
-					{/*Pinterest*/}
-					<a className="pin-ic">
-						<i className="fab fa-pinterest fa-lg white-text fa-2x">
 							{" "}
 						</i>
 					</a>
