@@ -35,7 +35,9 @@ const PRODUCTS_QUERY = gql`query GET_ALL_PRODUCT {
 					}
 					
 				}
-				${SimpleProductFragment}
+				   fragment SimplePr on SimpleProduct {
+        price
+      }
 				`;
 
 // const NewProducts = ({ products }) => {
