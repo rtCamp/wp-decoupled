@@ -10,3 +10,4 @@ dist/
 .env
 client-config.js
 .next
+wooConfig.js

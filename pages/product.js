@@ -38,20 +38,45 @@ Product.getInitialProps = async function (context) {
 	const id = slug ? parseInt(slug.split('-').pop()) : context.query.id;
 
 	const PRODUCT_QUERY = gql`query Product( $id: Int! ) {
-		productBy( productId: $id ) {
-			name
-			price
-			slug
-			description
-			productId
-			image {
-				uri
-				title
-				srcSet
-				sourceUrl
-			}
-		}
-	}`;
+			productBy( productId: $id ) {
+							id
+							productId
+							averageRating
+							slug
+							description
+							image {
+								uri
+								title
+								srcSet
+								sourceUrl
+							}
+							name
+						  ... on SimpleProduct {
+					        price
+					        id
+					      }
+					      ... on VariableProduct {
+					        price
+					        id
+					      }
+					      ... on ExternalProduct {
+					        price
+					        id
+					      }
+					      ... on GroupProduct {
+					        products {
+					          nodes {
+					            ... on SimpleProduct {
+					              price
+					            }
+					          }
+					        }
+					        id
+					      }
+					    }
+				
+			
+	 }`;
 
 	const res = await client.query({
 		query: PRODUCT_QUERY,
