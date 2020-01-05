@@ -40,7 +40,6 @@ Product.getInitialProps = async function (context) {
 	const PRODUCT_QUERY = gql`query Product( $id: Int! ) {
 		productBy( productId: $id ) {
 			name
-			price
 			slug
 			description
 			productId
@@ -50,6 +49,30 @@ Product.getInitialProps = async function (context) {
 				srcSet
 				sourceUrl
 			}
+			 ... on SimpleProduct {
+		        price
+		        id
+		      }
+		      ... on VariableProduct {
+		        price
+		        id
+		          }
+		          }
+		        }
+		        id
+		      ... on ExternalProduct {
+		            price
+		        id
+		      }
+		      ... on GroupProduct {
+		        products {
+		          nodes {
+		            ... on SimpleProduct {
+		          price
+		        }
+		      }
+		    }
+		  }
 		}
 	}`;
 
