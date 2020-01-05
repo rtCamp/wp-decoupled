@@ -9,44 +9,45 @@ import Hero from "../components/home/Hero";
  * GraphQL products query.
  */
 const PRODUCTS_QUERY = gql`query {
-				  products(first: 50) {
-				    nodes {
-				      id
-				      productId
-				      averageRating
-				      slug
-				      description
-				      image {
-				        uri
-				        title
-				        srcSet
-				        sourceUrl
-				      }
-				      name
-				      ... on SimpleProduct {
-				        price
-				        id
-				      }
-				      ... on VariableProduct {
-				        price
-				        id
-				          }
-				          }
-				        }
-				        id
-				      ... on ExternalProduct {
-				            price
-				        id
-				      }
-				      ... on GroupProduct {
-				        products {
-				          nodes {
-				            ... on SimpleProduct {
-				          price
-				        }
-				      }
-				    }
-				  }
+					  products(first: 50) {
+					    nodes {
+					      id
+					      productId
+					      averageRating
+					      slug
+					      description
+					      image {
+					        uri
+					        title
+					        srcSet
+					        sourceUrl
+					      }
+					      name
+					      ... on SimpleProduct {
+					        price
+					        id
+					      }
+					      ... on VariableProduct {
+					        price
+					        id
+					      }
+					      ... on ExternalProduct {
+					        price
+					        id
+					      }
+					      ... on GroupProduct {
+					        products {
+					          nodes {
+					            ... on SimpleProduct {
+					              price
+					            }
+					          }
+					        }
+					        id
+					      }
+					    }
+					  }
+										
 				}`;
 
 const NewProducts = ({ products }) => {
@@ -59,6 +60,8 @@ const NewProducts = ({ products }) => {
 					<div className="products-wrapper row">
 						{
 							products.map( item => (
+								// @TODO Need to add support for Group product.
+								( undefined !== item && 'GroupProduct' !== item.__typename) ?  (
 								<div className="product-container col-md-3 mb-5" key={item.id}>
 									<Link as={`/product/${item.slug}-${item.productId}`} href={`/product?slug=${item.slug}-${item.productId}`}>
 										<a>
@@ -71,7 +74,8 @@ const NewProducts = ({ products }) => {
 									</Link>
 									<AddToCartButton product={ item } />
 								</div>
-							) )
+								) : '' )
+							)
 						}
 					</div>
 				</div>

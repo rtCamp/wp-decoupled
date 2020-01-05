@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "now dev",
     "dev:server": "nodemon server.js",
-	"build": "npm run build-fragment && next build",
-	"build-fragment": "node schemaQuery.js",
+    "build": "npm run build-fragment && next build",
+    "build-fragment": "node schemaQuery.js",
     "inspect": "node --inspect server.js"
   },
   "repository": {
@@ -33,6 +33,7 @@
     "@zeit/next-css": "^1.0.1",
     "apollo-boost": "^0.4.2",
     "apollo-cache-inmemory": "^1.6.2",
+    "apollo-client": "^2.6.8",
     "apollo-link-http": "^1.5.14",
     "cookie-parser": "^1.4.4",
     "dompurify": "^2.0.7",
@@ -44,6 +45,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "next": "^8.1.0",
     "next-offline": "^4.0.2",
+    "node-fetch": "^2.6.0",
     "nprogress": "^0.2.0",
     "react": "^16.8.6",
     "react-apollo": "^2.5.6",
