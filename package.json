@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "now dev",
     "dev:server": "nodemon server.js",
-    "build": "next build",
+	"build": "npm run build-fragment && next build",
+	"build-fragment": "node schemaQuery.js",
     "inspect": "node --inspect server.js"
   },
   "repository": {
