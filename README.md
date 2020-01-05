@@ -26,7 +26,7 @@ These instructions will get you a copy of the project up and running on your loc
 	* [wp-graphql](https://github.com/wp-graphql/wp-graphql) Exposes graphql for WordPress
 	* [wp-graphql-jwt-authentication](https://github.com/wp-graphql/wp-graphql-jwt-authentication) This plugin extends the [wp-graphql](https://github.com/wp-graphql/wp-graphql) plugin to provide authentication using JWT.
 	* [wp-graphiql](https://github.com/wp-graphql/wp-graphiql) Provides GraphiQL IDE (playground) to the WP-Admin
-	* [wp-graphql-woocommerce](https://github.com/wp-graphql/wp-graphql-woocommerce) Adds Woocommerce functionality to a WPGraphQL schema.
+	* [wp-graphql-woocommerce](https://github.com/wp-graphql/wp-graphql-woocommerce) Adds Woocommerce functionality to a WPGraphQL schema( Tested upto [v0.3.2](https://github.com/wp-graphql/wp-graphql-woocommerce/releases/tag/v0.3.2-beta) of wp-graphql-woocommerce)
 
 	
 2. You can also import default wooCommerce products that come with wooCommerce Plugin for development ( if you don't have any products in your WordPress install )
