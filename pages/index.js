@@ -9,23 +9,44 @@ import Hero from "../components/home/Hero";
  * GraphQL products query.
  */
 const PRODUCTS_QUERY = gql`query {
-					products(first: 50) {
-						nodes {
-							id
-							productId
-							averageRating
-							slug
-							description
-							image {
-								uri
-								title
-								srcSet
-								sourceUrl
-							}
-							name
-							price
-						}
-					}
+				  products(first: 50) {
+				    nodes {
+				      id
+				      productId
+				      averageRating
+				      slug
+				      description
+				      image {
+				        uri
+				        title
+				        srcSet
+				        sourceUrl
+				      }
+				      name
+				      ... on SimpleProduct {
+				        price
+				        id
+				      }
+				      ... on VariableProduct {
+				        price
+				        id
+				          }
+				          }
+				        }
+				        id
+				      ... on ExternalProduct {
+				            price
+				        id
+				      }
+				      ... on GroupProduct {
+				        products {
+				          nodes {
+				            ... on SimpleProduct {
+				          price
+				        }
+				      }
+				    }
+				  }
 				}`;
 
 const NewProducts = ({ products }) => {
