@@ -61,12 +61,15 @@ const config = {
 };
 ```
 
-* Rename `.env.example` to `.env` and update your WooCommerce config keys
+* Rename `wooConfig.example.js` to `wooConfig.example.js` and update your React Site URL and WordPressSite URL ( Used access it in common js file. )
 
 ```ruby
-WOO_SITE_URL=http://yourwocommercesite.com
-WOO_CONSUMER_KEY=xxxxx
-WOO_SECRET=xxxxx
+const wooConfig = {
+	siteUrl: 'https://xyz.com',
+	graphqlUrl: 'https://xxwordpresssitexx.com/graphql',
+};
+
+module.exports = wooConfig;
 ```
 
 ## Commands :computer:
