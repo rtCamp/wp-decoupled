@@ -46,7 +46,6 @@
     "next": "^9.3.1",
     "next-offline": "^4.0.2",
     "node-fetch": "^2.6.0",
-    "now": "^17.0.4",
     "nprogress": "^0.2.0",
     "react": "^16.8.6",
     "react-apollo": "^2.5.6",
