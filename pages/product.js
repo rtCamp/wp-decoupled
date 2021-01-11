@@ -1,6 +1,5 @@
 import Layout from "../components/layouts/Layout";
 import AddToCartButton from "../components/cart/AddToCartButton";
-import { AppProvider } from "../components/context/AppContext";
 import { withRouter } from 'next/router';
 import client from '../components/ApolloClient';
 import gql from 'graphql-tag';
@@ -18,8 +17,8 @@ const Product = withRouter(props => {
 							<img className="product-image" src={product.image.sourceUrl} srcSet={product.image.srcSet} alt={product.name} />
 						</div>
 						<div className="col-md-6">
-						<h1 className="product_title entry-title">{product.name}</h1>
-						<p className="price"><span className="woocommerce-Price-amount amount">{product.price}</span></p>
+							<h1 className="product_title entry-title">{product.name}</h1>
+							<p className="price"><span className="woocommerce-Price-amount amount">{product.price}</span></p>
 							<AddToCartButton product={product} />
 						</div>
 					</div>
@@ -37,45 +36,43 @@ Product.getInitialProps = async function (context) {
 	let { query: { slug } } = context;
 	const id = slug ? parseInt(slug.split('-').pop()) : context.query.id;
 
-	const PRODUCT_QUERY = gql`query Product( $id: Int! ) {
-			productBy( databaseId: $id ) {
-							id
-							databaseId
-							averageRating
-							slug
-							description
-							image {
-								uri
-								title
-								srcSet
-								sourceUrl
-							}
-							name
-						  ... on SimpleProduct {
-					        price
-					        id
-					      }
-					      ... on VariableProduct {
-					        price
-					        id
-					      }
-					      ... on ExternalProduct {
-					        price
-					        id
-					      }
-					      ... on GroupProduct {
-					        products {
-					          nodes {
-					            ... on SimpleProduct {
-					              price
-					            }
-					          }
-					        }
-					        id
-					      }
-					    }
-				
-			
+	const PRODUCT_QUERY = gql`query Product( $id: ID! ) {
+		product(id: $id, idType: DATABASE_ID) {
+			id
+			databaseId
+			averageRating
+			slug
+			description
+			image {
+				uri
+				title
+				srcSet
+				sourceUrl
+			}
+			name
+			... on SimpleProduct {
+			price
+			id
+			}
+			... on VariableProduct {
+			price
+			id
+			}
+			... on ExternalProduct {
+			price
+			id
+			}
+			... on GroupProduct {
+			products {
+				nodes {
+				... on SimpleProduct {
+					price
+				}
+				}
+			}
+			id
+			}
+		}
 	 }`;
 
 	const res = await client.query({
@@ -84,7 +81,7 @@ Product.getInitialProps = async function (context) {
 	});
 
 	return {
-		product: res.data.productBy
+		product: res.data.product
 	}
 };
 
