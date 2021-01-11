@@ -17,9 +17,9 @@ const CartBlocks = () => {
 	 *
 	 * @return {void}
 	 */
-	const handleRemoveProductClick = ( event, productId ) => {
+	const handleRemoveProductClick = ( event, databaseId ) => {
 
-		const updatedCart = removeItemFromCart( productId );
+		const updatedCart = removeItemFromCart( databaseId );
 		setCart( updatedCart );
 	};
 
@@ -43,7 +43,7 @@ const CartBlocks = () => {
 						{ cart.products.length && (
 							cart.products.map( item => (
 								<CartItem
-									key={ item.productId }
+									key={ item.databaseId }
 									item={ item }
 									handleRemoveProductClick={ handleRemoveProductClick }
 									setCart={ setCart }

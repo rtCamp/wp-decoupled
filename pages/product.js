@@ -38,9 +38,9 @@ Product.getInitialProps = async function (context) {
 	const id = slug ? parseInt(slug.split('-').pop()) : context.query.id;
 
 	const PRODUCT_QUERY = gql`query Product( $id: Int! ) {
-			productBy( productId: $id ) {
+			productBy( databaseId: $id ) {
 							id
-							productId
+							databaseId
 							averageRating
 							slug
 							description

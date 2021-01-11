@@ -35,9 +35,9 @@ const CartItem = ( { item, handleRemoveProductClick, setCart } ) => {
 	};
 
 	return (
-		<tr className="wd-cart-item" key={item.productId}>
+		<tr className="wd-cart-item" key={item.databaseId}>
 			<th className="wd-cart-element wd-cart-el-close">
-				<span className="wd-cart-close-icon" onClick={ ( event ) => handleRemoveProductClick( event, item.productId )  }>
+				<span className="wd-cart-close-icon" onClick={ ( event ) => handleRemoveProductClick( event, item.databaseId )  }>
 					<i className="fas fa-times-circle"/>
 				</span>
 			</th>
