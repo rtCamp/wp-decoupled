@@ -81,7 +81,7 @@ Product.getInitialProps = async function (context) {
 	});
 
 	return {
-		product: res.data.product
+		product: res?.data?.product ?? {}
 	}
 };
 
