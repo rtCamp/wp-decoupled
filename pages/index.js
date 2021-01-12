@@ -64,7 +64,7 @@ const NewProducts = ({ products }) => {
 								( undefined !== item && 'GroupProduct' !== item.__typename) ?  (
 								<div className="product-container col-md-3 mb-5" key={item.id}>
 									{ /* @TODO need to get rid of using databseId here. */ }
-									<Link as={`/product/${item.slug}-${item.databaseId}`} href={`/product?slug=${item.slug}-${item.databaseId}`}>
+									<Link as={`/product/${item.slug}`} href={`/product?slug=${item.slug}`}>
 										<a>
 											<span className="product-link">
 												<img className="product-image" src={item.image.sourceUrl} srcSet={item.image.srcSet} alt={ item.name }/>

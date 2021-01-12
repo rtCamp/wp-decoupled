@@ -1,12 +1,12 @@
-import Layout from "../components/layouts/Layout";
-import AddToCartButton from "../components/cart/AddToCartButton";
-import { withRouter } from 'next/router';
-import client from '../components/ApolloClient';
 import gql from 'graphql-tag';
 
-const Product = withRouter(props => {
+import Layout from '../../components/layouts/Layout';
+import AddToCartButton from "../../components/cart/AddToCartButton";
+import client from '../../components/ApolloClient';
 
-	const { product } = props;
+const Product = (props) => {
+
+	const { data: { product } } = props;
 
 	return (
 		<Layout>
@@ -23,18 +23,20 @@ const Product = withRouter(props => {
 						</div>
 					</div>
 					<div className="product-container" key={product?.id}>
-						<div className="product-description">{product?.description}</div>
+						<div className="product-description" dangerouslySetInnerHTML={{ __html: product?.description }} />
 					</div>
 				</div>
 			) : ''}
 		</Layout>
 
 	)
-});
+};
 
-Product.getInitialProps = async function (context) {
-	let { query: { slug } } = context;
+export async function getStaticProps({ params }) {
+	let { slug } = params;
+	console.log('slug', slug)
 	const id = slug ? parseInt(slug.split('-').pop()) : context.query.id;
+	console.log('id', id)
 
 	const PRODUCT_QUERY = gql`query Product( $id: ID! ) {
 		product(id: $id, idType: DATABASE_ID) {
@@ -75,14 +77,55 @@ Product.getInitialProps = async function (context) {
 		}
 	 }`;
 
-	const res = await client.query({
+	const { data } = await client.query({
 		query: PRODUCT_QUERY,
 		variables: { id }
 	});
+	console.log('data', data)
+	return {
+		props: {
+			data: {
+				product: data?.product
+			}
+		},
+	};
+}
+
+export async function getStaticPaths() {
+	const GET_PRODUCT_SLUGS = gql`
+	query GET_PRODUCT_SLUGS {
+	products: products {
+		edges {
+		node {
+			id
+			databaseId
+			name
+			slug
+
+		}
+		}
+	}
+	}
+	`
+
+	const { data } = await client.query({
+		query: GET_PRODUCT_SLUGS,
+	});
+
+	const pathsData = [];
+
+	console.warn('pathsData', pathsData);
+
+	data.products.edges.map(product => {
+		pathsData.push(
+			{ params: { slug: `${product.node.slug}-${product.node.databaseId}` } }
+		)
+	})
 
 	return {
-		product: res?.data?.product ?? {}
-	}
-};
+		paths: pathsData,
+		fallback: false
+	};
+}
 
 export default Product
