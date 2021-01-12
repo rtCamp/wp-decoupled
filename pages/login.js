@@ -3,7 +3,6 @@ import { useState } from 'react';
 import client from '../components/ApolloClient';
 import { ApolloProvider } from 'react-apollo';
 import { Mutation } from 'react-apollo';
-// import config from '../client-config';
 import gql from 'graphql-tag';
 import MessageAlert from "../components/message-alert/MessageAlert";
 import Loading from "../components/message-alert/Loading";

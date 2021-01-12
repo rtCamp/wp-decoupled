@@ -1,6 +1,5 @@
 const fetch     = require( 'node-fetch' );
 const fs        = require( 'fs' );
-// const wooConfig = require( './wooConfig' );
 
 fetch( `${ process.env.WOO_SITE_URL }/graphql`, {
 	method: 'POST',

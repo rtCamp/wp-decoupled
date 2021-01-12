@@ -1,4 +1,3 @@
-// import config from "../client-config";
 import isEmpty from "../validator/isEmpty";
 import Router from 'next/router';
 
