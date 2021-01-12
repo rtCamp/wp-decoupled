@@ -6,7 +6,7 @@ import { createHttpLink } from 'apollo-link-http';
 import { IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 import introspectionQueryResultData from '../fragmentTypes';
 
-import clientConfig from './../client-config';
+// import clientConfig from './../client-config';
 
 // Fragment matcher.
 const fragmentMatcher = new IntrospectionFragmentMatcher({
@@ -16,7 +16,7 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 // Apollo GraphQL client.
 const client = new ApolloClient({
 	link: createHttpLink({
-		uri: clientConfig.graphqlUrl,
+		uri: process.env.WOO_SITE_URL,
 		fetch: fetch
 	}),
 	cache: new InMemoryCache( { fragmentMatcher } ),
