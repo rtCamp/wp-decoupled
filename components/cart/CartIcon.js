@@ -9,7 +9,7 @@ const CartIcon = () => {
 	const totalPrice = ( null !== cart ) ? cart.totalProductsPrice : '';
 
 	return (
-		<React.Fragment>
+		<>
 			<Link href="/cart">
 				<a>
 					<div className="wd-cart-wrap">
@@ -54,7 +54,7 @@ const CartIcon = () => {
 				    position: absolute;
 		        }
 	      `}</style>
-		</React.Fragment>
+		</>
 
 	)
 };

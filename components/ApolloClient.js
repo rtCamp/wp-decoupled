@@ -14,7 +14,7 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 // Apollo GraphQL client.
 const client = new ApolloClient({
 	link: createHttpLink({
-		uri: process.env.WOO_SITE_URL,
+		uri: `${process.env.WOO_SITE_URL}/graphql`,
 		fetch: fetch
 	}),
 	cache: new InMemoryCache( { fragmentMatcher } ),
