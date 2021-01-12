@@ -14,16 +14,16 @@ const Product = withRouter(props => {
 				<div className="mx-auto mt-5">
 					<div className="row">
 						<div className="col-md-6">
-							<img className="product-image" src={product.image.sourceUrl} srcSet={product.image.srcSet} alt={product.name} />
+							<img className="product-image" src={product?.image?.sourceUrl} srcSet={product?.image?.srcSet} alt={product?.name} />
 						</div>
 						<div className="col-md-6">
-							<h1 className="product_title entry-title">{product.name}</h1>
-							<p className="price"><span className="woocommerce-Price-amount amount">{product.price}</span></p>
+							<h1 className="product_title entry-title">{product?.name}</h1>
+							<p className="price"><span className="woocommerce-Price-amount amount">{product?.price}</span></p>
 							<AddToCartButton product={product} />
 						</div>
 					</div>
-					<div className="product-container" key={product.id}>
-						<div className="product-description">{product.description}</div>
+					<div className="product-container" key={product?.id}>
+						<div className="product-description">{product?.description}</div>
 					</div>
 				</div>
 			) : ''}
