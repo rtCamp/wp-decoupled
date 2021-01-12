@@ -63,7 +63,8 @@ const NewProducts = ({ products }) => {
 								// @TODO Need to add support for Group product.
 								( undefined !== item && 'GroupProduct' !== item.__typename) ?  (
 								<div className="product-container col-md-3 mb-5" key={item.id}>
-									<Link as={`/product/${item.slug}-${item.databaseId}`} href={`/product?slug=${item.slug}-${item.databaseId}`}>
+									<Link as={`/product/${item.slug}-${item.databaseId}`} href={`/product?slug=${item.slug}-${item.databaseId}`}> { // @TODO need to get rid of using databseId here.
+									
 										<a>
 											<span className="product-link">
 												<img className="product-image" src={item.image.sourceUrl} srcSet={item.image.srcSet} alt={ item.name }/>
