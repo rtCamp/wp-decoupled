@@ -23,11 +23,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Configure Backend( WordPress site ) :wrench:
 
-### 1. Add GraphQl support on WordPress
+### 1. Add WooCommerce and GraphQl support on WordPress
 
 1. Clone and activate the following plugins, in your WordPress plugin directory:
 	* [wp-graphql](https://github.com/wp-graphql/wp-graphql) Exposes graphql for WordPress
 	* [wp-graphql-jwt-authentication](https://github.com/wp-graphql/wp-graphql-jwt-authentication) This plugin extends the [wp-graphql](https://github.com/wp-graphql/wp-graphql) plugin to provide authentication using JWT.
+	* [WooCommerce](https://github.com/woocommerce/woocommerce.git) WordPress WooCommerce Plugin
 	* [wp-graphiql](https://github.com/wp-graphql/wp-graphiql) Provides GraphiQL IDE (playground) to the WP-Admin
 	* [wp-graphql-woocommerce](https://github.com/wp-graphql/wp-graphql-woocommerce) Adds Woocommerce functionality to a WPGraphQL schema( Tested upto [v0.3.2](https://github.com/wp-graphql/wp-graphql-woocommerce/releases/tag/v0.3.2-beta) of wp-graphql-woocommerce)
 
@@ -72,7 +73,7 @@ const wooConfig = {
 	graphqlUrl: 'https://xxwordpresssitexx.com/graphql',
 };
 
-module.exports = wooConfig;
+export default wooConfig;
 ```
 
 ## Commands :computer:
