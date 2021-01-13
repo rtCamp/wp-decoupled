@@ -1,63 +1,74 @@
 {
-  "name": "wp-decoupled",
-  "version": "1.0.0",
-  "description": "A WordPress decoupled application in React built with Next.js",
-  "main": "server.js",
-  "scripts": {
-    "dev": "next dev",
-    "dev:inspect": "NODE_OPTIONS='--inspect' next",
-    "build": "next build",
-    "start": "next start"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rtCamp/wp-decoupled.git"
-  },
-  "keywords": [
-    "decoupled",
-    "react",
-    "next.js"
-  ],
-  "author": "Imran Sayed, Sayed Taqui, Divyaraj Masani, Muhammad Muhsin",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/rtCamp/wp-decoupled/issues"
-  },
-  "engine": {
-    "node": "v8.12.0",
-    "npm": "6.4.1"
-  },
-  "homepage": "https://github.com/rtCamp/wp-decoupled#readme",
-  "dependencies": {
-    "@zeit/next-css": "^1.0.1",
-    "apollo-boost": "^0.4.9",
-    "apollo-cache-inmemory": "^1.6.6",
-    "apollo-client": "^2.6.10",
-    "apollo-link-http": "^1.5.17",
-    "cookie-parser": "^1.4.5",
-    "dompurify": "^2.2.6",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "graphql": "^14.7.0",
-    "graphql-tag": "^2.11.0",
-    "idb-keyval": "^3.2.0",
-    "isomorphic-unfetch": "^3.1.0",
-    "next": "^10.0.5",
-    "next-offline": "^4.0.6",
-    "node-fetch": "^2.6.1",
-    "nprogress": "^0.2.0",
-    "react": "^17.0.1",
-    "react-apollo": "^2.5.8",
-    "react-bootstrap": "^1.4.3",
-    "react-dom": "^17.0.1",
-    "url-loader": "^2.3.0",
-    "validator": "^11.1.0",
-    "woocommerce-api": "^1.5.0"
-  },
-  "devDependencies": {
-    "@zeit/next-sass": "^1.0.1",
-    "next-compose-plugins": "^2.2.1",
-    "node-sass": "^4.14.1",
-    "serialize-javascript": "^2.1.2"
-  }
+    "name": "wp-decoupled",
+    "version": "1.0.0",
+    "description": "A WordPress decoupled application in React built with Next.js",
+    "main": "server.js",
+    "scripts": {
+        "dev": "next dev",
+        "dev:inspect": "NODE_OPTIONS='--inspect' next",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint --fix .",
+        "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rtCamp/wp-decoupled.git"
+    },
+    "keywords": [
+        "decoupled",
+        "react",
+        "next.js"
+    ],
+    "author": "Imran Sayed, Sayed Taqui, Divyaraj Masani, Muhammad Muhsin",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/rtCamp/wp-decoupled/issues"
+    },
+    "engine": {
+        "node": "v8.12.0",
+        "npm": "6.4.1"
+    },
+    "homepage": "https://github.com/rtCamp/wp-decoupled#readme",
+    "dependencies": {
+        "@zeit/next-css": "^1.0.1",
+        "apollo-boost": "^0.4.9",
+        "apollo-cache-inmemory": "^1.6.6",
+        "apollo-client": "^2.6.10",
+        "apollo-link-http": "^1.5.17",
+        "cookie-parser": "^1.4.5",
+        "dompurify": "^2.2.6",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "graphql": "^14.7.0",
+        "graphql-tag": "^2.11.0",
+        "idb-keyval": "^3.2.0",
+        "isomorphic-unfetch": "^3.1.0",
+        "next": "^10.0.5",
+        "next-offline": "^4.0.6",
+        "node-fetch": "^2.6.1",
+        "nprogress": "^0.2.0",
+        "react": "^17.0.1",
+        "react-apollo": "^2.5.8",
+        "react-bootstrap": "^1.4.3",
+        "react-dom": "^17.0.1",
+        "url-loader": "^2.3.0",
+        "validator": "^11.1.0",
+        "woocommerce-api": "^1.5.0"
+    },
+    "devDependencies": {
+        "@zeit/next-sass": "^1.0.1",
+        "eslint": "^7.17.0",
+        "eslint-config-airbnb": "^18.2.1",
+        "eslint-config-prettier": "^7.1.0",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-prettier": "^3.3.1",
+        "eslint-plugin-react": "^7.22.0",
+        "eslint-plugin-react-hooks": "^4.2.0",
+        "next-compose-plugins": "^2.2.1",
+        "node-sass": "^4.14.1",
+        "prettier": "^2.2.1",
+        "serialize-javascript": "^2.1.2"
+    }
 }

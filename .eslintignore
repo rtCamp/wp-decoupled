@@ -1,0 +1,8 @@
+**/*.scss
+**/*.md
+**/*.txt
+**/*.min.js
+**/node_modules/**
+**/vendor/**
+**/build/**
+**/src/components/**/vendor-*
