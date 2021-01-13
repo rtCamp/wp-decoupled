@@ -4,7 +4,7 @@
 This is a React theme boilerplate for WordPress, built with Next JS, Webpack, Babel, Node, Express.
 
 ## Live demo site.
-[Live Demo](https://wp-decoupled-imranhsayed.rtcamp.now.sh/)
+[Live Demo](https://wp-decoupled-3tq3bx90b.vercel.app/)
 
 ## Demo :movie_camera:
 
