@@ -17,12 +17,12 @@ export const getFloatVal = ( string ) => {
  * @param {Object} product Product
  * @param {Integer} productPrice Product Price
  * @param {Integer} qty Quantity
- * @return {{image: *, productId: *, totalPrice: number, price: *, qty: *, name: *}}
+ * @return {{image: *, databaseId: *, totalPrice: number, price: *, qty: *, name: *}}
  */
 export const createNewProduct = ( product, productPrice, qty ) => {
 
 	return  {
-		productId: product.productId,
+		databaseId: product.databaseId,
 		image: product.image,
 		name: product.name,
 		price: productPrice,
@@ -70,7 +70,7 @@ export const addFirstProduct = ( product ) => {
 export const getUpdatedProducts = ( existingProductsInCart, product, qtyToBeAdded, newQty = false ) => {
 
 	// Check if the product already exits in the cart.
-	const productExitsIndex = isProductInCart( existingProductsInCart, product.productId );
+	const productExitsIndex = isProductInCart( existingProductsInCart, product.databaseId );
 
 	// If product exits ( index of that product found in the array ), update the product quantity and totalPrice
 	if ( -1 < productExitsIndex ) {
@@ -131,13 +131,13 @@ export const updateCart = ( existingCart, product, qtyToBeAdded, newQty = false 
  * Returns index of the product if it exists.
  *
  * @param {Object} existingProductsInCart Existing Products.
- * @param {Integer} productId Product id.
+ * @param {Integer} databaseId Product id.
  * @return {number | *} Index Returns -1 if product does not exist in the array, index number otherwise
  */
-const isProductInCart = ( existingProductsInCart, productId ) => {
+const isProductInCart = ( existingProductsInCart, databaseId ) => {
 
 	const returnItemThatExits = ( item, index ) => {
-		if ( productId === item.productId ) {
+		if ( databaseId === item.databaseId ) {
 			return item;
 		}
 	};
@@ -151,10 +151,10 @@ const isProductInCart = ( existingProductsInCart, productId ) => {
 /**
  * Remove Item from the cart.
  *
- * @param {Integer} productId Product Id.
+ * @param {Integer} databaseId Product Id.
  * @return {any | string} Updated cart
  */
-export const removeItemFromCart = ( productId ) => {
+export const removeItemFromCart = ( databaseId ) => {
 
 	let existingCart = localStorage.getItem( 'wpd-cart' );
 	existingCart = JSON.parse( existingCart );
@@ -168,7 +168,7 @@ export const removeItemFromCart = ( productId ) => {
 	}
 
 	// Check if the product already exits in the cart.
-	const productExitsIndex = isProductInCart( existingCart.products, productId );
+	const productExitsIndex = isProductInCart( existingCart.products, databaseId );
 
 	// If product to be removed exits
 	if ( -1 < productExitsIndex ) {

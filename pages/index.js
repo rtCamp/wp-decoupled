@@ -12,7 +12,7 @@ const PRODUCTS_QUERY = gql`query {
 					  products(first: 50) {
 					    nodes {
 					      id
-					      productId
+					      databaseId
 					      averageRating
 					      slug
 					      description
@@ -63,7 +63,8 @@ const NewProducts = ({ products }) => {
 								// @TODO Need to add support for Group product.
 								( undefined !== item && 'GroupProduct' !== item.__typename) ?  (
 								<div className="product-container col-md-3 mb-5" key={item.id}>
-									<Link as={`/product/${item.slug}-${item.productId}`} href={`/product?slug=${item.slug}-${item.productId}`}>
+									{ /* @TODO need to get rid of using databseId here. */ }
+									<Link as={`/product/${item.slug}-${item.databaseId}`} href={`/product?slug=${item.slug}-${item.databaseId}`}>
 										<a>
 											<span className="product-link">
 												<img className="product-image" src={item.image.sourceUrl} srcSet={item.image.srcSet} alt={ item.name }/>

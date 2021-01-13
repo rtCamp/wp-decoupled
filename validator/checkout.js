@@ -1,7 +1,5 @@
 import validator from 'validator';
 import isEmpty from './isEmpty';
-import config from '../client-config';
-
 
 const validateAndSanitizeCheckoutForm = ( data ) => {
 
@@ -42,7 +40,7 @@ const validateAndSanitizeCheckoutForm = ( data ) => {
 	 */
 	const addErrorAndSanitizedData = ( fieldName, errorContent, min, max, type = '', required ) => {
 
-		const postCodeLocale = config.postCodeLocale ? config.postCodeLocale : '';
+		const postCodeLocale = process?.env?.POST_CODE_LOCALE ?? '';
 		/**
 		 * Please note that this isEmpty() belongs to validator and not our custom function defined above.
 		 *

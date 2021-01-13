@@ -19,7 +19,7 @@ const YourOrder = ( { cart } ) => {
 						<tbody>
 						{ cart.products.length && (
 							cart.products.map( item => (
-								<CheckoutCartItem key={ item.productId } item={ item } />
+								<CheckoutCartItem key={ item.databaseId } item={ item } />
 							) )
 						) }
 						{/*Total*/}

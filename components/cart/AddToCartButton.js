@@ -47,13 +47,13 @@ const AddToCartButton = ( props ) => {
 	};
 
 	return(
-		<React.Fragment>
+		<>
 			<button onClick={ handleAddToCartClick } className="btn btn-secondary">Add to cart</button>
 			{ showViewCart ? (
 				<Link href="/cart"><button className="wd-view-cart-btn btn btn-secondary">View Cart</button></Link>
 			) : '' }
 
-		</React.Fragment>
+		</>
 	)
 };
 

@@ -3,7 +3,6 @@ import { useState } from 'react';
 import client from '../components/ApolloClient';
 import { ApolloProvider } from 'react-apollo';
 import { Mutation } from 'react-apollo';
-import config from '../client-config';
 import gql from 'graphql-tag';
 import MessageAlert from "../components/message-alert/MessageAlert";
 import Loading from "../components/message-alert/Loading";
@@ -171,7 +170,7 @@ const Login = () => {
 		if ( response.data.login.authToken ) {
 
 			// Set the authtoken, user id and username in the localStorage.
-			localStorage.setItem( config.authTokenName, JSON.stringify( response.data.login ));
+			localStorage.setItem( process.env.RT_WP_DECOUPLED_USER_TOKEN, JSON.stringify( response.data.login ));
 
 			// Set form field vaues to empty.
 			setErrorMessage( '' );
