@@ -8,16 +8,16 @@ import introspectionQueryResultData from '../fragmentTypes';
 
 // Fragment matcher.
 const fragmentMatcher = new IntrospectionFragmentMatcher({
-	introspectionQueryResultData
+    introspectionQueryResultData
 });
 
 // Apollo GraphQL client.
 const client = new ApolloClient({
-	link: createHttpLink({
-		uri: `${process.env.WOO_SITE_URL}/graphql`,
-		fetch: fetch
-	}),
-	cache: new InMemoryCache( { fragmentMatcher } ),
+    link: createHttpLink({
+        uri: `${process.env.WOO_SITE_URL}/graphql`,
+        fetch: fetch
+    }),
+    cache: new InMemoryCache({ fragmentMatcher })
 });
 
 export default client;
