@@ -64,8 +64,8 @@ const NewProducts = ({ products }) => {
                                 <div className="product-container col-md-3 mb-5" key={item.id}>
                                     {/* @TODO need to get rid of using databseId here. */}
                                     <Link
-                                        as={`/product/${item.slug}-${item.databaseId}`}
-                                        href={`/product?slug=${item.slug}-${item.databaseId}`}>
+                                        as={`/product/${item.slug}`}
+                                        href={`/product?slug=${item.slug}`}>
                                         <a>
                                             <span className="product-link">
                                                 <img

@@ -48,13 +48,10 @@ const Product = (props) => {
 
 export async function getStaticProps({ params }) {
     let { slug } = params;
-    console.log('slug', slug);
-    const id = slug ? parseInt(slug.split('-').pop()) : context.query.id;
-    console.log('id', id);
 
     const PRODUCT_QUERY = gql`
-        query Product($id: ID!) {
-            product(id: $id, idType: DATABASE_ID) {
+        query Product($slug: ID!) {
+            product(id: $slug, idType: SLUG) {
                 id
                 databaseId
                 averageRating
@@ -95,7 +92,7 @@ export async function getStaticProps({ params }) {
 
     const { data } = await client.query({
         query: PRODUCT_QUERY,
-        variables: { id }
+        variables: { slug }
     });
     console.log('data', data);
     return {
@@ -132,7 +129,7 @@ export async function getStaticPaths() {
     console.warn('pathsData', pathsData);
 
     data.products.edges.map((product) => {
-        pathsData.push({ params: { slug: `${product.node.slug}-${product.node.databaseId}` } });
+        pathsData.push({ params: { slug: `${product.node.slug}` } });
     });
 
     return {
