@@ -63,9 +63,7 @@ const NewProducts = ({ products }) => {
                             undefined !== item && 'GroupProduct' !== item.__typename ? (
                                 <div className="product-container col-md-3 mb-5" key={item.id}>
                                     {/* @TODO need to get rid of using databseId here. */}
-                                    <Link
-                                        as={`/product/${item.slug}-${item.databaseId}`}
-                                        href={`/product?slug=${item.slug}-${item.databaseId}`}>
+                                    <Link href={`/product/${item.slug}`}>
                                         <a>
                                             <span className="product-link">
                                                 <img
@@ -106,13 +104,15 @@ const Index = (props) => {
     );
 };
 
-Index.getInitialProps = async () => {
-    const result = await client.query({
+export async function getStaticProps() {
+    const { data } = await client.query({
         query: PRODUCTS_QUERY
     });
-
     return {
-        products: result.data.products.nodes
+        props: {
+            products: data.products.nodes
+        },
+        revalidate: 1
     };
 };
 
