@@ -1,23 +1,29 @@
-import fetch from 'node-fetch';
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { createHttpLink } from 'apollo-link-http';
+import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 
-import { IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
-import introspectionQueryResultData from '../fragmentTypes';
+const defaultOptions = {
+    watchQuery: {
+        fetchPolicy: 'no-cache',
+        errorPolicy: 'ignore'
+    },
+    query: {
+        fetchPolicy: 'no-cache',
+        errorPolicy: 'all'
+    }
+};
 
-// Fragment matcher.
-const fragmentMatcher = new IntrospectionFragmentMatcher({
-    introspectionQueryResultData
+const cache = new InMemoryCache({
+    resultCaching: false
+});
+
+const link = createHttpLink({
+    uri: `${process.env.WOO_SITE_URL}/graphql`
 });
 
 // Apollo GraphQL client.
 const client = new ApolloClient({
-    link: createHttpLink({
-        uri: `${process.env.WOO_SITE_URL}/graphql`,
-        fetch: fetch
-    }),
-    cache: new InMemoryCache({ fragmentMatcher })
+    link,
+    cache,
+    defaultOptions
 });
 
 export default client;
