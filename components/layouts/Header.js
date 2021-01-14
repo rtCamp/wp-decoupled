@@ -1,20 +1,18 @@
-import Router from "next/router";
-import NProgress from "nprogress";
-import Nav from "./Nav";
+import Router from 'next/router';
+import NProgress from 'nprogress';
+import Nav from './Nav';
 
 Router.onRouteChangeStart = () => {
-	NProgress.start();
+    NProgress.start();
 };
 Router.onRouteChangeComplete = () => {
-	NProgress.done();
+    NProgress.done();
 };
 
 Router.onRouteChangeError = () => {
-	NProgress.done();
+    NProgress.done();
 };
 
-const Header = () => (
-	<Nav/>
-);
+const Header = () => <Nav />;
 
 export default Header;

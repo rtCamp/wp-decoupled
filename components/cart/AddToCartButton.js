@@ -1,60 +1,60 @@
 import { useState, useContext } from 'react';
-import { AppContext } from "../context/AppContext";
-import { addFirstProduct, updateCart } from "../../utils/cart-functions";
+import { AppContext } from '../context/AppContext';
+import { addFirstProduct, updateCart } from '../../utils/cart-functions';
 import Link from 'next/link';
 
-const AddToCartButton = ( props ) => {
+const AddToCartButton = (props) => {
+    const { product } = props;
+    const [cart, setCart] = useContext(AppContext);
+    const [showViewCart, setShowViewCart] = useState(false);
 
-	const { product } = props;
-	const [ cart, setCart ] = useContext( AppContext );
-	const [ showViewCart, setShowViewCart ] = useState( false );
+    /**
+     * Handles adding items to the cart.
+     *
+     * @return {void}
+     */
+    const handleAddToCartClick = () => {
+        // If component is rendered client side.
+        if (process.browser) {
+            let existingCart = localStorage.getItem('wpd-cart');
 
-	/**
-	 * Handles adding items to the cart.
-	 *
-	 * @return {void}
-	 */
-	const handleAddToCartClick = () => {
+            // If cart has item(s) already, update existing or add new item.
+            if (existingCart) {
+                existingCart = JSON.parse(existingCart);
 
-		// If component is rendered client side.
-		if ( process.browser ) {
+                const qtyToBeAdded = 1;
 
-			let existingCart = localStorage.getItem( 'wpd-cart' );
+                const updatedCart = updateCart(existingCart, product, qtyToBeAdded);
 
-			// If cart has item(s) already, update existing or add new item.
-			if ( existingCart ) {
+                setCart(updatedCart);
+            } else {
+                /**
+                 * If No Items in the cart, create an empty array and add one.
+                 * @type {Array}
+                 */
+                const newCart = addFirstProduct(product);
+                setCart(newCart);
+            }
 
-				existingCart = JSON.parse( existingCart );
+            // Show View Cart Button
+            setShowViewCart(true);
+        }
+    };
 
-				const qtyToBeAdded = 1;
-
-				const updatedCart = updateCart( existingCart, product, qtyToBeAdded );
-
-				setCart( updatedCart );
-
-			} else {
-				/**
-				 * If No Items in the cart, create an empty array and add one.
-				 * @type {Array}
-				 */
-				const newCart = addFirstProduct( product );
-				setCart( newCart );
-			}
-
-			// Show View Cart Button
-			setShowViewCart( true )
-		}
-	};
-
-	return(
-		<>
-			<button onClick={ handleAddToCartClick } className="btn btn-secondary">Add to cart</button>
-			{ showViewCart ? (
-				<Link href="/cart"><button className="wd-view-cart-btn btn btn-secondary">View Cart</button></Link>
-			) : '' }
-
-		</>
-	)
+    return (
+        <>
+            <button onClick={handleAddToCartClick} className="btn btn-secondary">
+                Add to cart
+            </button>
+            {showViewCart ? (
+                <Link href="/cart">
+                    <button className="wd-view-cart-btn btn btn-secondary">View Cart</button>
+                </Link>
+            ) : (
+                ''
+            )}
+        </>
+    );
 };
 
 export default AddToCartButton;

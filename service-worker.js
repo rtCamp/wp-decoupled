@@ -9,93 +9,90 @@ const store = new idbKeyval.Store('GraphQL-Cache', 'PostResponses');
 workbox.core.skipWaiting();
 workbox.core.clientsClaim();
 
-self.addEventListener( 'fetch', function ( event ) {
-	if ( event.request.method === 'POST' ) {
-		event.waitUntil( event.respondWith( staleWhileRevalidate( event ) ) );
-	}
-} );
+self.addEventListener('fetch', function (event) {
+    if (event.request.method === 'POST') {
+        event.waitUntil(event.respondWith(staleWhileRevalidate(event)));
+    }
+});
 
 workbox.routing.registerRoute(
-	new RegExp( 'https://tekskools.com' ),
-	new workbox.strategies.StaleWhileRevalidate()
+    new RegExp('https://tekskools.com'),
+    new workbox.strategies.StaleWhileRevalidate()
 );
 
 // @todo Temporary, needs to work on routes.
 workbox.routing.registerRoute(
-	new RegExp( /\/product.+/ ),
-	new workbox.strategies.StaleWhileRevalidate()
+    new RegExp(/\/product.+/),
+    new workbox.strategies.StaleWhileRevalidate()
 );
 
 const preCacheFiles = self.__precacheManifest || [];
 
-preCacheFiles.push( {
-	url: '/',
-} );
+preCacheFiles.push({
+    url: '/'
+});
 
-workbox.precaching.precacheAndRoute( preCacheFiles );
-
+workbox.precaching.precacheAndRoute(preCacheFiles);
 
 async function staleWhileRevalidate(event) {
-
-	let cachedResponse = await getCache(event.request.clone());
-	let fetchPromise = fetch(event.request.clone())
-		.then((response) => {
-			setCache(event.request.clone(), response.clone());
-			return response;
-		})
-		.catch((err) => {
-			// Handle error
-		});
-	return cachedResponse ? Promise.resolve(cachedResponse) : fetchPromise;
+    let cachedResponse = await getCache(event.request.clone());
+    let fetchPromise = fetch(event.request.clone())
+        .then((response) => {
+            setCache(event.request.clone(), response.clone());
+            return response;
+        })
+        .catch((err) => {
+            // Handle error
+        });
+    return cachedResponse ? Promise.resolve(cachedResponse) : fetchPromise;
 }
 
 async function serializeResponse(response) {
-	let serializedHeaders = {};
-	for (var entry of response.headers.entries()) {
-		serializedHeaders[entry[0]] = entry[1];
-	}
-	let serialized = {
-		headers: serializedHeaders,
-		status: response.status,
-		statusText: response.statusText
-	};
-	serialized.body = await response.json();
-	return serialized;
+    let serializedHeaders = {};
+    for (var entry of response.headers.entries()) {
+        serializedHeaders[entry[0]] = entry[1];
+    }
+    let serialized = {
+        headers: serializedHeaders,
+        status: response.status,
+        statusText: response.statusText
+    };
+    serialized.body = await response.json();
+    return serialized;
 }
 
 async function setCache(request, response) {
+    let body = await request.json();
+    let id = body.query.toString() + JSON.stringify(body.variables);
 
-	let body = await request.json();
-	let id = body.query.toString() + JSON.stringify( body.variables );
-
-	var entry = {
-		query: body.query,
-		response: await serializeResponse(response),
-		timestamp: Date.now()
-	};
-	idbKeyval.set(id, entry, store);
+    var entry = {
+        query: body.query,
+        response: await serializeResponse(response),
+        timestamp: Date.now()
+    };
+    idbKeyval.set(id, entry, store);
 }
 
 async function getCache(request) {
-	let data;
-	try {
-		let body = await request.json();
-		let id = body.query.toString() + JSON.stringify( body.variables );
+    let data;
+    try {
+        let body = await request.json();
+        let id = body.query.toString() + JSON.stringify(body.variables);
 
-		data = await idbKeyval.get(id, store);
-		if (!data) return null;
+        data = await idbKeyval.get(id, store);
+        if (!data) return null;
 
-		// Check cache max age.
-		let cacheControl = request.headers.get('Cache-Control');
-		let maxAge = cacheControl ? parseInt(cacheControl.split('=')[1]) : 3600;
-		if (Date.now() - data.timestamp > maxAge * 1000) {
-			// Cache expired. Load from API endpoint
-			return null;
-		}
+        // Check cache max age.
+        let cacheControl = request.headers.get('Cache-Control');
+        let maxAge = cacheControl ? parseInt(cacheControl.split('=')[1]) : 3600;
+        if (Date.now() - data.timestamp > maxAge * 1000) {
+            // Cache expired. Load from API endpoint
+            return null;
+        }
 
-		// Load response from cache.
-		return new Response(JSON.stringify(data.response.body), data.response);
-	} catch (err) {
-		return null;
-	}
+        // Load response from cache.
+        return new Response(JSON.stringify(data.response.body), data.response);
+    } catch (err) {
+        return null;
+    }
 }
