@@ -104,13 +104,15 @@ const Index = (props) => {
     );
 };
 
-Index.getInitialProps = async () => {
-    const result = await client.query({
+export async function getStaticProps() {
+    const { data } = await client.query({
         query: PRODUCTS_QUERY
     });
-
     return {
-        products: result.data.products.nodes
+        props: {
+            products: data.products.nodes
+        },
+        revalidate: 1
     };
 };
 
