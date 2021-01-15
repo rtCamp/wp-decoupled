@@ -1,55 +1,9 @@
-import Layout from '../components/layouts/Layout';
+import Layout from '../src/components/layouts/Layout';
 import Link from 'next/link';
-import client from '../components/ApolloClient';
-import gql from 'graphql-tag';
-import AddToCartButton from '../components/cart/AddToCartButton';
-import Hero from '../components/home/Hero';
-
-/**
- * GraphQL products query.
- */
-const PRODUCTS_QUERY = gql`
-    query {
-        products(first: 50) {
-            nodes {
-                id
-                databaseId
-                averageRating
-                slug
-                description
-                image {
-                    uri
-                    title
-                    srcSet
-                    sourceUrl
-                }
-                name
-                ... on SimpleProduct {
-                    price
-                    id
-                }
-                ... on VariableProduct {
-                    price
-                    id
-                }
-                ... on ExternalProduct {
-                    price
-                    id
-                }
-                ... on GroupProduct {
-                    products {
-                        nodes {
-                            ... on SimpleProduct {
-                                price
-                            }
-                        }
-                    }
-                    id
-                }
-            }
-        }
-    }
-`;
+import client from '../src/apollo/ApolloClient';
+import AddToCartButton from '../src/components/cart/AddToCartButton';
+import Hero from '../src/components/home/Hero';
+import { PRODUCTS_QUERY } from '../src/queries';
 
 const NewProducts = ({ products }) => {
     return (
