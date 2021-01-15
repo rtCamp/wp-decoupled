@@ -1,5 +1,5 @@
-import Layout from '../components/layouts/Layout';
-import CheckoutForm from '../components/checkout/CheckoutForm';
+import Layout from '../src/components/layouts/Layout';
+import CheckoutForm from '../src/components/checkout/CheckoutForm';
 
 const Checkout = () => {
     return (

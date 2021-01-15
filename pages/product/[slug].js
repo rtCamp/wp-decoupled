@@ -1,8 +1,10 @@
-import gql from 'graphql-tag';
-
-import Layout from '../../components/layouts/Layout';
-import AddToCartButton from '../../components/cart/AddToCartButton';
-import client from '../../components/ApolloClient';
+import Layout from '../../src/components/layouts/Layout';
+import AddToCartButton from '../../src/components/cart/AddToCartButton';
+import client from '../../src/apollo/ApolloClient';
+import { 
+    PRODUCT_QUERY,
+    PRODUCT_SLUGS 
+} from '../../src/queries';
 
 const Product = (props) => {
     const {
@@ -48,56 +50,12 @@ const Product = (props) => {
 
 export async function getStaticProps({ params }) {
     let { slug } = params;
-    console.log('slug', slug);
-    const id = slug ? parseInt(slug.split('-').pop()) : context.query.id;
-    console.log('id', id);
-
-    const PRODUCT_QUERY = gql`
-        query Product($id: ID!) {
-            product(id: $id, idType: DATABASE_ID) {
-                id
-                databaseId
-                averageRating
-                slug
-                description
-                image {
-                    uri
-                    title
-                    srcSet
-                    sourceUrl
-                }
-                name
-                ... on SimpleProduct {
-                    price
-                    id
-                }
-                ... on VariableProduct {
-                    price
-                    id
-                }
-                ... on ExternalProduct {
-                    price
-                    id
-                }
-                ... on GroupProduct {
-                    products {
-                        nodes {
-                            ... on SimpleProduct {
-                                price
-                            }
-                        }
-                    }
-                    id
-                }
-            }
-        }
-    `;
 
     const { data } = await client.query({
         query: PRODUCT_QUERY,
-        variables: { id }
+        variables: { slug }
     });
-    console.log('data', data);
+
     return {
         props: {
             data: {
@@ -108,31 +66,15 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-    const GET_PRODUCT_SLUGS = gql`
-        query GET_PRODUCT_SLUGS {
-            products: products {
-                edges {
-                    node {
-                        id
-                        databaseId
-                        name
-                        slug
-                    }
-                }
-            }
-        }
-    `;
 
     const { data } = await client.query({
-        query: GET_PRODUCT_SLUGS
+        query: PRODUCT_SLUGS
     });
 
     const pathsData = [];
 
-    console.warn('pathsData', pathsData);
-
     data.products.edges.map((product) => {
-        pathsData.push({ params: { slug: `${product.node.slug}-${product.node.databaseId}` } });
+        pathsData.push({ params: { slug: `${product.node.slug}` } });
     });
 
     return {

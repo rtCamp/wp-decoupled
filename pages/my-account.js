@@ -1,7 +1,7 @@
-import Layout from '../components/layouts/Layout';
+import Layout from '../src/components/layouts/Layout';
 import { useState, useEffect } from 'react';
-import { isUserValidated } from '../utils/auth-functions';
-import isEmpty from '../validator/isEmpty';
+import { isUserValidated } from '../src/utils/auth-functions';
+import isEmpty from '../src/validator/isEmpty';
 import Router from 'next/router';
 
 /**

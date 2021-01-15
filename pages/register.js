@@ -1,38 +1,15 @@
-import Layout from '../components/layouts/Layout';
+import Layout from '../src/components/layouts/Layout';
 import { useState } from 'react';
 import client from '../components/ApolloClient';
 import { useMutation, gql } from '@apollo/client'
 import MessageAlert from '../components/message-alert/MessageAlert';
 import Loading from '../components/message-alert/Loading';
 import Router from 'next/router';
-import { isUserValidated } from '../utils/auth-functions';
-import isEmpty from '../validator/isEmpty';
+import { isUserValidated } from '../src/utils/auth-functions';
+import isEmpty from '../src/validator/isEmpty';
 import Link from 'next/link';
-import validateAndSanitizeRegisterForm from '../validator/register';
-
-/**
- * Register user mutation query.
- */
-const REGISTER_USER = gql`
-    mutation RegisterMyUser($username: String!, $email: String!, $password: String!) {
-        registerUser(
-            input: {
-                clientMutationId: "CreateUser"
-                username: $username
-                email: $email
-                password: $password
-            }
-        ) {
-            user {
-                id
-                name
-                email
-                nicename
-            }
-        }
-    }
-`;
-
+import validateAndSanitizeRegisterForm from '../src/validator/register';
+import { REGISTER_USER } from '../src/queries';
 /**
  * Register Functional Component.
  *

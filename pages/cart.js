@@ -1,5 +1,5 @@
-import Layout from '../components/layouts/Layout';
-import CartBlocks from '../components/cart/cart-page/CartBlocks';
+import Layout from '../src/components/layouts/Layout';
+import CartBlocks from '../src/components/cart/cart-page/CartBlocks';
 
 const Cart = () => {
     return (

@@ -1,33 +1,15 @@
-import Layout from '../components/layouts/Layout';
+import Layout from '../src/components/layouts/Layout';
 import { useState } from 'react';
 import client from '../components/ApolloClient';
 import { useMutation, gql } from '@apollo/client'
 import MessageAlert from '../components/message-alert/MessageAlert';
 import Loading from '../components/message-alert/Loading';
 import Router from 'next/router';
-import { isUserValidated } from '../utils/auth-functions';
-import isEmpty from '../validator/isEmpty';
+import { isUserValidated } from '../src/utils/auth-functions';
+import isEmpty from '../src/validator/isEmpty';
 import Link from 'next/link';
-import validateAndSanitizeLoginForm from '../validator/login';
-
-/**
- * Login user mutation query.
- */
-const LOGIN_USER = gql`
-    mutation LoginUser($username: String!, $password: String!) {
-        login(input: { clientMutationId: "uniqueId", username: $username, password: $password }) {
-            authToken
-            user {
-                id
-                userId
-                name
-                email
-                nicename
-            }
-        }
-    }
-`;
-
+import validateAndSanitizeLoginForm from '../src/validator/login';
+import { LOGIN_USER } from '../src/queries';
 /**
  * Login functional component.
  *
