@@ -1,9 +1,9 @@
 import Layout from '../src/components/layouts/Layout';
 import { useState } from 'react';
-import client from '../components/ApolloClient';
-import { useMutation, gql } from '@apollo/client'
-import MessageAlert from '../components/message-alert/MessageAlert';
-import Loading from '../components/message-alert/Loading';
+import client from '../src/apollo/ApolloClient';
+import { useMutation } from '@apollo/client'
+import MessageAlert from '../src/components/message-alert/MessageAlert';
+import Loading from '../src/components/message-alert/Loading';
 import Router from 'next/router';
 import { isUserValidated } from '../src/utils/auth-functions';
 import isEmpty from '../src/validator/isEmpty';
