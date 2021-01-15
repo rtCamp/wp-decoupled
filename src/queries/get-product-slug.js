@@ -1,16 +1,15 @@
 import gql from 'graphql-tag';
+import ProductFragment from './fragments/product';
 
 export default gql`
     query GET_PRODUCT_SLUGS {
         products: products {
             edges {
                 node {
-                    id
-                    databaseId
-                    name
-                    slug
+                    ...ProductFragment
                 }
             }
         }
     }
+    ${ProductFragment}
 `;
