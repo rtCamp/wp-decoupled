@@ -16,7 +16,7 @@ const cache = new InMemoryCache({
 });
 
 const link = createHttpLink({
-    uri: `${process.env.WOO_SITE_URL}/graphql`
+    uri: `${process.env.NEXT_PUBLIC_WOO_SITE_URL}/graphql`
 });
 
 // Apollo GraphQL client.
