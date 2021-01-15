@@ -7,9 +7,8 @@ import {
 } from '../../src/queries';
 
 const Product = (props) => {
-    const {
-        data: { product }
-    } = props;
+
+    const { product } = props ? { ...props?.data } : null;
 
     return (
         <Layout>
@@ -79,7 +78,7 @@ export async function getStaticPaths() {
 
     return {
         paths: pathsData,
-        fallback: false
+        fallback: true
     };
 }
 
