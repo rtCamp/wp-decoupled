@@ -1,8 +1,7 @@
 import Layout from '../src/components/layouts/Layout';
 import { useState } from 'react';
 import client from '../src/apollo/ApolloClient';
-import { ApolloProvider } from 'react-apollo';
-import { Mutation } from 'react-apollo';
+import { useMutation } from '@apollo/client'
 import MessageAlert from '../src/components/message-alert/MessageAlert';
 import Loading from '../src/components/message-alert/Loading';
 import Router from 'next/router';
@@ -146,79 +145,82 @@ const Login = () => {
         }
     };
 
+    const [
+        login,
+        {
+            data: data,
+            loading: loading,
+            error: error,
+        },
+    ] = useMutation(LOGIN_USER, { client })
+
     return (
-        <ApolloProvider client={client}>
-            <Layout>
-                <Mutation mutation={LOGIN_USER}>
-                    {(login, { loading, error }) => (
-                        <div className="wd-form container mt-5 pt-5">
-                            {/* Title */}
-                            <h2 className="mb-2">Login</h2>
+        <Layout>
+            <div className="wd-form container mt-5 pt-5">
+                {/* Title */}
+                <h2 className="mb-2">Login</h2>
 
-                            {/* Error Message */}
-                            {'' !== errorMessage
-                                ? showAlertBar && (
-                                      <MessageAlert
-                                          message={errorMessage}
-                                          success={false}
-                                          onCloseButtonClick={onCloseButtonClick}
-                                      />
-                                  )
-                                : ''}
+                {/* Error Message */}
+                {'' !== errorMessage
+                    ? showAlertBar && (
+                        <MessageAlert
+                            message={errorMessage}
+                            success={false}
+                            onCloseButtonClick={onCloseButtonClick}
+                        />
+                    )
+                    : ''}
 
-                            {/* Login Form */}
-                            <form className="mt-1" onSubmit={(event) => handleLogin(event, login)}>
-                                {/* Username or email */}
-                                <div className="form-group">
-                                    <label className="lead mt-1" htmlFor="username-or-email">
-                                        Username or email
+                {/* Login Form */}
+                <form className="mt-1" onSubmit={(event) => handleLogin(event, login)}>
+                    {/* Username or email */}
+                    <div className="form-group">
+                        <label className="lead mt-1" htmlFor="username-or-email">
+                            Username or email
                                     </label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        id="username-or-email"
-                                        placeholder="Enter username or email"
-                                        value={username}
-                                        onChange={(event) => setUsername(event.target.value)}
-                                    />
-                                </div>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="username-or-email"
+                            placeholder="Enter username or email"
+                            value={username}
+                            onChange={(event) => setUsername(event.target.value)}
+                        />
+                    </div>
 
-                                {/* Password */}
-                                <div className="form-group">
-                                    <label className="lead mt-1" htmlFor="password">
-                                        Password
+                    {/* Password */}
+                    <div className="form-group">
+                        <label className="lead mt-1" htmlFor="password">
+                            Password
                                     </label>
-                                    <input
-                                        type="password"
-                                        className="form-control"
-                                        id="password"
-                                        placeholder="Enter password"
-                                        value={password}
-                                        onChange={(event) => setPassword(event.target.value)}
-                                    />
-                                </div>
+                        <input
+                            type="password"
+                            className="form-control"
+                            id="password"
+                            placeholder="Enter password"
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                        />
+                    </div>
 
-                                {/* Submit Button */}
-                                <div className="form-group">
-                                    <button
-                                        className="btn btn-primary"
-                                        disabled={loading ? 'disabled' : ''}
-                                        type="submit">
-                                        Login
+                    {/* Submit Button */}
+                    <div className="form-group">
+                        <button
+                            className="btn btn-primary"
+                            disabled={loading ? 'disabled' : ''}
+                            type="submit">
+                            Login
                                     </button>
-                                    <Link href="/register">
-                                        <a className="btn btn-secondary ml-2">Register</a>
-                                    </Link>
-                                </div>
+                        <Link href="/register">
+                            <a className="btn btn-secondary ml-2">Register</a>
+                        </Link>
+                    </div>
 
-                                {/*	Loading */}
-                                {loading ? <Loading message={'Processing...'} /> : ''}
-                            </form>
-                        </div>
-                    )}
-                </Mutation>
-            </Layout>
-        </ApolloProvider>
+                    {/*	Loading */}
+                    {loading ? <Loading message={'Processing...'} /> : ''}
+                </form>
+            </div>
+        </Layout>
     );
 };
 
