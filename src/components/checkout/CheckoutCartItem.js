@@ -5,10 +5,11 @@ const CheckoutCartItem = ({ item }) => {
         <tr className="wd-cart-item" key={item.databaseId}>
             <td className="wd-cart-element">
                 <NextImage
-                    width="64"
                     src={item.image.sourceUrl}
                     srcSet={item.image.srcSet}
                     alt={item.image.title}
+                    width="64"
+                    height="64"
                 />
             </td>
             <td className="wd-cart-element">{item.name}</td>

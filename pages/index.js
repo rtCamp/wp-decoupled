@@ -28,8 +28,8 @@ const NewProducts = ({ products }) => {
                                                 className="product-image"
                                                 src={item.image.sourceUrl}
                                                 alt={item.name}
-                                                width="250"
-                                                height="150"
+                                                width="240"
+                                                height="240"
                                             />
                                             <h5 className="product-name">{item.name}</h5>
                                             <Paragraph className="product-price">{item.price}</Paragraph>

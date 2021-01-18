@@ -24,6 +24,8 @@ const Product = (props) => {
                                 src={product?.image?.sourceUrl}
                                 srcSet={product?.image?.srcSet}
                                 alt={product?.name}
+                                width="240"
+                                height="240"
                             />
                         </div>
                         <div className="col-md-6">

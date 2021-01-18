@@ -42,10 +42,11 @@ const CartItem = ({ item, handleRemoveProductClick, setCart }) => {
             </th>
             <td className="wd-cart-element">
                 <NextImage
-                    width="64"
                     src={item.image.sourceUrl}
                     srcSet={item.image.srcSet}
                     alt={item.image.title}
+                    width="64"
+                    height="64"
                 />
             </td>
             <td className="wd-cart-element">{item.name}</td>

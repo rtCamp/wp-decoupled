@@ -23,7 +23,7 @@ module.exports = withOffline(
             globDirectory: '.',
             target: 'serverless',
             images: {
-                domains: ['mylab.local'] // whatever port your backend runs on
+                domains: [process.env.SITE_DOMAIN] // whatever port your backend runs on
             }
         })
     )
