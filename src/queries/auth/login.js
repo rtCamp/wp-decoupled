@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import UserFragment from '../fragments/user';
 /**
  * Login user mutation query.
  */
@@ -7,12 +8,11 @@ export default gql`
         login(input: { clientMutationId: "uniqueId", username: $username, password: $password }) {
             authToken
             user {
-                id
+                ...UserFragment
                 userId
-                name
-                email
                 nicename
             }
         }
     }
+    ${UserFragment}
 `;

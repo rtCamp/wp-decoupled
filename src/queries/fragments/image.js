@@ -4,6 +4,7 @@ const ImageFragment = `
         title
         srcSet
         sourceUrl
+        altText
     }
 `;
 export default ImageFragment;
