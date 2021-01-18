@@ -1,4 +1,5 @@
 import React from 'react';
+import { SubHeading } from '../typography';
 import countryList from './country-list';
 import Error from './Error';
 
@@ -214,7 +215,7 @@ const Billing = ({ input, handleOnChange }) => {
                     Create an account?
                 </label>
             </div>
-            <h2 className="mt-4 mb-4">Additional Information</h2>
+            <SubHeading className="mt-4 mb-4">Additional Information</SubHeading>
             {/* Order Notes */}
             <div className="form-group">
                 <label htmlFor="order-notes">Order Notes</label>

@@ -1,8 +1,10 @@
+import NextImage from '../image';
+
 const CheckoutCartItem = ({ item }) => {
     return (
         <tr className="wd-cart-item" key={item.databaseId}>
             <td className="wd-cart-element">
-                <img
+                <NextImage
                     width="64"
                     src={item.image.sourceUrl}
                     srcSet={item.image.srcSet}

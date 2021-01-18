@@ -3,12 +3,17 @@ import Link from 'next/link';
 import client from '../src/apollo/ApolloClient';
 import AddToCartButton from '../src/components/cart/AddToCartButton';
 import Hero from '../src/components/home/Hero';
+import NextImage from '../src/components/image';
+import { SubHeading, Paragraph } from '../src/components/typography';
+
 import { PRODUCTS_QUERY } from '../src/queries';
 
 const NewProducts = ({ products }) => {
     return (
         <div className="container mt-5">
-            <h2 className="text-center mb-5">Products</h2>
+            <SubHeading className="text-center mb-5">
+                Products
+            </SubHeading>
             {products.length ? (
                 <div className="mt-2">
                     <div className="products-wrapper row">
@@ -19,16 +24,15 @@ const NewProducts = ({ products }) => {
                                     {/* @TODO need to get rid of using databseId here. */}
                                     <Link href={`/product/${item.slug}`}>
                                         <a>
-                                            <span className="product-link">
-                                                <img
-                                                    className="product-image"
-                                                    src={item.image.sourceUrl}
-                                                    srcSet={item.image.srcSet}
-                                                    alt={item.name}
-                                                />
-                                                <h5 className="product-name">{item.name}</h5>
-                                                <p className="product-price">{item.price}</p>
-                                            </span>
+                                            <NextImage
+                                                className="product-image"
+                                                src={item.image.sourceUrl}
+                                                alt={item.name}
+                                                width="250"
+                                                height="150"
+                                            />
+                                            <h5 className="product-name">{item.name}</h5>
+                                            <Paragraph className="product-price">{item.price}</Paragraph>
                                         </a>
                                     </Link>
                                     <AddToCartButton product={item} />

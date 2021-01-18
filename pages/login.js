@@ -10,6 +10,7 @@ import isEmpty from '../src/validator/isEmpty';
 import Link from 'next/link';
 import validateAndSanitizeLoginForm from '../src/validator/login';
 import { LOGIN_USER } from '../src/queries';
+import { SubHeading } from '../src/components/typography';
 /**
  * Login functional component.
  *
@@ -158,7 +159,7 @@ const Login = () => {
         <Layout>
             <div className="wd-form container mt-5 pt-5">
                 {/* Title */}
-                <h2 className="mb-2">Login</h2>
+                <SubHeading className="mb-2">Login</SubHeading>
 
                 {/* Error Message */}
                 {'' !== errorMessage

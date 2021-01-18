@@ -21,7 +21,10 @@ module.exports = withOffline(
             generateSw: false,
             globPatterns: ['static/**/*'],
             globDirectory: '.',
-            target: 'serverless'
+            target: 'serverless',
+            images: {
+                domains: ['mylab.local'] // whatever port your backend runs on
+            }
         })
     )
 );

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { isUserValidated } from '../src/utils/auth-functions';
 import isEmpty from '../src/validator/isEmpty';
 import Router from 'next/router';
-
+import { Paragraph } from '../src/components/typography';
 /**
  * MyAccount functional component.
  *
@@ -50,7 +50,9 @@ const MyAccount = () => {
                         <div id="dashboard">
                             {userData.user.nicename ? <h6>Howdy {userData.user.nicename}!</h6> : ''}
                             <h5 className="mt-3">Account Details</h5>
-                            {userData.user.email ? <p>Email: {userData.user.email}</p> : ''}
+                            {userData.user.email ?
+                                <Paragraph>Email: {userData.user.email}</Paragraph> : ''
+                            }
                         </div>
                     </div>
                 </div>

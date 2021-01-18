@@ -10,6 +10,7 @@ import isEmpty from '../src/validator/isEmpty';
 import Link from 'next/link';
 import validateAndSanitizeRegisterForm from '../src/validator/register';
 import { REGISTER_USER } from '../src/queries';
+import { SubHeading } from '../src/components/typography';
 /**
  * Register Functional Component.
  *
@@ -165,7 +166,7 @@ const Register = () => {
         <Layout>
             <div className="wd-form container mt-5 pt-5">
                 {/* Title */}
-                <h2 className="mb-2">Register</h2>
+                <SubHeading className="mb-2">Register</SubHeading>
 
                 {/* Error Message */}
                 {'' !== errorMessage
