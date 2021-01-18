@@ -2,6 +2,9 @@ import Link from 'next/link';
 import { isUserValidated, logoutUser } from '../../utils/auth-functions';
 import { useEffect, useState } from 'react';
 import isEmpty from '../../validator/isEmpty';
+import client from '../../apollo/ApolloClient';
+import { useQuery } from '@apollo/client';
+import { MENU_QUERY } from '../../queries/';
 
 const Menu = () => {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -23,8 +26,19 @@ const Menu = () => {
         }
     });
 
+    const { data } = useQuery(MENU_QUERY, { client });
+    const header = data?.headerMenus?.edges;
+
     return (
         <ul className="wpd-main-nav">
+            {header?.map((menu) => {
+                console.log(menu.node);
+                <li key={menu?.node?.id} className="wpd-main-nav__list">
+                    <Link href={menu?.node?.path}>
+                        <a className="wpd-main-nav__link">{menu?.node?.label}</a>
+                    </Link>
+                </li>;
+            })}
             <li className="wpd-main-nav__list">
                 <Link href="/login">
                     <a className="wpd-main-nav__link">Login</a>
