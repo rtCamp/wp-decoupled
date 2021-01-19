@@ -9,7 +9,7 @@ const Nav = () => {
                 <a className="navbar-brand">WP Decoupled</a>
             </Link>
             {/* @TODO Need to add support for login and registration api for latest version of wp-graphql-woocommerce plugin */}
-            {/*<Menu/>*/}
+            <Menu/>
             <button
                 className="navbar-toggler"
                 type="button"

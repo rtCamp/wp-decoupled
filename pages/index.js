@@ -22,29 +22,29 @@ const NewProducts = ({ products }) => {
                             undefined !== item && 'GroupProduct' !== item.__typename ? (
                                 <div className="product-container col-md-3 mb-5" key={item.id}>
                                     {/* @TODO need to get rid of using databseId here. */}
-                                    <Link href={`/product/${item.slug}`}>
+                                    <Link href={`/product/${item?.slug}`}>
                                         <a>
                                             <NextImage
                                                 className="product-image"
-                                                src={item.image.sourceUrl}
-                                                alt={item.name}
+                                                src={item?.image?.sourceUrl}
+                                                alt={item?.name}
                                                 width="240"
                                                 height="240"
                                             />
-                                            <h5 className="product-name">{item.name}</h5>
-                                            <Paragraph className="product-price">{item.price}</Paragraph>
+                                            <h5 className="product-name">{item?.name}</h5>
+                                            <Paragraph className="product-price">{item?.price}</Paragraph>
                                         </a>
                                     </Link>
                                     <AddToCartButton product={item} />
                                 </div>
                             ) : (
-                                ''
+                                null
                             )
                         )}
                     </div>
                 </div>
             ) : (
-                ''
+                null
             )}
         </div>
     );

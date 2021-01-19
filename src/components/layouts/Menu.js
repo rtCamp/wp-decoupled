@@ -42,7 +42,7 @@ const Menu = () => {
                     </a>
                 </li>
             ) : (
-                ''
+                null
             )}
         </ul>
     );

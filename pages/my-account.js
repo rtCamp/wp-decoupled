@@ -48,16 +48,16 @@ const MyAccount = () => {
 
                     <div className="wpd-my-account__main">
                         <div id="dashboard">
-                            {userData.user.nicename ? <h6>Howdy {userData.user.nicename}!</h6> : ''}
+                            {userData.user.nicename ? <h6>Howdy {userData.user.nicename}!</h6> : null}
                             <h5 className="mt-3">Account Details</h5>
                             {userData.user.email ?
-                                <Paragraph>Email: {userData.user.email}</Paragraph> : ''
+                                <Paragraph>Email: {userData.user.email}</Paragraph> : null
                             }
                         </div>
                     </div>
                 </div>
             ) : (
-                ''
+                null
             )}
         </Layout>
     );

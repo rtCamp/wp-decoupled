@@ -18,6 +18,7 @@ const NextImage = (props) => {
         <Image 
             className={className}
             src={imgSrc}
+            srcSet={srcSet}
             alt={alt}
             width={width}
             height={height}

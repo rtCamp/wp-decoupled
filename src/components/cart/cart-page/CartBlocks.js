@@ -46,10 +46,10 @@ const CartBlocks = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {cart.products.length &&
+                            {cart?.products.length &&
                                 cart.products.map((item) => (
                                     <CartItem
-                                        key={item.databaseId}
+                                        key={item?.databaseId}
                                         item={item}
                                         handleRemoveProductClick={handleRemoveProductClick}
                                         setCart={setCart}
@@ -67,13 +67,13 @@ const CartBlocks = () => {
                                     <tr className="table-light">
                                         <td className="wd-cart-element-total">Subtotal</td>
                                         <td className="wd-cart-element-amt">
-                                            ${cart.totalProductsPrice.toFixed(2)}
+                                            ${cart?.totalProductsPrice?.toFixed(2)}
                                         </td>
                                     </tr>
                                     <tr className="table-light">
                                         <td className="wd-cart-element-total">Total</td>
                                         <td className="wd-cart-element-amt">
-                                            ${cart.totalProductsPrice.toFixed(2)}
+                                            ${cart?.totalProductsPrice?.toFixed(2)}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -90,7 +90,7 @@ const CartBlocks = () => {
                     </div>
                 </div>
             ) : (
-                ''
+                null
             )}
         </div>
     );

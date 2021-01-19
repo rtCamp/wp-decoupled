@@ -22,7 +22,6 @@ const Product = (props) => {
                             <NextImage
                                 className="product-image"
                                 src={product?.image?.sourceUrl}
-                                srcSet={product?.image?.srcSet}
                                 alt={product?.name}
                                 width="240"
                                 height="240"
@@ -48,7 +47,7 @@ const Product = (props) => {
                     </div>
                 </div>
             ) : (
-                ''
+                null
             )}
         </Layout>
     );
