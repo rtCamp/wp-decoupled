@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 const CartIcon = () => {
     const [cart] = useContext(AppContext);
-    const productsCount = null !== cart ? cart.totalProductsCount : '';
-    const totalPrice = null !== cart ? cart.totalProductsPrice : '';
+    const productsCount = cart?.totalProductsCount ?? 0;
+    const totalPrice = cart?.totalProductsPrice ?? 0;
 
     return (
         <>
@@ -15,14 +15,14 @@ const CartIcon = () => {
                         {totalPrice ? (
                             <span className="wp-cart-price mr-2">${totalPrice.toFixed(2)}</span>
                         ) : (
-                            ''
+                            null
                         )}
                         <span className="wd-cart-icon-container">
                             <i className="fas fa-shopping-cart wd-cart-icon" />
                             {productsCount ? (
                                 <span className="wp-cart-count">{productsCount}</span>
                             ) : (
-                                ''
+                                null
                             )}
                         </span>
                     </div>

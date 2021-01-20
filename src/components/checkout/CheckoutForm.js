@@ -4,6 +4,7 @@ import YourOrder from './YourOrder';
 import PaymentModes from './PaymentModes';
 import { AppContext } from '../context/AppContext';
 import validateAndSanitizeCheckoutForm from '../../validator/checkout';
+import { SubHeading } from '../typography';
 
 const CheckoutForm = () => {
     const [cart] = useContext(AppContext);
@@ -67,13 +68,13 @@ const CheckoutForm = () => {
                     <div className="row">
                         {/*Billing Details*/}
                         <div className="col-lg-6 col-md-12">
-                            <h2 className="mb-4">Billing Details</h2>
+                            <SubHeading className="mb-4">Billing Details</SubHeading>
                             <Billing input={input} handleOnChange={handleOnChange} />
                         </div>
                         {/* Order & Payments*/}
                         <div className="col-lg-6 col-md-12">
                             {/*	Order*/}
-                            <h2 className="mb-4">Your Order</h2>
+                            <SubHeading className="mb-4">Your Order</SubHeading>
                             <YourOrder cart={cart} />
 
                             {/*Payment*/}

@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { removeItemFromCart } from '../../../utils/cart-functions';
 import CartItem from './CartItem';
+import { Heading, SubHeading } from '../../typography';
 
 const CartBlocks = () => {
     const [cart, setCart] = useContext(AppContext);
@@ -24,7 +25,7 @@ const CartBlocks = () => {
         <div>
             {cart ? (
                 <div className="wd-cart-wrapper container">
-                    <h1 className="wd-cart-heading mt-5">Cart</h1>
+                    <Heading className="wd-cart-heading mt-5">Cart</Heading>
                     <table className="table table-hover">
                         <thead>
                             <tr className="wd-cart-head-container">
@@ -45,10 +46,10 @@ const CartBlocks = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {cart.products.length &&
+                            {cart?.products.length &&
                                 cart.products.map((item) => (
                                     <CartItem
-                                        key={item.databaseId}
+                                        key={item?.databaseId}
                                         item={item}
                                         handleRemoveProductClick={handleRemoveProductClick}
                                         setCart={setCart}
@@ -60,19 +61,19 @@ const CartBlocks = () => {
                     {/*Cart Total*/}
                     <div className="row wd-cart-total-container">
                         <div className="col-6">
-                            <h2>Cart Totals</h2>
+                            <SubHeading>Cart Totals</SubHeading>
                             <table className="table table-hover">
                                 <tbody>
                                     <tr className="table-light">
                                         <td className="wd-cart-element-total">Subtotal</td>
                                         <td className="wd-cart-element-amt">
-                                            ${cart.totalProductsPrice.toFixed(2)}
+                                            ${cart?.totalProductsPrice?.toFixed(2)}
                                         </td>
                                     </tr>
                                     <tr className="table-light">
                                         <td className="wd-cart-element-total">Total</td>
                                         <td className="wd-cart-element-amt">
-                                            ${cart.totalProductsPrice.toFixed(2)}
+                                            ${cart?.totalProductsPrice?.toFixed(2)}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -89,7 +90,7 @@ const CartBlocks = () => {
                     </div>
                 </div>
             ) : (
-                ''
+                null
             )}
         </div>
     );

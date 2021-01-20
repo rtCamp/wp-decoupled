@@ -21,7 +21,10 @@ module.exports = withOffline(
             generateSw: false,
             globPatterns: ['static/**/*'],
             globDirectory: '.',
-            target: 'serverless'
+            target: 'serverless',
+            images: {
+                domains: [process.env.SITE_URL.replace(/^https?:\/\//,'')] // whatever port your backend runs on
+            }
         })
     )
 );

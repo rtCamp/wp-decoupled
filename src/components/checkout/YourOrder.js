@@ -20,30 +20,30 @@ const YourOrder = ({ cart }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {cart.products.length &&
+                            {cart?.products.length &&
                                 cart.products.map((item) => (
-                                    <CheckoutCartItem key={item.databaseId} item={item} />
+                                    <CheckoutCartItem key={item?.databaseId} item={item} />
                                 ))}
                             {/*Total*/}
                             <tr className="">
                                 <td className="" />
                                 <td className="wd-checkout-total">Subtotal</td>
                                 <td className="wd-checkout-total">
-                                    ${cart.totalProductsPrice.toFixed(2)}
+                                    ${cart?.totalProductsPrice?.toFixed(2)}
                                 </td>
                             </tr>
                             <tr className="">
                                 <td className="" />
                                 <td className="wd-checkout-total">Total</td>
                                 <td className="wd-checkout-total">
-                                    ${cart.totalProductsPrice.toFixed(2)}
+                                    ${cart?.totalProductsPrice?.toFixed(2)}
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </Fragment>
             ) : (
-                ''
+                null
             )}
         </Fragment>
     );

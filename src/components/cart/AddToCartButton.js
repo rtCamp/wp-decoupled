@@ -51,7 +51,7 @@ const AddToCartButton = (props) => {
                     <button className="wd-view-cart-btn btn btn-secondary">View Cart</button>
                 </Link>
             ) : (
-                ''
+                null
             )}
         </>
     );

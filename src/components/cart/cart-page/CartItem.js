@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { updateCart } from '../../../utils/cart-functions';
+import NextImage from '../../image';
 
 const CartItem = ({ item, handleRemoveProductClick, setCart }) => {
-    const [productCount, setProductCount] = useState(item.qty);
+    const [productCount, setProductCount] = useState(item?.qty ?? 0);
 
     /*
      * When user changes the qty from product input update the cart in localStorage
@@ -31,24 +32,24 @@ const CartItem = ({ item, handleRemoveProductClick, setCart }) => {
     };
 
     return (
-        <tr className="wd-cart-item" key={item.databaseId}>
+        <tr className="wd-cart-item" key={item?.databaseId}>
             <th className="wd-cart-element wd-cart-el-close">
                 <span
                     className="wd-cart-close-icon"
-                    onClick={(event) => handleRemoveProductClick(event, item.databaseId)}>
+                    onClick={(event) => handleRemoveProductClick(event, item?.databaseId)}>
                     <i className="fas fa-times-circle" />
                 </span>
             </th>
             <td className="wd-cart-element">
-                <img
+                <NextImage
+                    src={item?.image?.sourceUrl}
+                    alt={item?.image?.title}
                     width="64"
-                    src={item.image.sourceUrl}
-                    srcSet={item.image.srcSet}
-                    alt={item.image.title}
+                    height="64"
                 />
             </td>
-            <td className="wd-cart-element">{item.name}</td>
-            <td className="wd-cart-element">${item.price.toFixed(2)}</td>
+            <td className="wd-cart-element">{item?.name}</td>
+            <td className="wd-cart-element">${item?.price?.toFixed(2)}</td>
 
             {/* Qty Input */}
             <td className="wd-cart-element">
@@ -60,7 +61,7 @@ const CartItem = ({ item, handleRemoveProductClick, setCart }) => {
                     onChange={handleQtyChange}
                 />
             </td>
-            <td className="wd-cart-element">{item.totalPrice.toFixed(2)}</td>
+            <td className="wd-cart-element">{item?.totalPrice?.toFixed(2)}</td>
         </tr>
     );
 };

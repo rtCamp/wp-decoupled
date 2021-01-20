@@ -1,10 +1,12 @@
 import Layout from '../../src/components/layouts/Layout';
 import AddToCartButton from '../../src/components/cart/AddToCartButton';
+import NextImage from '../../src/components/image';
 import client from '../../src/apollo/ApolloClient';
 import { 
     PRODUCT_QUERY,
     PRODUCT_SLUGS 
 } from '../../src/queries';
+import { Heading } from '../../src/components/typography';
 
 const Product = (props) => {
 
@@ -16,15 +18,18 @@ const Product = (props) => {
                 <div className="mx-auto mt-5">
                     <div className="row">
                         <div className="col-md-6">
-                            <img
+                            <NextImage
                                 className="product-image"
                                 src={product?.image?.sourceUrl}
-                                srcSet={product?.image?.srcSet}
                                 alt={product?.name}
+                                width="240"
+                                height="240"
                             />
                         </div>
                         <div className="col-md-6">
-                            <h1 className="product_title entry-title">{product?.name}</h1>
+                            <Heading className="product_title entry-title">
+                                {product?.name}
+                            </Heading>
                             <p className="price">
                                 <span className="woocommerce-Price-amount amount">
                                     {product?.price}
@@ -41,7 +46,7 @@ const Product = (props) => {
                     </div>
                 </div>
             ) : (
-                ''
+                null
             )}
         </Layout>
     );
