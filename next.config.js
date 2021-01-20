@@ -23,7 +23,7 @@ module.exports = withOffline(
             globDirectory: '.',
             target: 'serverless',
             images: {
-                domains: [process.env.SITE_URL] // whatever port your backend runs on
+                domains: [process.env.SITE_URL.replace(/^https?:\/\//,'')] // whatever port your backend runs on
             }
         })
     )
