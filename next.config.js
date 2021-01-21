@@ -21,7 +21,10 @@ module.exports = withOffline(
             generateSw: false,
             globPatterns: ['static/**/*'],
             globDirectory: '.',
-            target: 'serverless'
+            target: 'serverless',
+            images: {
+                  domains: ['via.placeholder.com'],
+            },
         })
     )
 );
