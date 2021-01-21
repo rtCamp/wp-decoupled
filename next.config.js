@@ -23,7 +23,7 @@ module.exports = withOffline(
             globDirectory: '.',
             target: 'serverless',
             images: {
-                  domains: ['via.placeholder.com'],
+                  domains: ['*'],
             },
         })
     )

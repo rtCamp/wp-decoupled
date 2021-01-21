@@ -3,6 +3,7 @@ import Link from 'next/link';
 import client from '../src/apollo/ApolloClient';
 import AddToCartButton from '../src/components/cart/AddToCartButton';
 import Hero from '../src/components/home/Hero';
+import Image from '../src/components/Image';
 import { PRODUCTS_QUERY } from '../src/queries';
 
 const NewProducts = ({ products }) => {
@@ -20,10 +21,9 @@ const NewProducts = ({ products }) => {
                                     <Link href={`/product/${item.slug}`}>
                                         <a>
                                             <span className="product-link">
-                                                <img
-                                                    className="product-image"
+                                                <Image
+                                                    // className="product-image"
                                                     src={item.image.sourceUrl}
-                                                    srcSet={item.image.srcSet}
                                                     alt={item.name}
                                                 />
                                                 <h5 className="product-name">{item.name}</h5>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { updateCart } from '../../../utils/cart-functions';
-
+import Image from '../../Image';
 const CartItem = ({ item, handleRemoveProductClick, setCart }) => {
     const [productCount, setProductCount] = useState(item.qty);
 
@@ -40,10 +40,10 @@ const CartItem = ({ item, handleRemoveProductClick, setCart }) => {
                 </span>
             </th>
             <td className="wd-cart-element">
-                <img
-                    width="64"
+                <Image
+                    width={64}
+                    height={64}
                     src={item.image.sourceUrl}
-                    srcSet={item.image.srcSet}
                     alt={item.image.title}
                 />
             </td>

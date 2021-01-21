@@ -7,8 +7,8 @@ const Image = (props) => {
     
     const {
         src,
-        width = 100,
-        height = 100,
+        width = 240,
+        height = 240,
         alt = '',
         ...otherProps
     } = props;
@@ -24,7 +24,7 @@ const Image = (props) => {
     const errorHandler = () => {
         setError(true);
     }
-    
+
     return (
         <>
             <Img 
