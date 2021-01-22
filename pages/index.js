@@ -22,9 +22,8 @@ const NewProducts = ({ products }) => {
                                         <a>
                                             <span className="product-link">
                                                 <Image
-                                                    // className="product-image"
-                                                    src={item.image.sourceUrl}
-                                                    alt={item.name}
+                                                    src={item?.image?.sourceUrl}
+                                                    alt={item?.image?.altText || item?.name}
                                                 />
                                                 <h5 className="product-name">{item.name}</h5>
                                                 <p className="product-price">{item.price}</p>

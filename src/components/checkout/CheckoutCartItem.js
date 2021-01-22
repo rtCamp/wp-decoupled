@@ -5,8 +5,8 @@ const CheckoutCartItem = ({ item }) => {
                 <Image
                     width={64}
                     height={64}
-                    src={item.image.sourceUrl}
-                    alt={item.image.title}
+                    src={item?.image?.sourceUrl}
+                    alt={item?.image?.altText || item?.name}
                 />
             </td>
             <td className="wd-cart-element">{item.name}</td>

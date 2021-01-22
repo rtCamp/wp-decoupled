@@ -11,7 +11,7 @@ query Product($slug: ID!) {
         image {
             uri
             title
-            srcSet
+            altText
             sourceUrl
         }
         name

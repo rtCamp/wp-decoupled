@@ -19,7 +19,7 @@ const Product = (props) => {
                         <div className="col-md-6">
                             <Image
                                 src={product?.image?.sourceUrl}
-                                alt={product?.name}
+                                alt={product?.image?.altText || product?.name}
                             />
                         </div>
                         <div className="col-md-6">

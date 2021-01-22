@@ -12,7 +12,7 @@ export default gql`
                 image {
                     uri
                     title
-                    srcSet
+                    altText
                     sourceUrl
                 }
                 name
