@@ -3,7 +3,8 @@ import Link from 'next/link';
 import client from '../src/apollo/ApolloClient';
 import AddToCartButton from '../src/components/cart/AddToCartButton';
 import Hero from '../src/components/home/Hero';
-import { PRODUCTS_QUERY } from '../src/queries';
+import Categories from '../src/components/home/Categories';
+import { PRODUCTS_QUERY, CATEGORIES_QUERY } from '../src/queries';
 
 const NewProducts = ({ products }) => {
     return (
@@ -47,24 +48,30 @@ const NewProducts = ({ products }) => {
 };
 
 const Index = (props) => {
-    const { products } = props;
-
+    const { products, categories } = props;
+    console.log(products, categories)
     return (
         <Layout>
             <Hero />
-            {/*<Categories/>*/}
+            <Categories categories={categories}/>
             <NewProducts products={products} />
         </Layout>
     );
 };
 
 export async function getStaticProps() {
-    const { data } = await client.query({
+    const { data: products_data } = await client.query({
         query: PRODUCTS_QUERY
     });
+
+    const { data: categories_data } = await client.query({
+        query: CATEGORIES_QUERY
+    });
+    console.log(products_data, categories_data);
     return {
         props: {
-            products: data.products.nodes
+            products: products_data.products.nodes,
+            categories: categories_data.productCategories.nodes
         },
         revalidate: 1
     };

@@ -1,0 +1,46 @@
+.wd-content {
+	padding: 24px 10px 10px 14px;
+}
+
+.category-container {
+	text-align: center;
+}
+
+@media screen and ( max-width: 500px ) {
+	.category-container {
+		min-width: 400px;
+	}
+}
+
+@media screen and ( max-width: 400px ) {
+	.category-container {
+		min-width: 300px;
+	}
+}
+
+.category-link {
+	cursor: pointer;
+    color: #333333;
+}
+
+.category-image {
+	max-width: 240px;
+}
+.category-name {
+	margin: 16px;
+}
+
+.category-view-link {
+	text-decoration: none;
+	color: #555;
+	border: 1px solid #555;
+	padding: 10px 16px;
+	background-color: #fff;
+	margin-top: 10px;
+}
+
+.category-description {
+	max-width: 500px;
+	margin-top: 24px;
+	text-align: left;
+}
