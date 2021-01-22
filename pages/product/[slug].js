@@ -6,9 +6,9 @@ import {
     PRODUCT_SLUGS 
 } from '../../src/queries';
 
-const Product = (props) => {
+const Product = ({data}) => {
 
-    const { product } = props ? { ...props?.data } : null;
+    const { product } = data || {}
 
     return (
         <Layout>
