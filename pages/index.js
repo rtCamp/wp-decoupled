@@ -5,13 +5,16 @@ import AddToCartButton from '../src/components/cart/AddToCartButton';
 import Hero from '../src/components/home/Hero';
 import { PRODUCTS_QUERY } from '../src/queries';
 import { NextSeo } from 'next-seo';
+import PropTypes from 'prop-types';
 
 const NewProducts = ({ products }) => {
+
     return (
         <>
             <NextSeo
                 title="wp-decoupled seo title"
                 description="wp-decoupled products description here."
+                // @TODO The SEO data are dynamic, should later come from WordPress.
             />
             <div className="container mt-5">
                 <h2 className="text-center mb-5">Products</h2>
@@ -23,17 +26,17 @@ const NewProducts = ({ products }) => {
                                 undefined !== item && 'GroupProduct' !== item.__typename ? (
                                     <div className="product-container col-md-3 mb-5" key={item.id}>
                                         {/* @TODO need to get rid of using databseId here. */}
-                                        <Link href={`/product/${item.slug}`}>
+                                        <Link href={`/product/${item?.slug}`}>
                                             <a>
                                                 <span className="product-link">
                                                     <img
                                                         className="product-image"
-                                                        src={item.image.sourceUrl}
-                                                        srcSet={item.image.srcSet}
-                                                        alt={item.name}
+                                                        src={item?.image?.sourceUrl}
+                                                        srcSet={item?.image?.srcSet}
+                                                        alt={item?.name}
                                                     />
-                                                    <h5 className="product-name">{item.name}</h5>
-                                                    <p className="product-price">{item.price}</p>
+                                                    <h5 className="product-name">{item?.name}</h5>
+                                                    <p className="product-price">{item?.price}</p>
                                                 </span>
                                             </a>
                                         </Link>
@@ -52,6 +55,21 @@ const NewProducts = ({ products }) => {
         </>
     );
 };
+
+NewProducts.propTypes = {
+    products: PropTypes.arrayOf(
+        PropTypes.shape({
+            databaseId: PropTypes.integer,
+            averageRating: PropTypes.integer,
+            description: PropTypes.integer,
+            id: PropTypes.string,
+            image: PropTypes.object,
+            name: PropTypes.integer,
+            price: PropTypes.integer,
+            slug: PropTypes.integer,
+        })
+    ),
+}
 
 const Index = (props) => {
     const { products } = props;
