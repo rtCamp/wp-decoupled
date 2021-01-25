@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const Image = (props) => {
 
     const [error, setError] = useState(false);
-    console.log(props);
+
     const {
         src,
         width,

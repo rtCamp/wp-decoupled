@@ -66,7 +66,7 @@ export async function getStaticProps() {
     const { data: categories_data } = await client.query({
         query: CATEGORIES_QUERY
     });
-    console.log(products_data, categories_data);
+
     return {
         props: {
             products: products_data.products.nodes,
