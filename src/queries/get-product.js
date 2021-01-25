@@ -1,42 +1,11 @@
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
+import ProductFragment from './fragments/product';
 
 export default gql`
-query Product($slug: ID!) {
-    product(id: $slug, idType: SLUG) {
-        id
-        databaseId
-        averageRating
-        slug
-        description
-        image {
-            uri
-            title
-            srcSet
-            sourceUrl
-        }
-        name
-        ... on SimpleProduct {
-            price
-            id
-        }
-        ... on VariableProduct {
-            price
-            id
-        }
-        ... on ExternalProduct {
-            price
-            id
-        }
-        ... on GroupProduct {
-            products {
-                nodes {
-                    ... on SimpleProduct {
-                        price
-                    }
-                }
-            }
-            id
+    query Product($slug: ID!) {
+        product(id: $slug, idType: SLUG) {
+            ...ProductFragment
         }
     }
-}
+    ${ProductFragment}
 `;

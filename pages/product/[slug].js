@@ -1,15 +1,15 @@
 import Layout from '../../src/components/layouts/Layout';
 import AddToCartButton from '../../src/components/cart/AddToCartButton';
 import client from '../../src/apollo/ApolloClient';
+import Image from '../../src/components/Image';
 import { 
     PRODUCT_QUERY,
     PRODUCT_SLUGS 
 } from '../../src/queries';
 
-const Product = (props) => {
-    const {
-        data: { product }
-    } = props;
+const Product = ({data}) => {
+
+    const { product } = data || {}
 
     return (
         <Layout>
@@ -17,11 +17,9 @@ const Product = (props) => {
                 <div className="mx-auto mt-5">
                     <div className="row">
                         <div className="col-md-6">
-                            <img
-                                className="product-image"
+                            <Image
                                 src={product?.image?.sourceUrl}
-                                srcSet={product?.image?.srcSet}
-                                alt={product?.name}
+                                alt={product?.image?.altText || product?.name}
                             />
                         </div>
                         <div className="col-md-6">
@@ -79,7 +77,7 @@ export async function getStaticPaths() {
 
     return {
         paths: pathsData,
-        fallback: false
+        fallback: true
     };
 }
 

@@ -1,4 +1,6 @@
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
+import UserFragment from '../fragments/user';
+
 /**
  * Register user mutation query.
  */
@@ -13,11 +15,10 @@ export default gql`
             }
         ) {
             user {
-                id
-                name
-                email
+                ...UserFragment
                 nicename
             }
         }
     }
+    ${UserFragment}
 `;
