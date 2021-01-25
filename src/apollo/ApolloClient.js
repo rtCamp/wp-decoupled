@@ -23,7 +23,8 @@ const link = createHttpLink({
 const client = new ApolloClient({
     link,
     cache,
-    defaultOptions
+    defaultOptions,
+    connectToDevTools: true
 });
 
 export default client;

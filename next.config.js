@@ -12,6 +12,8 @@ const workBoxOptions = {
     }
 };
 
+const backend_hostname = new URL(process.env.NEXT_PUBLIC_WOO_SITE_URL).hostname;
+
 module.exports = withOffline(
     withCss(
         withSass({
@@ -21,7 +23,12 @@ module.exports = withOffline(
             generateSw: false,
             globPatterns: ['static/**/*'],
             globDirectory: '.',
-            target: 'serverless'
+            target: 'serverless',
+            images: {
+                  domains: [
+                        backend_hostname
+                    ],
+            },
         })
     )
 );
