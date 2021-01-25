@@ -4,7 +4,7 @@ import {
     CATEGORY_QUERY,
     CATEGORY_SLUGS
 } from '../../src/queries';
-import Categories from '../../src/components/home/Categories';
+import Products from '../../src/components/home/Products';
 
 const Category = ({data}) => {
 
@@ -12,7 +12,12 @@ const Category = ({data}) => {
 
     return (
         <Layout>
-
+            <div className="category-container mb-5">
+                <h1 className="category-name">
+                    {category.name} <mark className="count">({category.count})</mark>
+                </h1>
+            </div>
+            <Products products={category.products.nodes} />            
         </Layout>
     );
 };
