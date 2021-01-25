@@ -72,8 +72,8 @@ export async function getStaticPaths() {
 
     const pathsData = [];
 
-    data.products.edges.map((product) => {
-        pathsData.push({ params: { slug: `${product.node.slug}` } });
+    data.products.nodes.map((product) => {
+        pathsData.push({ params: { slug: `${product.slug}` } });
     });
 
     return {
