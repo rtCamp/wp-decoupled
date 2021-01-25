@@ -9,12 +9,11 @@ const Categories = () => {
                     <li className="product-category product first col-md-4">
                         <Link as={`/`} href={`/`}>
                             <a className="">
-                                <img
+                                <Image
                                     src="https://woo-vsf.dev5.rt.gw/wp-content/uploads/2019/05/accessories.jpg"
                                     alt="Accessories"
-                                    width="324"
-                                    height="324"
-                                    srcSet="https://woo-vsf.dev5.rt.gw/wp-content/uploads/2019/05/accessories.jpg 801w, https://woo-vsf.dev5.rt.gw/wp-content/uploads/2019/05/accessories-150x150.jpg 150w, https://woo-vsf.dev5.rt.gw/wp-content/uploads/2019/05/accessories-300x300.jpg 300w, https://woo-vsf.dev5.rt.gw/wp-content/uploads/2019/05/accessories-768x768.jpg 768w"
+                                    width={324}
+                                    height={324}
                                     sizes="(max-width: 324px) 100vw, 324px"
                                 />
                                 <h2 className="woocommerce-loop-category__title">
@@ -26,12 +25,11 @@ const Categories = () => {
                     <li className="product-category product col-md-4">
                         <Link as={`/`} href={`/`}>
                             <a className="">
-                                <img
+                                <Image
                                     src="https://woo-vsf.dev5.rt.gw/wp-content/uploads/2019/05/hoodies.jpg"
                                     alt="Hoodies"
-                                    width="324"
-                                    height="324"
-                                    srcSet="https://woo-vsf.dev5.rt.gw/wp-content/uploads/2019/05/hoodies.jpg 800w, https://woo-vsf.dev5.rt.gw/wp-content/uploads/2019/05/hoodies-150x150.jpg 150w, https://woo-vsf.dev5.rt.gw/wp-content/uploads/2019/05/hoodies-300x300.jpg 300w, https://woo-vsf.dev5.rt.gw/wp-content/uploads/2019/05/hoodies-768x768.jpg 768w"
+                                    width={324}
+                                    height={324}
                                     sizes="(max-width: 324px) 100vw, 324px"
                                 />
                                 <h2 className="woocommerce-loop-category__title">
@@ -43,12 +41,11 @@ const Categories = () => {
                     <li className="product-category product last col-md-4">
                         <Link as={`/`} href={`/`}>
                             <a className="">
-                                <img
+                                <Image
                                     src="https://woo-vsf.dev5.rt.gw/wp-content/uploads/2019/05/tshirts.jpg"
                                     alt="Tshirts"
-                                    width="324"
-                                    height="324"
-                                    srcSet="https://woo-vsf.dev5.rt.gw/wp-content/uploads/2019/05/tshirts.jpg 801w, https://woo-vsf.dev5.rt.gw/wp-content/uploads/2019/05/tshirts-150x150.jpg 150w, https://woo-vsf.dev5.rt.gw/wp-content/uploads/2019/05/tshirts-300x300.jpg 300w, https://woo-vsf.dev5.rt.gw/wp-content/uploads/2019/05/tshirts-768x768.jpg 768w"
+                                    width={324}
+                                    height={324}
                                     sizes="(max-width: 324px) 100vw, 324px"
                                 />
                                 <h2 className="woocommerce-loop-category__title">
