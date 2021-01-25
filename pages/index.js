@@ -48,7 +48,7 @@ const NewProducts = ({ products }) => {
 
 const Index = (props) => {
     const { products, categories } = props;
-    console.log(products, categories)
+
     return (
         <Layout>
             <Hero />

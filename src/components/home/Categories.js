@@ -5,7 +5,7 @@ const Categories = ({ categories }) => {
         <div className="container">
             <h2 className="text-center mb-4">Shop by Category</h2>
             <div className="woocommerce">
-                <div className="products row mx-auto">
+                <div className="row mx-auto">
                     {
                         categories.map(category => (
                             category && category.count ? (
