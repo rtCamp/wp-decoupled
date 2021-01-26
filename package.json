@@ -1,74 +1,84 @@
 {
-    "name": "wp-decoupled",
-    "version": "1.0.0",
-    "description": "A decoupled WordPress application in React built with Next.js",
-    "main": "server.js",
-    "scripts": {
-        "dev": "next dev",
-        "dev:inspect": "NODE_OPTIONS='--inspect' next",
-        "build": "next build",
-        "start": "next start",
-        "cypress:open": "cypress open",
-        "cypress:run": "cypress run",
-        "lint": "eslint --fix .",
-        "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/rtCamp/wp-decoupled.git"
-    },
-    "keywords": [
-        "decoupled",
-        "react",
-        "next.js"
-    ],
-    "author": "Imran Sayed, Sayed Taqui, Divyaraj Masani, Muhammad Muhsin",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/rtCamp/wp-decoupled/issues"
-    },
-    "engine": {
-        "node": "v8.12.0",
-        "npm": "6.4.1"
-    },
-    "homepage": "https://github.com/rtCamp/wp-decoupled#readme",
-    "dependencies": {
-        "@apollo/client": "^3.3.6",
-        "@zeit/next-css": "^1.0.1",
-        "cookie-parser": "^1.4.5",
-        "dompurify": "^2.2.6",
-        "dotenv": "^8.2.0",
-        "express": "^4.17.1",
-        "graphql": "^14.7.0",
-        "graphql-tag": "^2.11.0",
-        "idb-keyval": "^3.2.0",
-        "isomorphic-unfetch": "^3.1.0",
-        "next": "^10.0.5",
-        "next-offline": "^4.0.6",
-        "node-fetch": "^2.6.1",
-        "nprogress": "^0.2.0",
-        "prop-types": "^15.7.2",
-        "react": "^17.0.1",
-        "react-bootstrap": "^1.4.3",
-        "react-dom": "^17.0.1",
-        "url-loader": "^2.3.0",
-        "validator": "^11.1.0",
-        "woocommerce-api": "^1.5.0"
-    },
-    "devDependencies": {
-        "@zeit/next-sass": "^1.0.1",
-        "cypress": "^6.3.0",
-        "eslint": "^7.17.0",
-        "eslint-config-airbnb": "^18.2.1",
-        "eslint-config-prettier": "^7.1.0",
-        "eslint-plugin-import": "^2.22.1",
-        "eslint-plugin-jsx-a11y": "^6.4.1",
-        "eslint-plugin-prettier": "^3.3.1",
-        "eslint-plugin-react": "^7.22.0",
-        "eslint-plugin-react-hooks": "^4.2.0",
-        "next-compose-plugins": "^2.2.1",
-        "node-sass": "^4.14.1",
-        "prettier": "^2.2.1",
-        "serialize-javascript": "^2.1.2"
-    }
+  "name": "wp-decoupled",
+  "version": "1.0.0",
+  "description": "A decoupled WordPress application in React built with Next.js",
+  "main": "server.js",
+  "scripts": {
+    "dev": "next dev",
+    "dev:inspect": "NODE_OPTIONS='--inspect' next",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint --fix .",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rtCamp/wp-decoupled.git"
+  },
+  "keywords": [
+    "decoupled",
+    "react",
+    "next.js"
+  ],
+  "author": "Imran Sayed, Sayed Taqui, Divyaraj Masani, Muhammad Muhsin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rtCamp/wp-decoupled/issues"
+  },
+  "engine": {
+    "node": "v8.12.0",
+    "npm": "6.4.1"
+  },
+  "homepage": "https://github.com/rtCamp/wp-decoupled#readme",
+  "dependencies": {
+    "@apollo/client": "^3.3.6",
+    "@wordpress/block-library": "^2.27.2",
+    "@zeit/next-css": "^1.0.1",
+    "cookie-parser": "^1.4.5",
+    "dompurify": "^2.2.6",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql": "^14.7.0",
+    "graphql-tag": "^2.11.0",
+    "idb-keyval": "^3.2.0",
+    "isomorphic-unfetch": "^3.1.0",
+    "next": "^10.0.5",
+    "next-offline": "^4.0.6",
+    "next-seo": "^4.17.0",
+    "node-fetch": "^2.6.1",
+    "nprogress": "^0.2.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-bootstrap": "^1.4.3",
+    "react-dom": "^17.0.1",
+    "url-loader": "^2.3.0",
+    "validator": "^11.1.0",
+    "woocommerce-api": "^1.5.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@storybook/addon-actions": "^6.1.14",
+    "@storybook/addon-essentials": "^6.1.14",
+    "@storybook/addon-links": "^6.1.14",
+    "@storybook/react": "^6.1.14",
+    "@wordpress/base-styles": "^3.3.0",
+    "@zeit/next-sass": "^1.0.1",
+    "babel-loader": "^8.2.2",
+    "core-js": "^3.8.3",
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "next-compose-plugins": "^2.2.1",
+    "node-sass": "^4.14.1",
+    "prettier": "^2.2.1",
+    "serialize-javascript": "^2.1.2"
+  }
 }
+
