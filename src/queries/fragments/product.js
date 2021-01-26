@@ -33,6 +33,13 @@ const ProductFragment = `
             }
             id
         }
+        galleryImages {
+            edges {
+                node {
+                    ...ImageFragment
+                }
+            }
+        }
     }
     ${ImageFragment}
 `;

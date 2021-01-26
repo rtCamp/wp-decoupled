@@ -1,0 +1,47 @@
+.product-gallery {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    & div {
+        display: none;
+    }
+
+    & .active {
+        display: block;
+    }
+
+    & .arrowIcon {
+        position: absolute;
+        top:50%;
+        font-size: 28px;
+        cursor: pointer;
+    }
+
+    & .nextImage {
+        right: 0;
+    }
+
+    & .prevImage {
+        left: 0;
+    }
+}
+
+.ImageAnimation {
+    animation: galleryFadeIn 0.8s;
+}
+
+@keyframes galleryFadeIn {
+    0% {
+       opacity: 0;
+    }
+    100% {
+       opacity: 1;
+    }
+ }
+ 
+.galleryFadeIn {
+    -webkit-animation-name: galleryFadeIn;
+    animation-name: galleryFadeIn;
+} 
+

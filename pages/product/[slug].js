@@ -6,6 +6,7 @@ import {
     PRODUCT_QUERY,
     PRODUCT_SLUGS 
 } from '../../src/queries';
+import Gallery from '../../src/components/gallery';
 
 const Product = ({data}) => {
 
@@ -38,9 +39,10 @@ const Product = ({data}) => {
                             dangerouslySetInnerHTML={{ __html: product?.description }}
                         />
                     </div>
+                    <Gallery {...product?.galleryImages}/>
                 </div>
             ) : (
-                ''
+                null
             )}
         </Layout>
     );
