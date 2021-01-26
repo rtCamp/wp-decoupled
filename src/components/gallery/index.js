@@ -13,7 +13,7 @@ const Gallery = ({edges}) => {
     let galleryContent;
 
     edges.length ? edges.map( ({ node }, i ) => {
-        let className= '';
+        let className = '';
         if ( active === i ) {
             className = 'active';
             galleryContent = 
@@ -31,7 +31,7 @@ const Gallery = ({edges}) => {
     return (
         <>
             {
-                edges && 
+                edges.length > 0 && 
                     <div className="product-gallery">
                         <span className="arrowIcon nextImage fas fa-chevron-right" onClick={() => setActive(prevIndex)}></span>
                             { galleryContent }
