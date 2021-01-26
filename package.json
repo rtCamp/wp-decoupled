@@ -34,6 +34,7 @@
   "homepage": "https://github.com/rtCamp/wp-decoupled#readme",
   "dependencies": {
     "@apollo/client": "^3.3.6",
+    "@wordpress/block-library": "^2.27.2",
     "@zeit/next-css": "^1.0.1",
     "cookie-parser": "^1.4.5",
     "dompurify": "^2.2.6",
