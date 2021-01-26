@@ -1,3 +1,5 @@
+import Image from '../Image';
+
 const CheckoutCartItem = ({ item }) => {
     return (
         <tr className="wd-cart-item" key={item.databaseId}>
