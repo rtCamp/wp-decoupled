@@ -4,29 +4,21 @@ import MenuFragment from './fragments/menus';
 export default gql`
     query GET_MENUS {
         headerMenus: menuItems(where: { location: PRIMARY, parentId: "0" }) {
-            edges {
-                node {
-                    ...MenuFragment
-                    childItems {
-                        edges {
-                            node {
-                                ...MenuFragment
-                            }
-                        }
+            nodes {
+                ...MenuFragment
+                childItems {
+                    nodes {
+                        ...MenuFragment
                     }
                 }
             }
         }
-        footerMenus: menuItems(where: { location: FOOTER, parentId: "0" }) {
-            edges {
-                node {
-                    ...MenuFragment
-                    childItems {
-                        edges {
-                            node {
-                                ...MenuFragment
-                            }
-                        }
+        footerMenus: menuItems(where: { location: SECONDARY, parentId: "0" }) {
+            nodes {
+                ...MenuFragment
+                childItems {
+                    nodes {
+                        ...MenuFragment
                     }
                 }
             }

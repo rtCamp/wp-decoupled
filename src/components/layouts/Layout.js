@@ -5,6 +5,9 @@ import '../../styles/vendor/bootstrap.min.css';
 import Head from 'next/head';
 import Header from './Header';
 import Footer from './Footer';
+import client from '../../apollo/ApolloClient';
+import { useQuery } from '@apollo/client';
+import { MENU_QUERY } from '../../queries';
 
 const Layout = (props) => {
     useEffect(() => {
@@ -21,6 +24,7 @@ const Layout = (props) => {
             });
         }
     }, []);
+    const {data} = useQuery(MENU_QUERY, { client });
 
     return (
         <AppProvider>
@@ -36,12 +40,13 @@ const Layout = (props) => {
                     <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
                     <link rel="manifest" href="/static/manifest/manifest.json" />
                 </Head>
-                <Header />
+                <Header header={data?.headerMenus?.nodes}/>
                 <div className="wd-content">{props.children}</div>
-                <Footer />
+                <Footer footer={data?.footerMenus?.nodes}/>
             </div>
         </AppProvider>
     );
 };
+
 
 export default Layout;

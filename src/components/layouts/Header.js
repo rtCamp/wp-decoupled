@@ -13,6 +13,14 @@ Router.onRouteChangeError = () => {
     NProgress.done();
 };
 
-const Header = () => <Nav />;
+const Header = ({ header }) => {
+
+    return (
+        <header>
+            <Nav items={header}/>
+
+        </header>
+    );
+}
 
 export default Header;
