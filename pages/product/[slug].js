@@ -2,14 +2,26 @@ import Layout from '../../src/components/layouts/Layout';
 import AddToCartButton from '../../src/components/cart/AddToCartButton';
 import client from '../../src/apollo/ApolloClient';
 import Image from '../../src/components/Image';
+import SocialShare from '../../src/components/social-share/SocialShare';
+
 import { 
     PRODUCT_QUERY,
     PRODUCT_SLUGS 
 } from '../../src/queries';
 
+import { useRouter } from 'next/router'
+
+
+
+
 const Product = ({data}) => {
 
     const { product } = data || {}
+
+    const router = useRouter();
+
+
+    const path = router.asPath; // url path: starts with backslash (/) 
 
     return (
         <Layout>
@@ -30,6 +42,7 @@ const Product = ({data}) => {
                                 </span>
                             </p>
                             <AddToCartButton product={product} />
+                           
                         </div>
                     </div>
                     <div className="product-container" key={product?.id}>
@@ -37,6 +50,7 @@ const Product = ({data}) => {
                             className="product-description"
                             dangerouslySetInnerHTML={{ __html: product?.description }}
                         />
+                         <SocialShare path={path} />
                     </div>
                 </div>
             ) : (
