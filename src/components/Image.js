@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const Image = (props) => {
 
     const [error, setError] = useState(false);
-    
+
     const {
         src,
         width,
@@ -28,7 +28,7 @@ const Image = (props) => {
 
     return (
         <Img 
-        src={error ? fallBackUrl : src}
+        src={ (error || !src) ? fallBackUrl : src }
         width={width}
         height={height} 
         onError={errorHandler}

@@ -3,8 +3,9 @@ import Link from 'next/link';
 import client from '../src/apollo/ApolloClient';
 import AddToCartButton from '../src/components/cart/AddToCartButton';
 import Hero from '../src/components/home/Hero';
+import Categories from '../src/components/home/Categories';
 import Image from '../src/components/Image';
-import { PRODUCTS_QUERY } from '../src/queries';
+import { PRODUCTS_QUERY, CATEGORIES_QUERY } from '../src/queries';
 
 const NewProducts = ({ products }) => {
     return (
@@ -46,24 +47,30 @@ const NewProducts = ({ products }) => {
 };
 
 const Index = (props) => {
-    const { products } = props;
+    const { products, categories } = props;
 
     return (
         <Layout>
             <Hero />
-            {/*<Categories/>*/}
+            <Categories categories={categories}/>
             <NewProducts products={products} />
         </Layout>
     );
 };
 
 export async function getStaticProps() {
-    const { data } = await client.query({
+    const { data: products_data } = await client.query({
         query: PRODUCTS_QUERY
     });
+
+    const { data: categories_data } = await client.query({
+        query: CATEGORIES_QUERY
+    });
+
     return {
         props: {
-            products: data.products.nodes
+            products: products_data.products.nodes,
+            categories: categories_data.productCategories.nodes
         },
         revalidate: 1
     };
