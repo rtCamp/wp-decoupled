@@ -1,8 +1,8 @@
 import Products from '../../src/components/products';
 import { getProductPageStaticProps } from '../../src/reusable-static-props';
 
-const ProductsPage = ({ products }) => {
-    return <Products products={products} />;
+const ProductsPage = ({ products, pageInfo }) => {
+    return <Products paginationInfo={pageInfo} products={products} />;
 };
 
 export const getStaticProps = getProductPageStaticProps;

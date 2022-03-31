@@ -1,11 +1,13 @@
 import Layout from './layouts/Layout';
 import Product from '../components/product';
+import Pagination from './pagination';
 
-const Products = ({ products }) => {
+const Products = ({ products, paginationInfo = false }) => {
     return (
         <Layout>
             <div className="container mt-5">
                 <h2 className="text-center mb-5">Products</h2>
+                {paginationInfo && <Pagination paginationInfo={paginationInfo} />}
                 {products.length ? (
                     <div className="mt-2">
                         <div className="products-wrapper row">
@@ -22,6 +24,7 @@ const Products = ({ products }) => {
                 ) : (
                     ''
                 )}
+                {paginationInfo && <Pagination paginationInfo={paginationInfo} />}
             </div>
         </Layout>
     );
