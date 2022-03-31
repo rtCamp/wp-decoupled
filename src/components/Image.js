@@ -34,7 +34,7 @@ const Image = (props) => {
 };
 
 Image.propTypes = {
-    src: PropTypes.string.isRequired,
+    src: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
     alt: PropTypes.string,

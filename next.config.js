@@ -1,6 +1,4 @@
 const withCss = require('@zeit/next-css');
-const path = require('path');
-
 const withOffline = require('next-offline');
 const withSass = require('@zeit/next-sass');
 
@@ -29,7 +27,7 @@ module.exports = withOffline(
                         backend_hostname,
                         'https://via.placeholder.com'
                     ],
-            },
+            }
         })
     )
 );

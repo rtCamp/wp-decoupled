@@ -1,55 +1,25 @@
 import Layout from '../src/components/layouts/Layout';
-import client from '../src/apollo/ApolloClient';
 import Hero from '../src/components/home/Hero';
-import { PRODUCTS_QUERY } from '../src/queries';
-import Product from '../src/components/product';
+import { getProductPageStaticProps } from '../src/reusable-static-props';
+import Products from '../src/components/products';
+import Link from 'next/link';
 
-const NewProducts = ({ products }) => {
-    return (
-        <div className="container mt-5">
-            <h2 className="text-center mb-5">Products</h2>
-            {products.length ? (
-                <div className="mt-2">
-                    <div className="products-wrapper row">
-                        {products.map((item) =>
-                            // @TODO Need to add support for Group product.
-                            undefined !== item && 'GroupProduct' !== item.__typename ? (
-                                <Product key={item.id} item={item} />
-                            ) : (
-                                ''
-                            )
-                        )}
-                    </div>
-                </div>
-            ) : (
-                ''
-            )}
-        </div>
-    );
-};
-
-const Index = (props) => {
-    const { products } = props;
-
+const Index = ({ products }) => {
     return (
         <Layout>
             <Hero />
             {/*<Categories/>*/}
-            <NewProducts products={products} />
+            <Products paginationInfo={false} products={products} />
+
+            <div className="wd-shop-button">
+                <Link href={'/products'}>
+                    <a className="btn btn-primary">All Products</a>
+                </Link>
+            </div>
         </Layout>
     );
 };
 
-export async function getStaticProps() {
-    const { data } = await client.query({
-        query: PRODUCTS_QUERY
-    });
-    return {
-        props: {
-            products: data.products.nodes
-        },
-        revalidate: 1
-    };
-}
+export const getStaticProps = getProductPageStaticProps;
 
 export default Index;
