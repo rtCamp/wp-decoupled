@@ -1,10 +1,8 @@
 import Layout from '../src/components/layouts/Layout';
-import Link from 'next/link';
 import client from '../src/apollo/ApolloClient';
-import AddToCartButton from '../src/components/cart/AddToCartButton';
 import Hero from '../src/components/home/Hero';
-import Image from '../src/components/Image';
 import { PRODUCTS_QUERY } from '../src/queries';
+import Product from '../src/components/product';
 
 const NewProducts = ({ products }) => {
     return (
@@ -16,22 +14,7 @@ const NewProducts = ({ products }) => {
                         {products.map((item) =>
                             // @TODO Need to add support for Group product.
                             undefined !== item && 'GroupProduct' !== item.__typename ? (
-                                <div className="product-container col-md-3 mb-5" key={item.id}>
-                                    {/* @TODO need to get rid of using databseId here. */}
-                                    <Link href={`/product/${item.slug}`}>
-                                        <a>
-                                            <span className="product-link">
-                                                <Image
-                                                    src={item?.image?.sourceUrl}
-                                                    alt={item?.image?.altText || item?.name}
-                                                />
-                                                <h5 className="product-name">{item.name}</h5>
-                                                <p className="product-price">{item.price}</p>
-                                            </span>
-                                        </a>
-                                    </Link>
-                                    <AddToCartButton product={item} />
-                                </div>
+                                <Product key={item.id} item={item} />
                             ) : (
                                 ''
                             )
@@ -67,6 +50,6 @@ export async function getStaticProps() {
         },
         revalidate: 1
     };
-};
+}
 
 export default Index;
