@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from './Image';
 import AddToCartButton from './cart/AddToCartButton';
+import PropTypes from 'prop-types';
 
 const Product = ({ item }) => {
     return (

@@ -9,7 +9,7 @@ const Index = ({ products }) => {
         <Layout>
             <Hero />
             {/*<Categories/>*/}
-            <Products paginationInfo={false} products={products} />
+            <Products products={products} />
 
             <div className="wd-shop-button">
                 <Link href={'/products'}>

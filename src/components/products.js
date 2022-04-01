@@ -1,5 +1,6 @@
 import Product from '../components/product';
 import Pagination from './pagination';
+import PropTypes from 'prop-types';
 
 const Products = ({ products, paginationInfo = false }) => {
     return (
@@ -25,6 +26,19 @@ const Products = ({ products, paginationInfo = false }) => {
             {paginationInfo && <Pagination paginationInfo={paginationInfo} />}
         </div>
     );
+};
+
+Products.propTypes = {
+    products: PropTypes.array,
+    paginationInfo: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.shape({
+            perPage: PropTypes.number,
+            hasMore: PropTypes.bool,
+            hasPrevious: PropTypes.bool,
+            total: PropTypes.number
+        })
+    ])
 };
 
 export default Products;

@@ -1,12 +1,11 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 export default function Pagination({ paginationInfo }) {
     const router = useRouter();
 
-    const { perPage, total } = paginationInfo;
-
-    if (total <= perPage) {
+    if (!paginationInfo?.total || paginationInfo.total <= paginationInfo.perPage) {
         return null;
     }
 
@@ -67,3 +66,15 @@ export default function Pagination({ paginationInfo }) {
         </ul>
     );
 }
+
+Pagination.propTypes = {
+    paginationInfo: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.shape({
+            perPage: PropTypes.number,
+            hasMore: PropTypes.bool,
+            hasPrevious: PropTypes.bool,
+            total: PropTypes.number
+        })
+    ])
+};

@@ -14,7 +14,11 @@ export const getStaticProps = getProductPageStaticProps;
 
 export async function getStaticPaths() {
     return {
-        paths: [],
+        paths: [
+            {
+                params: { page: '1' }
+            }
+        ],
         fallback: 'blocking'
     };
 }
