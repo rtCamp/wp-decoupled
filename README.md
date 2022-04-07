@@ -64,7 +64,7 @@ WOO_SECRET=xxxxx
 ```
 
 
-## Commands 🖥️
+## Commands 💻️
 
 * `npm run dev` Runs the node server in development mode
 * `npm run dev:inspect` Runs the dev server with **Inspector**
