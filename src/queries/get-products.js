@@ -2,10 +2,17 @@ import { gql } from '@apollo/client';
 import ProductFragment from './fragments/product';
 
 export default gql`
-    query {
-        products(first: 50) {
+    query Products($offset: Int! = 0, $size: Int! = 9) {
+        products(where: { offsetPagination: { offset: $offset, size: $size } }) {
             nodes {
                 ...ProductFragment
+            }
+            pageInfo {
+                offsetPagination {
+                    hasMore
+                    hasPrevious
+                    total
+                }
             }
         }
     }

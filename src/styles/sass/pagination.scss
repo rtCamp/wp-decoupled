@@ -1,0 +1,32 @@
+.wd-pagination {
+	padding: 0;
+	margin: 20px auto;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	
+	li {
+		list-style: none;
+		display: inline-flex;
+		margin: 0 2px;
+		
+		a, span {
+			box-sizing: border-box;
+			background: rgba(0,0,0,0.025);
+			height: 32px;
+			min-width: 32px;
+			padding: 0 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-decoration: none;
+			color: #60646c;
+			box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05) inset;
+		}
+		
+		span {
+			background: #e6e6e6;
+			color: #565a62;
+		}
+	}
+}
