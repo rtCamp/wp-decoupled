@@ -1,4 +1,4 @@
-# WP Decoupled :zap:
+# WP Decoupled ⚡️
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 
 This is a React theme boilerplate for WordPress, built with Next JS, Webpack, Babel, Node, Express.
@@ -6,23 +6,23 @@ This is a React theme boilerplate for WordPress, built with Next JS, Webpack, Ba
 ## Live demo site.
 [Live Demo](https://wp-decoupled-git-master.rtcamp.vercel.app/)
 
-## Demo :movie_camera:
+## Demo 🎥
 
 ![](demo.gif)
 
-## Getting Started :surfer:
+## Getting Started 🏄️
 
 These instructions will get you a copy of the project up and running on your local machine for development purposes.
 
 
-### Installing :wrench:
+### Installing 🔧
 
 1. Clone this repo in `git@github.com:rtCamp/wp-decoupled.git`
 2. `cd wp-decoupled`
 3. `nvm use`
 4. `npm install`
 
-## Configure Backend( WordPress site ) :wrench:
+## Configure Backend( WordPress site ) 🔧
 
 ### 1. Add GraphQl support on WordPress
 
@@ -36,7 +36,7 @@ These instructions will get you a copy of the project up and running on your loc
 2. You can also import default wooCommerce products that come with wooCommerce Plugin for development ( if you don't have any products in your WordPress install )
    WP Dashboard > Tools > WooCommerce products(CSV) : The WooCommerce default products csv file is available at `wp-content/plugins/woocommerce/sample-data/sample_products.csv`   	
    
-### 2. For Authentication :lock:
+### 2. For Authentication 🔒️
 
 a. You can use any secret token of your choice, however it would be best if you generate one using WordPress Salt generator (https://api.wordpress.org/secret-key/1.1/salt/) to generate a Secret.
 And just pick up any one of the token and add it in place of 'your-secret-token' below:
@@ -52,7 +52,7 @@ b. Depending on your particular environment, you may have to research how to ena
    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
    ```
 
-## Configure Front End :wrench:
+## Configure Front End 🔧
 
 * Rename `.env.example` to `.env` and update your details
 
@@ -64,7 +64,7 @@ WOO_SECRET=xxxxx
 ```
 
 
-## Commands :computer:
+## Commands 💻️
 
 * `npm run dev` Runs the node server in development mode
 * `npm run dev:inspect` Runs the dev server with **Inspector**
@@ -73,14 +73,14 @@ WOO_SECRET=xxxxx
 * `npm run format` Runs the formatter
 * `npm run build` Creates the **NEXT** build
 
-## Using PWA on mobile :iphone:
+## Using PWA on mobile 📱
 
 * Open the site in Chrome on your mobile and then click on add to home screen.
 * It will be downloaded and saved as a Progressive Web App on your mobile.
 * Once added Look `WP Decoupled` app on your mobile.
 * This PWA will work even when you are offline. 
 
-## Branches Information :seedling:
+## Branches Information 🌱
 
 1. [master](https://github.com/rtCamp/wp-decoupled/tree/master) Main React WooCommerce theme
 2. [develop](https://github.com/rtCamp/wp-decoupled/tree/develop) For testing
@@ -90,7 +90,7 @@ WOO_SECRET=xxxxx
 
 * **[rtCamp](https://rtcamp.com)**
 
-## Contributors :bust_in_silhouette:
+## Contributors 👤
 
 * **[Imran Sayed](https://github.com/imranhsayed)**
 * **[Muhammad Muhsin](https://github.com/m-muhsin)**
