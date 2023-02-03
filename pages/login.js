@@ -1,15 +1,15 @@
-import Layout from '../src/components/layouts/Layout';
+import { useMutation } from '@apollo/client';
+import Link from 'next/link';
+import Router from 'next/router';
 import { useState } from 'react';
 import client from '../src/apollo/ApolloClient';
-import { useMutation } from '@apollo/client'
-import MessageAlert from '../src/components/message-alert/MessageAlert';
+import Layout from '../src/components/layouts/Layout';
 import Loading from '../src/components/message-alert/Loading';
-import Router from 'next/router';
+import MessageAlert from '../src/components/message-alert/MessageAlert';
+import { LOGIN_USER } from '../src/queries';
 import { isUserValidated } from '../src/utils/auth-functions';
 import isEmpty from '../src/validator/isEmpty';
-import Link from 'next/link';
 import validateAndSanitizeLoginForm from '../src/validator/login';
-import { LOGIN_USER } from '../src/queries';
 /**
  * Login functional component.
  *
@@ -145,14 +145,9 @@ const Login = () => {
         }
     };
 
-    const [
-        login,
-        {
-            data: data,
-            loading: loading,
-            error: error,
-        },
-    ] = useMutation(LOGIN_USER, { client })
+    const [login, { data: data, loading: loading, error: error }] = useMutation(LOGIN_USER, {
+        client
+    });
 
     return (
         <Layout>
@@ -163,12 +158,12 @@ const Login = () => {
                 {/* Error Message */}
                 {'' !== errorMessage
                     ? showAlertBar && (
-                        <MessageAlert
-                            message={errorMessage}
-                            success={false}
-                            onCloseButtonClick={onCloseButtonClick}
-                        />
-                    )
+                          <MessageAlert
+                              message={errorMessage}
+                              success={false}
+                              onCloseButtonClick={onCloseButtonClick}
+                          />
+                      )
                     : ''}
 
                 {/* Login Form */}
@@ -177,7 +172,7 @@ const Login = () => {
                     <div className="form-group">
                         <label className="lead mt-1" htmlFor="username-or-email">
                             Username or email
-                                    </label>
+                        </label>
                         <input
                             type="text"
                             className="form-control"
@@ -192,7 +187,7 @@ const Login = () => {
                     <div className="form-group">
                         <label className="lead mt-1" htmlFor="password">
                             Password
-                                    </label>
+                        </label>
                         <input
                             type="password"
                             className="form-control"
@@ -210,9 +205,9 @@ const Login = () => {
                             disabled={loading ? 'disabled' : ''}
                             type="submit">
                             Login
-                                    </button>
-                        <Link href="/register">
-                            <a className="btn btn-secondary ml-2">Register</a>
+                        </button>
+                        <Link className="btn btn-secondary ml-2" href="/register">
+                            Register
                         </Link>
                     </div>
 

@@ -1,6 +1,6 @@
+import Link from 'next/link';
 import { useContext } from 'react';
 import { AppContext } from './../context/AppContext';
-import Link from 'next/link';
 
 const CartIcon = () => {
     const [cart] = useContext(AppContext);
@@ -10,23 +10,21 @@ const CartIcon = () => {
     return (
         <>
             <Link href="/cart">
-                <a>
-                    <div className="wd-cart-wrap">
-                        {totalPrice ? (
-                            <span className="wp-cart-price mr-2">${totalPrice.toFixed(2)}</span>
+                <div className="wd-cart-wrap">
+                    {totalPrice ? (
+                        <span className="wp-cart-price mr-2">${totalPrice.toFixed(2)}</span>
+                    ) : (
+                        ''
+                    )}
+                    <span className="wd-cart-icon-container">
+                        <i className="fas fa-shopping-cart wd-cart-icon" />
+                        {productsCount ? (
+                            <span className="wp-cart-count">{productsCount}</span>
                         ) : (
                             ''
                         )}
-                        <span className="wd-cart-icon-container">
-                            <i className="fas fa-shopping-cart wd-cart-icon" />
-                            {productsCount ? (
-                                <span className="wp-cart-count">{productsCount}</span>
-                            ) : (
-                                ''
-                            )}
-                        </span>
-                    </div>
-                </a>
+                    </span>
+                </div>
             </Link>
             <style jsx>{`
                 .wd-cart-wrap {
