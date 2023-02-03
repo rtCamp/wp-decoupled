@@ -26,7 +26,7 @@ const CartIcon = () => {
                     </span>
                 </div>
             </Link>
-            <style jsx>{`
+            <style>{`
                 .wd-cart-wrap {
                     cursor: pointer;
                     padding-right: 16px;

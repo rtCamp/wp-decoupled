@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { isUserValidated, logoutUser } from '../../utils/auth-functions';
 import isEmpty from '../../validator/isEmpty';
 
@@ -37,9 +38,9 @@ const Menu = () => {
             </li>
             {loggedIn ? (
                 <li className="wpd-main-nav__list">
-                    <a className="wpd-main-nav__link" onClick={handleLogout}>
+                    <Button className="wpd-main-nav__link" onClick={handleLogout}>
                         Logout
-                    </a>
+                    </Button>
                 </li>
             ) : (
                 ''
