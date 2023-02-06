@@ -1,10 +1,10 @@
+import axios from 'axios';
+import * as https from 'https';
 import Link from 'next/link';
-import client from '../src/apollo/ApolloClient';
 import AddToCartButton from '../src/components/cart/AddToCartButton';
 import Hero from '../src/components/home/Hero';
 import Image from '../src/components/Image';
 import Layout from '../src/components/layouts/Layout';
-import { PRODUCTS_QUERY } from '../src/queries';
 
 const NewProducts = ({ products }) => {
     return (
@@ -56,12 +56,22 @@ const Index = (props) => {
 };
 
 export async function getStaticProps() {
-    const { data } = await client.query({
-        query: PRODUCTS_QUERY
+    const response = await axios({
+        method: 'GET',
+        url: process.env.NEXT_PUBLIC_WOO_SITE_URL + '/wp-json/wc/v3/products/',
+        headers: {
+            Authorization:
+                'Basic ' +
+                btoa(process.env.WOO_CONSUMER_KEY + ':' + process.env.WOO_CONSUMER_SECRET)
+        },
+        httpsAgent: new https.Agent({
+            rejectUnauthorized: false
+        })
     });
+    const data = response.data;
     return {
         props: {
-            products: data.products.nodes
+            products: data
         },
         revalidate: 1
     };
