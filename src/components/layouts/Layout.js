@@ -10,10 +10,10 @@ const Layout = (props) => {
             window.addEventListener('load', function () {
                 navigator.serviceWorker
                     .register('/service-worker.js', { scope: '/' })
-                    .then(function (registration) {
+                    .then(function () {
                         // SW registered
                     })
-                    .catch(function (registrationError) {
+                    .catch(function () {
                         // SW registration failed
                     });
             });

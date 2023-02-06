@@ -1,11 +1,11 @@
-import { useState, useContext } from 'react';
-import { AppContext } from '../context/AppContext';
-import { addFirstProduct, updateCart } from '../../utils/cart-functions';
 import Link from 'next/link';
+import { useContext, useState } from 'react';
+import { addFirstProduct, updateCart } from '../../utils/cart-functions';
+import { AppContext } from '../context/AppContext';
 
 const AddToCartButton = (props) => {
     const { product } = props;
-    const [cart, setCart] = useContext(AppContext);
+    const [, setCart] = useContext(AppContext);
     const [showViewCart, setShowViewCart] = useState(false);
 
     /**

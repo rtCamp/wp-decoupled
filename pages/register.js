@@ -152,10 +152,7 @@ const Register = () => {
         }
     };
 
-    const [registerUser, { data: data, loading: loading, error: error }] = useMutation(
-        REGISTER_USER,
-        { client }
-    );
+    const [registerUser, { loading: loading }] = useMutation(REGISTER_USER, { client });
 
     return (
         <Layout>

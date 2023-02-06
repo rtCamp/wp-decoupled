@@ -145,7 +145,7 @@ const Login = () => {
         }
     };
 
-    const [login, { data: data, loading: loading, error: error }] = useMutation(LOGIN_USER, {
+    const [login, { loading: loading }] = useMutation(LOGIN_USER, {
         client
     });
 
