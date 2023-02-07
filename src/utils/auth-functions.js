@@ -1,5 +1,5 @@
-import isEmpty from '../validator/isEmpty';
 import Router from 'next/router';
+import isEmpty from '../validator/isEmpty';
 
 /**
  * Check if user is logged in.
@@ -7,13 +7,13 @@ import Router from 'next/router';
  * @return {object} Auth Object containing token and user data, false on failure.
  */
 export const isUserValidated = () => {
-    let authTokenData = localStorage.getItem(process.env.RT_WP_DECOUPLED_USER_TOKEN);
+    let authTokenData = localStorage.getItem(process.env.NEXT_PUBLIC_RT_WP_DECOUPLED_USER_DATA);
     let userLoggedInData = '';
 
     if (!isEmpty(authTokenData)) {
         authTokenData = JSON.parse(authTokenData);
 
-        if (!isEmpty(authTokenData.authToken)) {
+        if (!isEmpty(authTokenData.token)) {
             userLoggedInData = authTokenData;
         }
     }
@@ -30,7 +30,7 @@ export const isUserValidated = () => {
  */
 export const logoutUser = (urlToRedirect) => {
     // Set auth data value in localStorage to empty.
-    localStorage.setItem(process.env.RT_WP_DECOUPLED_USER_TOKEN, '');
+    localStorage.setItem(process.env.NEXT_PUBLIC_RT_WP_DECOUPLED_USER_DATA, '');
 
     // Redirect the user to the given url.
     Router.push(urlToRedirect);

@@ -1,15 +1,15 @@
-import { useMutation } from '@apollo/client';
+import axios from 'axios';
+import * as https from 'https';
 import Link from 'next/link';
 import Router from 'next/router';
 import { useState } from 'react';
-import client from '../src/apollo/ApolloClient';
 import Layout from '../src/components/layouts/Layout';
 import Loading from '../src/components/message-alert/Loading';
 import MessageAlert from '../src/components/message-alert/MessageAlert';
-import { LOGIN_USER } from '../src/queries';
 import { isUserValidated } from '../src/utils/auth-functions';
 import isEmpty from '../src/validator/isEmpty';
 import validateAndSanitizeLoginForm from '../src/validator/login';
+
 /**
  * Login functional component.
  *
@@ -20,6 +20,8 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [showAlertBar, setShowAlertBar] = useState(true);
+
+    const [loggingIn, setLoggingIn] = useState(false);
 
     // Check if the user is validated already.
     if (process.browser) {
@@ -48,26 +50,35 @@ const Login = () => {
      * @param {object} login login function from login mutation query.
      * @return {void}
      */
-    const handleLogin = async (event, login) => {
+    const handleLogin = async (event) => {
         if (process.browser) {
             event.preventDefault();
+            setLoggingIn(true);
 
             // Validation and Sanitization.
             const validationResult = validateAndSanitizeLoginForm({ username, password });
 
             // If the data is valid.
             if (validationResult.isValid) {
-                await login({
-                    variables: {
-                        username: validationResult.sanitizedData.username,
-                        password: validationResult.sanitizedData.password
-                    }
-                })
-                    .then((response) => handleLoginSuccess(response))
-                    .catch((err) => handleLoginFail(err.graphQLErrors[0].message));
+                try {
+                    const response = await axios({
+                        method: 'POST',
+                        url:
+                            process.env.NEXT_PUBLIC_SITE_URL +
+                            '/api/login/' +
+                            `?username=${validationResult.sanitizedData.username}&password=${validationResult.sanitizedData.password}`,
+                        httpsAgent: new https.Agent({
+                            rejectUnauthorized: false
+                        })
+                    });
+                    handleLoginSuccess(response);
+                } catch (error) {
+                    handleLoginFail(error.response.data);
+                }
             } else {
                 setClientSideError(validationResult);
             }
+            setLoggingIn(false);
         }
     };
 
@@ -115,7 +126,7 @@ const Login = () => {
      * @return {void}
      */
     const handleLoginFail = (err) => {
-        const error = err.split('_').join(' ').toUpperCase();
+        const error = err.code.replace('[jwt_auth]', '').split('_').join(' ').toUpperCase();
 
         setServerSideError(error);
     };
@@ -128,11 +139,11 @@ const Login = () => {
      * @return {void}
      */
     const handleLoginSuccess = (response) => {
-        if (response.data.login.authToken) {
+        if (response?.data?.token) {
             // Set the authtoken, user id and username in the localStorage.
             localStorage.setItem(
-                process.env.RT_WP_DECOUPLED_USER_TOKEN,
-                JSON.stringify(response.data.login)
+                process.env.NEXT_PUBLIC_RT_WP_DECOUPLED_USER_DATA,
+                JSON.stringify(response?.data)
             );
 
             // Set form field vaues to empty.
@@ -144,10 +155,6 @@ const Login = () => {
             Router.push('/my-account');
         }
     };
-
-    const [login, { loading: loading }] = useMutation(LOGIN_USER, {
-        client
-    });
 
     return (
         <Layout>
@@ -167,7 +174,7 @@ const Login = () => {
                     : ''}
 
                 {/* Login Form */}
-                <form className="mt-1" onSubmit={(event) => handleLogin(event, login)}>
+                <form className="mt-1" onSubmit={(event) => handleLogin(event)}>
                     {/* Username or email */}
                     <div className="form-group">
                         <label className="lead mt-1" htmlFor="username-or-email">
@@ -202,7 +209,7 @@ const Login = () => {
                     <div className="form-group">
                         <button
                             className="btn btn-primary"
-                            disabled={loading ? 'disabled' : ''}
+                            disabled={loggingIn ? 'disabled' : ''}
                             type="submit">
                             Login
                         </button>
@@ -212,7 +219,7 @@ const Login = () => {
                     </div>
 
                     {/*	Loading */}
-                    {loading ? <Loading message={'Processing...'} /> : ''}
+                    {loggingIn ? <Loading message={'Processing...'} /> : ''}
                 </form>
             </div>
         </Layout>

@@ -1,8 +1,8 @@
+import Router from 'next/router';
+import { useEffect, useState } from 'react';
 import Layout from '../src/components/layouts/Layout';
-import { useState, useEffect } from 'react';
 import { isUserValidated } from '../src/utils/auth-functions';
 import isEmpty from '../src/validator/isEmpty';
-import Router from 'next/router';
 
 /**
  * MyAccount functional component.
@@ -48,9 +48,9 @@ const MyAccount = () => {
 
                     <div className="wpd-my-account__main">
                         <div id="dashboard">
-                            {userData.user.nicename ? <h6>Howdy {userData.user.nicename}!</h6> : ''}
+                            {userData.user_nicename ? <h6>Howdy {userData.user_nicename}!</h6> : ''}
                             <h5 className="mt-3">Account Details</h5>
-                            {userData.user.email ? <p>Email: {userData.user.email}</p> : ''}
+                            {userData.user_email ? <p>Email: {userData.user_email}</p> : ''}
                         </div>
                     </div>
                 </div>
