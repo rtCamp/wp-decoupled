@@ -1,4 +1,7 @@
+// External.
 import DOMPurify from 'dompurify';
+
+// Internal.
 import { wpdDecodeHtml } from '../../utils/commmon-functions';
 
 const MessageAlert = ({ message, success, onCloseButtonClick }) => {

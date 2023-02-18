@@ -1,5 +1,8 @@
+// External.
 import Router from 'next/router';
 import NProgress from 'nprogress';
+
+// Internal.
 import Nav from './Nav';
 
 Router.onRouteChangeStart = () => {

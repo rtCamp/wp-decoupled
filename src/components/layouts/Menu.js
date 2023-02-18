@@ -1,6 +1,9 @@
+// External.
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+
+// Internal.
 import { isUserValidated, logoutUser } from '../../utils/auth-functions';
 import isEmpty from '../../validator/isEmpty';
 

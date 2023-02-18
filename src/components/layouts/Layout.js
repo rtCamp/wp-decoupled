@@ -1,5 +1,8 @@
+// External.
 import Head from 'next/head';
 import { useEffect } from 'react';
+
+// Internal.
 import { AppProvider } from '../context/AppContext';
 import Footer from './Footer';
 import Header from './Header';

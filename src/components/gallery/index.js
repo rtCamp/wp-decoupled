@@ -1,4 +1,7 @@
+// External.
 import { useState } from 'react';
+
+// Internal.
 import Image from '../Image';
 
 const Gallery = ({ edges }) => {

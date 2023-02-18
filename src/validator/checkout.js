@@ -1,4 +1,7 @@
+// External.
 import validator from 'validator';
+
+// Internal.
 import isEmpty from './isEmpty';
 
 const validateAndSanitizeCheckoutForm = (data) => {

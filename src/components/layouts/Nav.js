@@ -1,4 +1,7 @@
+// External.
 import Link from 'next/link';
+
+// Internal.
 import CartIcon from '../cart/CartIcon';
 
 const Nav = () => {

@@ -1,4 +1,7 @@
+// External.
 import Link from 'next/link';
+
+// Internal.
 import client from '../src/apollo/ApolloClient';
 import AddToCartButton from '../src/components/cart/AddToCartButton';
 import Hero from '../src/components/home/Hero';

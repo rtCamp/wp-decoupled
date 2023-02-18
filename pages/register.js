@@ -1,7 +1,10 @@
+// External.
 import { useMutation } from '@apollo/client';
 import Link from 'next/link';
 import Router from 'next/router';
 import { useState } from 'react';
+
+// Internal.
 import client from '../src/apollo/ApolloClient';
 import Layout from '../src/components/layouts/Layout';
 import Loading from '../src/components/message-alert/Loading';

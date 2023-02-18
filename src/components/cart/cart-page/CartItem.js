@@ -1,4 +1,7 @@
+// External.
 import { useState } from 'react';
+
+// Internal.
 import { updateCart } from '../../../utils/cart-functions';
 import Image from '../../Image';
 

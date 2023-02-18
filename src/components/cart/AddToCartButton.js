@@ -1,5 +1,8 @@
+// External.
 import Link from 'next/link';
 import { useContext, useState } from 'react';
+
+// Internal.
 import { addFirstProduct, updateCart } from '../../utils/cart-functions';
 import { AppContext } from '../context/AppContext';
 
