@@ -141,7 +141,7 @@ export const updateCart = (existingCart, product, qtyToBeAdded, newQty = false) 
  * @return {number | *} Index Returns -1 if product does not exist in the array, index number otherwise
  */
 const isProductInCart = (existingProductsInCart, databaseId) => {
-    const returnItemThatExits = (item, index) => {
+    const returnItemThatExits = (item) => {
         if (databaseId === item.databaseId) {
             return item;
         }

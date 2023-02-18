@@ -1,4 +1,7 @@
+// External.
 import { Fragment } from 'react';
+
+// Internal.
 import CheckoutCartItem from './CheckoutCartItem';
 
 const YourOrder = ({ cart }) => {

@@ -1,4 +1,7 @@
+// External.
 import React from 'react';
+
+// Internal.
 import countryList from './country-list';
 import Error from './Error';
 

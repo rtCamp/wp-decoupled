@@ -11,19 +11,25 @@ const Footer = () => (
                         <a
                             href="https://www.facebook.com/rtCamp.solutions"
                             target="_blank"
+                            rel="noreferrer"
                             className="fb-ic">
                             <i className="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x">
                                 {' '}
                             </i>
                         </a>
                         {/* Twitter */}
-                        <a href="https://twitter.com/rtcamp" target="_blank" className="tw-ic">
+                        <a
+                            href="https://twitter.com/rtcamp"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="tw-ic">
                             <i className="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
                         </a>
                         {/*Linkedin */}
                         <a
                             href="https://www.linkedin.com/company/rtcamp/"
                             target="_blank"
+                            rel="noreferrer"
                             className="li-ic">
                             <i className="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x">
                                 {' '}
@@ -33,6 +39,7 @@ const Footer = () => (
                         <a
                             href="https://www.instagram.com/rtcamp/"
                             target="_blank"
+                            rel="noreferrer"
                             className="ins-ic">
                             <i className="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x">
                                 {' '}

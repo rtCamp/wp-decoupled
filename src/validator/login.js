@@ -1,4 +1,7 @@
+// External.
 import validator from 'validator';
+
+// Internal.
 import isEmpty from './isEmpty';
 
 const validateAndSanitizeLoginForm = (data) => {
@@ -25,7 +28,7 @@ const validateAndSanitizeLoginForm = (data) => {
      * @param {String} type Type e.g. email, phone etc.
      * @param {boolean} required Required if required is passed as false, it will not validate error and just do sanitization.
      */
-    const addErrorAndSanitizedData = (fieldName, errorContent, min, max, type = '', required) => {
+    const addErrorAndSanitizedData = (fieldName, errorContent, min, max, required) => {
         /**
          * Please note that this isEmpty() belongs to validator and not our custom function defined above.
          *
@@ -46,8 +49,8 @@ const validateAndSanitizeLoginForm = (data) => {
         }
     };
 
-    addErrorAndSanitizedData('username', 'Username', 2, 35, 'string', true);
-    addErrorAndSanitizedData('password', 'Password', 2, 35, 'string', true);
+    addErrorAndSanitizedData('username', 'Username', 2, 35, true);
+    addErrorAndSanitizedData('password', 'Password', 2, 35, true);
 
     return {
         sanitizedData,

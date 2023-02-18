@@ -1,15 +1,18 @@
-import Layout from '../src/components/layouts/Layout';
-import { useState } from 'react';
-import client from '../src/apollo/ApolloClient';
-import { useMutation } from '@apollo/client'
-import MessageAlert from '../src/components/message-alert/MessageAlert';
-import Loading from '../src/components/message-alert/Loading';
+// External.
+import { useMutation } from '@apollo/client';
+import Link from 'next/link';
 import Router from 'next/router';
+import { useState } from 'react';
+
+// Internal.
+import client from '../src/apollo/ApolloClient';
+import Layout from '../src/components/layouts/Layout';
+import Loading from '../src/components/message-alert/Loading';
+import MessageAlert from '../src/components/message-alert/MessageAlert';
+import { REGISTER_USER } from '../src/queries';
 import { isUserValidated } from '../src/utils/auth-functions';
 import isEmpty from '../src/validator/isEmpty';
-import Link from 'next/link';
 import validateAndSanitizeRegisterForm from '../src/validator/register';
-import { REGISTER_USER } from '../src/queries';
 /**
  * Register Functional Component.
  *
@@ -152,14 +155,7 @@ const Register = () => {
         }
     };
 
-    const [
-        registerUser,
-        {
-            data: data,
-            loading: loading,
-            error: error,
-        },
-    ] = useMutation(REGISTER_USER, { client })
+    const [registerUser, { loading: loading }] = useMutation(REGISTER_USER, { client });
 
     return (
         <Layout>
@@ -170,33 +166,31 @@ const Register = () => {
                 {/* Error Message */}
                 {'' !== errorMessage
                     ? showAlertBar && (
-                        <MessageAlert
-                            message={errorMessage}
-                            success={false}
-                            onCloseButtonClick={onCloseButtonClick}
-                        />
-                    )
+                          <MessageAlert
+                              message={errorMessage}
+                              success={false}
+                              onCloseButtonClick={onCloseButtonClick}
+                          />
+                      )
                     : ''}
 
                 {'' !== successMessage
                     ? showAlertBar && (
-                        <MessageAlert
-                            message={successMessage}
-                            success={true}
-                            onCloseButtonClick={onCloseButtonClick}
-                        />
-                    )
+                          <MessageAlert
+                              message={successMessage}
+                              success={true}
+                              onCloseButtonClick={onCloseButtonClick}
+                          />
+                      )
                     : ''}
 
                 {/* Login Form */}
-                <form
-                    className="mt-1"
-                    onSubmit={(event) => handleRegister(event, registerUser)}>
+                <form className="mt-1" onSubmit={(event) => handleRegister(event, registerUser)}>
                     {/* Username */}
                     <div className="form-group">
                         <label className="lead mt-1" htmlFor="username">
                             Username
-                                    </label>
+                        </label>
                         <input
                             type="text"
                             className="form-control"
@@ -211,7 +205,7 @@ const Register = () => {
                     <div className="form-group">
                         <label className="lead mt-1" htmlFor="email">
                             Email
-                                    </label>
+                        </label>
                         <input
                             type="email"
                             className="form-control"
@@ -226,7 +220,7 @@ const Register = () => {
                     <div className="form-group">
                         <label className="lead mt-1" htmlFor="password">
                             Password
-                                    </label>
+                        </label>
                         <input
                             type="password"
                             className="form-control"
@@ -244,9 +238,9 @@ const Register = () => {
                             disabled={loading ? 'disabled' : ''}
                             type="submit">
                             Register
-                                    </button>
-                        <Link href="/login">
-                            <a className="btn btn-secondary ml-2">Login</a>
+                        </button>
+                        <Link className="btn btn-secondary ml-2" href="/login">
+                            Login
                         </Link>
                     </div>
 

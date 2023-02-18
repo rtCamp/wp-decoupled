@@ -1,16 +1,12 @@
-import Layout from '../../src/components/layouts/Layout';
-import AddToCartButton from '../../src/components/cart/AddToCartButton';
 import client from '../../src/apollo/ApolloClient';
-import Image from '../../src/components/Image';
-import { 
-    PRODUCT_QUERY,
-    PRODUCT_SLUGS 
-} from '../../src/queries';
+import AddToCartButton from '../../src/components/cart/AddToCartButton';
 import Gallery from '../../src/components/gallery';
+import Image from '../../src/components/Image';
+import Layout from '../../src/components/layouts/Layout';
+import { PRODUCT_QUERY, PRODUCT_SLUGS } from '../../src/queries';
 
-const Product = ({data}) => {
-
-    const { product } = data || {}
+const Product = ({ data }) => {
+    const { product } = data || {};
 
     return (
         <Layout>
@@ -39,11 +35,9 @@ const Product = ({data}) => {
                             dangerouslySetInnerHTML={{ __html: product?.description }}
                         />
                     </div>
-                    <Gallery {...product?.galleryImages}/>
+                    <Gallery {...product?.galleryImages} />
                 </div>
-            ) : (
-                null
-            )}
+            ) : null}
         </Layout>
     );
 };
@@ -66,7 +60,6 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-
     const { data } = await client.query({
         query: PRODUCT_SLUGS
     });

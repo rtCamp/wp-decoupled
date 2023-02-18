@@ -1,9 +1,12 @@
-import { useState, useContext, Fragment } from 'react';
-import Billing from './Billing';
-import YourOrder from './YourOrder';
-import PaymentModes from './PaymentModes';
-import { AppContext } from '../context/AppContext';
+// External.
+import { Fragment, useContext, useState } from 'react';
+
+// Internal.
 import validateAndSanitizeCheckoutForm from '../../validator/checkout';
+import { AppContext } from '../context/AppContext';
+import Billing from './Billing';
+import PaymentModes from './PaymentModes';
+import YourOrder from './YourOrder';
 
 const CheckoutForm = () => {
     const [cart] = useContext(AppContext);

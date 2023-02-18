@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
-import { AppProvider } from '../context/AppContext';
-import '../../styles/sass/styles.scss';
-import '../../styles/vendor/bootstrap.min.css';
+// External.
 import Head from 'next/head';
-import Header from './Header';
+import { useEffect } from 'react';
+
+// Internal.
+import { AppProvider } from '../context/AppContext';
 import Footer from './Footer';
+import Header from './Header';
 
 const Layout = (props) => {
     useEffect(() => {
@@ -12,10 +13,10 @@ const Layout = (props) => {
             window.addEventListener('load', function () {
                 navigator.serviceWorker
                     .register('/service-worker.js', { scope: '/' })
-                    .then(function (registration) {
+                    .then(function () {
                         // SW registered
                     })
-                    .catch(function (registrationError) {
+                    .catch(function () {
                         // SW registration failed
                     });
             });

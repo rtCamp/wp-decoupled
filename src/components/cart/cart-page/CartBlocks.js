@@ -1,7 +1,10 @@
+// External.
 import Link from 'next/link';
 import { useContext } from 'react';
-import { AppContext } from '../../context/AppContext';
+
+// Internal.
 import { removeItemFromCart } from '../../../utils/cart-functions';
+import { AppContext } from '../../context/AppContext';
 import CartItem from './CartItem';
 
 const CartBlocks = () => {

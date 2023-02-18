@@ -1,8 +1,11 @@
+// Internal.
 import Layout from '../src/components/layouts/Layout';
-import { useState, useEffect } from 'react';
 import { isUserValidated } from '../src/utils/auth-functions';
 import isEmpty from '../src/validator/isEmpty';
+
+// External.
 import Router from 'next/router';
+import { useEffect, useState } from 'react';
 
 /**
  * MyAccount functional component.

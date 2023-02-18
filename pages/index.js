@@ -1,9 +1,12 @@
-import Layout from '../src/components/layouts/Layout';
+// External.
 import Link from 'next/link';
+
+// Internal.
 import client from '../src/apollo/ApolloClient';
 import AddToCartButton from '../src/components/cart/AddToCartButton';
 import Hero from '../src/components/home/Hero';
 import Image from '../src/components/Image';
+import Layout from '../src/components/layouts/Layout';
 import { PRODUCTS_QUERY } from '../src/queries';
 
 const NewProducts = ({ products }) => {
@@ -19,16 +22,14 @@ const NewProducts = ({ products }) => {
                                 <div className="product-container col-md-3 mb-5" key={item.id}>
                                     {/* @TODO need to get rid of using databseId here. */}
                                     <Link href={`/product/${item.slug}`}>
-                                        <a>
-                                            <span className="product-link">
-                                                <Image
-                                                    src={item?.image?.sourceUrl}
-                                                    alt={item?.image?.altText || item?.name}
-                                                />
-                                                <h5 className="product-name">{item.name}</h5>
-                                                <p className="product-price">{item.price}</p>
-                                            </span>
-                                        </a>
+                                        <span className="product-link">
+                                            <Image
+                                                src={item?.image?.sourceUrl}
+                                                alt={item?.image?.altText || item?.name}
+                                            />
+                                            <h5 className="product-name">{item.name}</h5>
+                                            <p className="product-price">{item.price}</p>
+                                        </span>
                                     </Link>
                                     <AddToCartButton product={item} />
                                 </div>
@@ -67,6 +68,6 @@ export async function getStaticProps() {
         },
         revalidate: 1
     };
-};
+}
 
 export default Index;

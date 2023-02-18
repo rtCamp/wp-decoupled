@@ -1,4 +1,7 @@
+// External.
 import { gql } from '@apollo/client';
+
+// Internal.
 import UserFragment from '../fragments/user';
 /**
  * Login user mutation query.

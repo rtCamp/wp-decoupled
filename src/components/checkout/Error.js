@@ -1,5 +1,5 @@
 const Error = ({ errors, fieldName }) => {
-    return errors && errors.hasOwnProperty(fieldName) ? (
+    return errors && Object.prototype.hasOwnProperty.call(errors, fieldName) ? (
         <div className="invalid-feedback d-block">{errors[fieldName]}</div>
     ) : (
         ''

@@ -1,4 +1,7 @@
+// Internal.
 import isEmpty from '../validator/isEmpty';
+
+// External.
 import Router from 'next/router';
 
 /**

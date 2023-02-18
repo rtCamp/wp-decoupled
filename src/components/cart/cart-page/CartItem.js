@@ -1,6 +1,10 @@
+// External.
 import { useState } from 'react';
+
+// Internal.
 import { updateCart } from '../../../utils/cart-functions';
 import Image from '../../Image';
+
 const CartItem = ({ item, handleRemoveProductClick, setCart }) => {
     const [productCount, setProductCount] = useState(item.qty);
 
@@ -35,7 +39,10 @@ const CartItem = ({ item, handleRemoveProductClick, setCart }) => {
             <th className="wd-cart-element wd-cart-el-close">
                 <span
                     className="wd-cart-close-icon"
-                    onClick={(event) => handleRemoveProductClick(event, item.databaseId)}>
+                    onClick={(event) => handleRemoveProductClick(event, item.databaseId)}
+                    aria-hidden="true"
+                    role="button"
+                    tabIndex={0}>
                     <i className="fas fa-times-circle" />
                 </span>
             </th>
