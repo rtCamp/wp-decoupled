@@ -1,0 +1,31 @@
+.wd-content {
+	padding: 24px 10px 10px 14px;
+}
+
+.category-container {
+	text-align: center;
+}
+
+@media screen and ( max-width: 500px ) {
+	.category-container {
+		min-width: 400px;
+	}
+}
+
+@media screen and ( max-width: 400px ) {
+	.category-container {
+		min-width: 300px;
+	}
+}
+
+.category-link {
+	cursor: pointer;
+    color: #333333;
+}
+
+.category-image {
+	max-width: 240px;
+}
+.category-name {
+	margin: 16px;
+}

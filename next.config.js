@@ -26,8 +26,7 @@ module.exports = withOffline(
             target: 'serverless',
             images: {
                   domains: [
-                        backend_hostname,
-                        'https://via.placeholder.com'
+                        backend_hostname
                     ],
             },
         })
