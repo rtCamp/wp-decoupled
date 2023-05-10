@@ -36,7 +36,6 @@
         "@apollo/client": "3.7.14",
         "dompurify": "3.0.3",
         "idb-keyval": "6.2.1",
-        "isomorphic-unfetch": "4.0.2",
         "next": "13.4.1",
         "node-fetch": "3.3.1",
         "nprogress": "0.2.0",
