@@ -35,6 +35,7 @@
     "dependencies": {
         "@apollo/client": "3.7.14",
         "dompurify": "3.0.3",
+        "graphql": "^16.6.0",
         "idb-keyval": "6.2.1",
         "next": "13.4.1",
         "nprogress": "0.2.0",
