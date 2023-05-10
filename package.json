@@ -2,35 +2,24 @@
     "name": "wp-decoupled",
     "version": "1.0.0",
     "description": "A decoupled WordPress application in React built with Next.js",
-    "scripts": {
-        "dev": "next dev",
-        "dev:inspect": "NODE_OPTIONS='--inspect' next",
-        "build": "next build",
-        "start": "next start",
-        "cypress:open": "cypress open",
-        "cypress:run": "cypress run",
-        "lint": "eslint --fix .",
-        "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "author": "Imran Sayed, Sayed Taqui, Divyaraj Masani, Muhammad Muhsin",
+    "license": "MIT",
+    "keywords": [
+        "wordpress",
+        "headless",
+        "nextjs"
+    ],
+    "engine": {
+        "node": ">= 18"
     },
+    "homepage": "https://github.com/rtCamp/wp-decoupled#readme",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/rtCamp/wp-decoupled.git"
     },
-    "keywords": [
-        "decoupled",
-        "react",
-        "next.js"
-    ],
-    "author": "Imran Sayed, Sayed Taqui, Divyaraj Masani, Muhammad Muhsin",
-    "license": "MIT",
     "bugs": {
         "url": "https://github.com/rtCamp/wp-decoupled/issues"
     },
-    "engine": {
-        "node": "v8.12.0",
-        "npm": "6.4.1"
-    },
-    "homepage": "https://github.com/rtCamp/wp-decoupled#readme",
     "dependencies": {
         "@apollo/client": "3.7.14",
         "dompurify": "3.0.3",
@@ -54,5 +43,15 @@
         "eslint-plugin-react": "^7.22.0",
         "eslint-plugin-react-hooks": "^4.2.0",
         "prettier": "^2.2.1"
+    },
+    "scripts": {
+        "dev": "next dev",
+        "dev:inspect": "NODE_OPTIONS='--inspect' next",
+        "build": "next build",
+        "start": "next start",
+        "cypress:open": "cypress open",
+        "cypress:run": "cypress run",
+        "lint": "eslint --fix .",
+        "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
     }
 }
