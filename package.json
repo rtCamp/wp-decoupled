@@ -38,6 +38,7 @@
     "eslint-config-next": "^13.4.1",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "only-allow": "^1.1.1",
     "prettier": "^2.8.8",
     "sass": "^1.62.1"
   },
@@ -48,6 +49,7 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "lint": "next lint",
-    "lint:fix": "next lint --fix"
+    "lint:fix": "next lint --fix",
+    "preinstall": "only-allow yarn"
   }
 }
