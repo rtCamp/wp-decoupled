@@ -21,7 +21,7 @@ const Menu = () => {
         setLoggedIn(true);
       }
     }
-  });
+  }, []);
 
   return (
     <ul className="wpd-main-nav">
