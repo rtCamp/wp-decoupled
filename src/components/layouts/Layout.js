@@ -30,10 +30,6 @@ const Layout = (props) => {
             content="initial-scale=1.0, width=device-width"
           />
           <meta name="theme-color" content="#2196F3" />
-          <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
-          />
           <link rel="manifest" href="/static/manifest/manifest.json" />
         </Head>
         <Header />
