@@ -35,7 +35,6 @@
     "dependencies": {
         "@apollo/client": "3.7.14",
         "dompurify": "3.0.3",
-        "graphql": "16.6.0",
         "graphql-tag": "2.12.6",
         "idb-keyval": "6.2.1",
         "isomorphic-unfetch": "4.0.2",
