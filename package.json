@@ -34,7 +34,6 @@
     "homepage": "https://github.com/rtCamp/wp-decoupled#readme",
     "dependencies": {
         "@apollo/client": "^3.3.6",
-        "@zeit/next-css": "^1.0.1",
         "cookie-parser": "^1.4.5",
         "dompurify": "^2.2.6",
         "dotenv": "^8.2.0",
@@ -56,7 +55,6 @@
         "woocommerce-api": "^1.5.0"
     },
     "devDependencies": {
-        "@zeit/next-sass": "^1.0.1",
         "cypress": "^6.3.0",
         "eslint": "^7.17.0",
         "eslint-config-airbnb": "^18.2.1",
