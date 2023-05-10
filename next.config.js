@@ -1,35 +1,20 @@
-const withCss = require('@zeit/next-css');
+/**
+ * External dependencies
+ */
 const path = require('path');
 
-const withOffline = require('next-offline');
-const withSass = require('@zeit/next-sass');
-
-const workBoxOptions = {
-    workboxOpts: {
-        swSrc: 'service-worker.js',
-        swDest: 'static/service-worker.js',
-        exclude: [/.+error\.js$/, /\.map$/]
+const nextConfig = {
+    images: {
+        domains: [
+            'https://via.placeholder.com',
+            new URL(process.env.NEXT_PUBLIC_WOO_SITE_URL).hostname,
+        ],
+    },
+    sassOptions: {
+        includePaths: [
+            path.resolve('src', 'styles'),
+        ],
     }
 };
 
-const backend_hostname = new URL(process.env.NEXT_PUBLIC_WOO_SITE_URL).hostname;
-
-module.exports = withOffline(
-    withCss(
-        withSass({
-            workboxOpts: workBoxOptions.workboxOpts,
-            generateInDevMode: true,
-            dontAutoRegisterSw: true,
-            generateSw: false,
-            globPatterns: ['static/**/*'],
-            globDirectory: '.',
-            target: 'serverless',
-            images: {
-                  domains: [
-                        backend_hostname,
-                        'https://via.placeholder.com'
-                    ],
-            },
-        })
-    )
-);
+module.exports = nextConfig;
