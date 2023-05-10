@@ -42,7 +42,6 @@
   },
   "scripts": {
     "dev": "next dev",
-    "dev:inspect": "NODE_OPTIONS='--inspect' next",
     "build": "next build",
     "start": "next start",
     "cypress:open": "cypress open",
