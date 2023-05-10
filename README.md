@@ -32,22 +32,22 @@ These instructions will get you a copy of the project up and running on your loc
 	* [wp-graphiql](https://github.com/wp-graphql/wp-graphiql) Provides GraphiQL IDE (playground) to the WP-Admin
 	* [wp-graphql-woocommerce](https://github.com/wp-graphql/wp-graphql-woocommerce) Adds Woocommerce functionality to a WPGraphQL schema( Tested upto [v0.7.0](https://github.com/wp-graphql/wp-graphql-woocommerce/releases/tag/v0.7.0) of wp-graphql-woocommerce)
 
-	
+
 2. You can also import default wooCommerce products that come with wooCommerce Plugin for development ( if you don't have any products in your WordPress install )
-   WP Dashboard > Tools > WooCommerce products(CSV) : The WooCommerce default products csv file is available at `wp-content/plugins/woocommerce/sample-data/sample_products.csv`   	
-   
+   WP Dashboard > Tools > WooCommerce products(CSV) : The WooCommerce default products csv file is available at `wp-content/plugins/woocommerce/sample-data/sample_products.csv`
+
 ### 2. For Authentication :lock:
 
 a. You can use any secret token of your choice, however it would be best if you generate one using WordPress Salt generator (https://api.wordpress.org/secret-key/1.1/salt/) to generate a Secret.
 And just pick up any one of the token and add it in place of 'your-secret-token' below:
-   
+
    Define a Secret in `wp-config.php` of your WordPress directory:
    ```
    define( 'GRAPHQL_JWT_AUTH_SECRET_KEY', 'your-secret-token' );
-   ```  
+   ```
 
 b. Depending on your particular environment, you may have to research how to enable these headers, but in Apache, you can do the following in your `.htaccess`:
-   
+
    ```
    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
    ```
@@ -78,7 +78,7 @@ WOO_SECRET=xxxxx
 * Open the site in Chrome on your mobile and then click on add to home screen.
 * It will be downloaded and saved as a Progressive Web App on your mobile.
 * Once added Look `WP Decoupled` app on your mobile.
-* This PWA will work even when you are offline. 
+* This PWA will work even when you are offline.
 
 ## Branches Information :seedling:
 

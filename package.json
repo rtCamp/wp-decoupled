@@ -1,53 +1,53 @@
 {
-    "name": "wp-decoupled",
-    "version": "1.0.0",
-    "description": "A decoupled WordPress application in React built with Next.js",
-    "author": "Imran Sayed, Sayed Taqui, Divyaraj Masani, Muhammad Muhsin",
-    "license": "MIT",
-    "keywords": [
-        "wordpress",
-        "headless",
-        "nextjs"
-    ],
-    "engine": {
-        "node": ">= 18"
-    },
-    "homepage": "https://github.com/rtCamp/wp-decoupled#readme",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/rtCamp/wp-decoupled.git"
-    },
-    "bugs": {
-        "url": "https://github.com/rtCamp/wp-decoupled/issues"
-    },
-    "dependencies": {
-        "@apollo/client": "3.7.14",
-        "dompurify": "3.0.3",
-        "graphql": "^16.6.0",
-        "idb-keyval": "6.2.1",
-        "next": "13.4.1",
-        "nprogress": "0.2.0",
-        "prop-types": "15.8.1",
-        "react": "18.2.0",
-        "react-dom": "18.2.0",
-        "validator": "13.9.0"
-    },
-    "devDependencies": {
-        "cypress": "^6.3.0",
-        "eslint": "^8.40.0",
-        "eslint-config-next": "^13.4.1",
-        "eslint-config-prettier": "^8.8.0",
-        "eslint-plugin-prettier": "^4.2.1",
-        "prettier": "^2.8.8"
-    },
-    "scripts": {
-        "dev": "next dev",
-        "dev:inspect": "NODE_OPTIONS='--inspect' next",
-        "build": "next build",
-        "start": "next start",
-        "cypress:open": "cypress open",
-        "cypress:run": "cypress run",
-        "lint": "next lint",
-        "lint:fix": "next lint --fix"
-    }
+  "name": "wp-decoupled",
+  "version": "1.0.0",
+  "description": "A decoupled WordPress application in React built with Next.js",
+  "author": "Imran Sayed, Sayed Taqui, Divyaraj Masani, Muhammad Muhsin",
+  "license": "MIT",
+  "keywords": [
+    "wordpress",
+    "headless",
+    "nextjs"
+  ],
+  "engine": {
+    "node": ">= 18"
+  },
+  "homepage": "https://github.com/rtCamp/wp-decoupled#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rtCamp/wp-decoupled.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rtCamp/wp-decoupled/issues"
+  },
+  "dependencies": {
+    "@apollo/client": "3.7.14",
+    "dompurify": "3.0.3",
+    "graphql": "^16.6.0",
+    "idb-keyval": "6.2.1",
+    "next": "13.4.1",
+    "nprogress": "0.2.0",
+    "prop-types": "15.8.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "validator": "13.9.0"
+  },
+  "devDependencies": {
+    "cypress": "^6.3.0",
+    "eslint": "^8.40.0",
+    "eslint-config-next": "^13.4.1",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.8"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "dev:inspect": "NODE_OPTIONS='--inspect' next",
+    "build": "next build",
+    "start": "next start",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix"
+  }
 }
