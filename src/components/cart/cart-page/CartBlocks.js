@@ -77,7 +77,7 @@ const CartBlocks = () => {
                                     </tr>
                                 </tbody>
                             </table>
-                            <Link href="/checkout">
+                            <Link href="/checkout" legacyBehavior>
                                 <button className="btn wd-large-black-btn">
                                     <span className="wd-cart-checkout-txt">
                                         Proceed to Checkout

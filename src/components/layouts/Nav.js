@@ -5,8 +5,8 @@ import Menu from './Menu';
 const Nav = () => {
     return (
         <nav className="wd-navbar navbar navbar-expand-lg navbar-dark bg-primary">
-            <Link href="/">
-                <a className="navbar-brand">WP Decoupled</a>
+            <Link href="/" className="navbar-brand">
+                WP Decoupled
             </Link>
             {/* @TODO Need to add support for login and registration api for latest version of wp-graphql-woocommerce plugin */}
             {/*<Menu/>*/}

@@ -26,13 +26,13 @@ const Menu = () => {
     return (
         <ul className="wpd-main-nav">
             <li className="wpd-main-nav__list">
-                <Link href="/login">
-                    <a className="wpd-main-nav__link">Login</a>
+                <Link href="/login" className="wpd-main-nav__link">
+                    Login
                 </Link>
             </li>
             <li className="wpd-main-nav__list">
-                <Link href="/register">
-                    <a className="wpd-main-nav__link">Register</a>
+                <Link href="/register" className="wpd-main-nav__link">
+                    Register
                 </Link>
             </li>
             {loggedIn ? (

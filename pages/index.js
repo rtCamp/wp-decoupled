@@ -19,16 +19,16 @@ const NewProducts = ({ products }) => {
                                 <div className="product-container col-md-3 mb-5" key={item.id}>
                                     {/* @TODO need to get rid of using databseId here. */}
                                     <Link href={`/product/${item.slug}`}>
-                                        <a>
-                                            <span className="product-link">
-                                                <Image
-                                                    src={item?.image?.sourceUrl}
-                                                    alt={item?.image?.altText || item?.name}
-                                                />
-                                                <h5 className="product-name">{item.name}</h5>
-                                                <p className="product-price">{item.price}</p>
-                                            </span>
-                                        </a>
+
+                                        <span className="product-link">
+                                            <Image
+                                                src={item?.image?.sourceUrl}
+                                                alt={item?.image?.altText || item?.name}
+                                            />
+                                            <h5 className="product-name">{item.name}</h5>
+                                            <p className="product-price">{item.price}</p>
+                                        </span>
+
                                     </Link>
                                     <AddToCartButton product={item} />
                                 </div>

@@ -41,20 +41,18 @@ const AddToCartButton = (props) => {
         }
     };
 
-    return (
-        <>
-            <button onClick={handleAddToCartClick} className="btn btn-secondary">
-                Add to cart
-            </button>
-            {showViewCart ? (
-                <Link href="/cart">
-                    <button className="wd-view-cart-btn btn btn-secondary">View Cart</button>
-                </Link>
-            ) : (
-                ''
-            )}
-        </>
-    );
+    return <>
+        <button onClick={handleAddToCartClick} className="btn btn-secondary">
+            Add to cart
+        </button>
+        {showViewCart ? (
+            <Link href="/cart" legacyBehavior>
+                <button className="wd-view-cart-btn btn btn-secondary">View Cart</button>
+            </Link>
+        ) : (
+            ''
+        )}
+    </>;
 };
 
 export default AddToCartButton;
