@@ -50,8 +50,7 @@
         "react-bootstrap": "2.7.4",
         "react-dom": "18.2.0",
         "url-loader": "4.1.1",
-        "validator": "13.9.0",
-        "woocommerce-api": "^1.5.0"
+        "validator": "13.9.0"
     },
     "devDependencies": {
         "cypress": "^6.3.0",
