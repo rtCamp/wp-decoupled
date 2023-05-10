@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { AppProvider } from '../context/AppContext';
-import '../../styles/sass/styles.scss';
-import '../../styles/vendor/bootstrap.min.css';
 import Head from 'next/head';
 import Header from './Header';
 import Footer from './Footer';
