@@ -89,9 +89,7 @@ const CheckoutForm = () => {
             </div>
           </div>
         </form>
-      ) : (
-        ''
-      )}
+      ) : null}
     </Fragment>
   );
 };

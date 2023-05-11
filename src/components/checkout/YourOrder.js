@@ -42,9 +42,7 @@ const YourOrder = ({ cart }) => {
             </tbody>
           </table>
         </Fragment>
-      ) : (
-        ''
-      )}
+      ) : null}
     </Fragment>
   );
 };

@@ -52,9 +52,7 @@ const AddToCartButton = (props) => {
             View Cart
           </button>
         </Link>
-      ) : (
-        ''
-      )}
+      ) : null}
     </>
   );
 };

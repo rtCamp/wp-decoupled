@@ -88,9 +88,7 @@ const CartBlocks = () => {
             </div>
           </div>
         </div>
-      ) : (
-        ''
-      )}
+      ) : null}
     </div>
   );
 };

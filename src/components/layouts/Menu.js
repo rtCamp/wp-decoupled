@@ -41,9 +41,7 @@ const Menu = () => {
             Logout
           </a>
         </li>
-      ) : (
-        ''
-      )}
+      ) : null}
     </ul>
   );
 };
