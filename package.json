@@ -38,6 +38,8 @@
     "eslint-config-next": "^13.4.1",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
     "prettier": "^2.8.8",
     "sass": "^1.62.1"
   },
@@ -49,6 +51,8 @@
     "cypress:run": "cypress run",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
+    "lint:staged": "lint-staged",
+    "postinstall": "husky install",
     "preinstall": "node bin/allow-yarn.js"
   }
 }
