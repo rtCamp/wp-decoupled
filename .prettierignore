@@ -1,9 +1,5 @@
-node_modules
 public
-src/styles/vendor/
 *.md
 .next
-.eslintrc.js
-next.config.js
-package-lock.json
-package.json
+node_modules
+src/styles/vendor/

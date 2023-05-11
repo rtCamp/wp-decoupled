@@ -6,7 +6,7 @@
  * @return {string} html with converted html entities.
  */
 export const wpdDecodeHtml = (html) => {
-    const txt = document.createElement('textarea');
-    txt.innerHTML = html;
-    return txt.value;
+  const txt = document.createElement('textarea');
+  txt.innerHTML = html;
+  return txt.value;
 };
