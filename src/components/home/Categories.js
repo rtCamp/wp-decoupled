@@ -7,7 +7,7 @@ const Categories = () => {
             <div className="woocommerce">
                 <ul className="products row mx-auto">
                     <li className="product-category product first col-md-4">
-                        <Link as={`/`} href={`/`}>
+                        <Link as={`/`} href={`/`}> 
                             <a className="">
                                 <Image
                                     src="https://woo-vsf.dev5.rt.gw/wp-content/uploads/2019/05/accessories.jpg"
